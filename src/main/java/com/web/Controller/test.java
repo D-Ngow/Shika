@@ -16,7 +16,7 @@ public class test {
 	@GetMapping("/")
 	public String getMethodName() {
 		List<users> list = dao.findAll();
-		int i = 0;
+		int i = 1;
 		for (users u : list) {
 			System.out.println(i);
 			System.out.println(u.getName());

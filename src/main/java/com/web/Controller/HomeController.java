@@ -24,5 +24,4 @@ public class HomeController {
 		model.addAttribute("listcate",listcate);
 		return "";
 	}
-	
 }

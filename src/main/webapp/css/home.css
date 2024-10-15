@@ -1,0 +1,165 @@
+.banner {
+  background: linear-gradient(to right, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.7)),
+    url('hero-bg.jpg') no-repeat center center;
+  background-size: cover;
+}
+
+.navbar-nav a {
+  text-decoration: none;
+  font-size: medium;
+  font-weight: bold;
+  font-variant: small-caps
+}
+
+.top-picks .card {
+  margin-bottom: 30px;
+}
+
+.trending img {
+  margin-bottom: 15px;
+}
+
+footer a {
+  text-decoration: none;
+}
+
+.search-box {
+  width: 50px;
+  /* Chiều rộng ban đầu */
+  height: 50px;
+  /* Chiều cao mới */
+  position: relative;
+  overflow: hidden;
+  transition: all 0.5s ease;
+  border-radius: 15px;
+}
+
+.search-box.open {
+  width: 300px;
+  /* Chiều rộng khi mở */
+}
+
+/* Ô input với nền trắng và chữ đen */
+.search-input {
+  width: 100%;
+  height: 100%;
+  border: none;
+  box-shadow: none;
+  background: #fff;
+  /* Nền trắng */
+  color: #000;
+  /* Chữ đen */
+  padding: 10px 80px 10px 20px;
+  /* Điều chỉnh padding phù hợp */
+  font-size: 20px;
+  /* Giảm font-size cho cân đối với chiều cao */
+  border-radius: 15px;
+  /* Bo tròn đồng bộ */
+}
+
+/* Nút button màu đen với biểu tượng trắng */
+.search-btn {
+  background-color: #000;
+  /* Nền đen */
+  color: #fff;
+  /* Biểu tượng trắng */
+  outline: none;
+  border: none;
+  width: 50px;
+  /* Chiều rộng và cao bằng với box */
+  height: 50px;
+  position: absolute;
+  right: 0;
+  top: 0;
+  cursor: pointer;
+  font-size: 24px;
+  /* Giảm font-size để vừa nút */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 15px;
+  /* Bo tròn đồng bộ */
+}
+
+.carousel-container {
+  width: 80%;
+  margin: 50px auto;
+  overflow: hidden;
+  position: relative;
+  flex-wrap: nowrap;
+}
+
+.carousel-track {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+  flex-wrap: nowrap;
+}
+
+.carousel-item-product {
+  min-width: 20%;
+  text-align: center;
+  margin: 0 5px;
+  flex: 0 0 auto;
+  width: 250px;
+  scroll-snap-align: start;
+}
+
+.carousel-item-product img {
+  width: 100%;
+  border-radius: 10px;
+}
+
+.product-name {
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+.product-category {
+  color: gray;
+  font-size: 14px;
+  margin-top: 5px;
+}
+
+.carousel-btn {
+  width: 40px;
+  height: 40px;
+}
+
+.category {
+  position: relative;
+}
+
+.category .title {
+  position: absolute;
+  bottom: 10px;
+  left: 30px;
+  font-size: large;
+  font-weight: bold;
+  color: white;
+}
+
+.dropdown-menu a {
+  font-variant: normal;
+}
+
+.dropdown {
+  height: 40px;
+}
+
+.dropdown-menu {
+  display: block;
+  visibility: hidden;
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: .2s ease all;
+}
+
+.dropdown-menu.show {
+  display: block;
+  visibility: visible;
+  opacity: 1;
+  transform: translateY(0px);
+  transition: .2s ease all;
+  
+  z-index: 1000;
+}

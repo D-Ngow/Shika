@@ -29,6 +29,8 @@ public class products {
      Boolean status;
     
      String brand;
+     
+     String image;
     
      String describe;
 

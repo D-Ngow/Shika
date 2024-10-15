@@ -11,6 +11,7 @@ CREATE TABLE products (
     discountPrice FLOAT,
     status BIT,
     brand NVARCHAR(30),
+    image Nvarchar(100),
     describe NVARCHAR(MAX)
 );
 
@@ -102,13 +103,13 @@ CREATE TABLE payment (
 );
 
 -- Insert into products
-INSERT INTO products (productName, color, quantity, price, discountPrice, status, brand, describe)
+INSERT INTO products (productName, color, quantity, price, discountPrice, status, brand, image, describe)
 VALUES 
-('Laptop A', 'Silver', 100, 1000.00, 900.00, 1, 'Brand A', 'A powerful laptop for gaming.'),
-('Smartphone B', 'Black', 50, 500.00, 450.00, 1, 'Brand B', 'A sleek smartphone with excellent battery life.'),
-('Headphones C', 'Blue', 200, 100.00, 80.00, 1, 'Brand C', 'Noise-cancelling over-ear headphones.'),
-('Tablet D', 'White', 70, 300.00, NULL, 1, 'Brand D', 'A lightweight and portable tablet.'),
-('Smartwatch E', 'Black', 150, 200.00, 180.00, 1, 'Brand E', 'A smartwatch with multiple health features.');
+('Laptop A', 'Silver', 100, 1000.00, 900.00, 1, 'Brand A', 'AirForce1_Black.png', 'A powerful laptop for gaming.'),
+('Smartphone B', 'Black', 50, 500.00, 450.00, 1, 'Brand B', 'AirForce1_Green.png', 'A sleek smartphone with excellent battery life.'),
+('Headphones C', 'Blue', 200, 100.00, 80.00, 1, 'Brand C', 'AirForce1_White.png', 'Noise-cancelling over-ear headphones.'),
+('Tablet D', 'White', 70, 300.00, NULL, 1, 'Brand D', 'Nike.png', 'A lightweight and portable tablet.'),
+('Smartwatch E', 'Black', 150, 200.00, 180.00, 1, 'Brand E', 'NikeDunkLowBlue.png', 'A smartwatch with multiple health features.');
 
 -- Insert into productImage
 INSERT INTO productImage (productId, imageUrl)

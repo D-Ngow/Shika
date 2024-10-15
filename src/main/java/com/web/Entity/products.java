@@ -29,10 +29,10 @@ public class products {
      Boolean status;
     
      String brand;
-    
-     String describe;
      
      String image;
+    
+     String describe;
 
     @OneToMany(mappedBy = "product")
      List<productImage> images;

@@ -7,7 +7,6 @@ import org.springframework.ui.Model;
 import com.web.DAO.categoriesDAO;
 import com.web.DAO.productsDAO;
 import com.web.Entity.categories;
-import com.web.Entity.productImage;
 import com.web.Entity.products;
 import org.springframework.web.bind.annotation.GetMapping;
 

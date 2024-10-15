@@ -144,8 +144,6 @@
         </div>
     </div>
 
-
-    <!-- Trending Section -->
     <div class="trending py-5 bg-light">
         <div class="container">
             <h2 class="text-center mb-4 fw-bold">Trending Now</h2>

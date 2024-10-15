@@ -136,7 +136,7 @@
             <div class="d-flex">
                 <c:forEach var="product" items="${listprd}">
                 	<div class="carousel-item-product">
-                    <img src="image/product/${product.images.imageUrl[0]}" alt="Product 1">
+                    <img src="image/product/${product.image}" alt="Product 1">
                     <p class="product-name">${product.productName}</p>
                 </div>
                 </c:forEach>
@@ -144,8 +144,6 @@
         </div>
     </div>
 
-
-    <!-- Trending Section -->
     <div class="trending py-5 bg-light">
         <div class="container">
             <h2 class="text-center mb-4 fw-bold">Trending Now</h2>

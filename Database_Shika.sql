@@ -1,5 +1,5 @@
-﻿create database temp
-use temp
+﻿create database Shiko
+use Shiko
 
 
 CREATE TABLE products (
@@ -113,11 +113,11 @@ VALUES
 -- Insert into productImage
 INSERT INTO productImage (productId, imageUrl)
 VALUES 
-(1, 'laptopA.jpg'),
-(2, 'smartphoneB.jpg'),
-(3, 'headphonesC.jpg'),
-(4, 'tabletD.jpg'),
-(5, 'smartwatchE.jpg');
+(1, 'AirForce1_Black.png'),
+(2, 'AirForce1_Green.png'),
+(3, 'AirForce1_White.png'),
+(4, 'Nike.png'),
+(5, 'NikeDunkLowBlue.png');
 
 -- Insert into type
 INSERT INTO type (size)

@@ -22,6 +22,6 @@ public class HomeController {
 		model.addAttribute("listprd",listprd);
 		List<categories> listcate = cateDAO.findAll();
 		model.addAttribute("listcate",listcate);
-		return "";
+		return "index";
 	}
 }

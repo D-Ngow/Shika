@@ -7,7 +7,6 @@ import com.web.DAO.usersDAO;
 import com.web.Entity.users;
 import org.springframework.web.bind.annotation.GetMapping;
 
-
 @Controller
 public class test {
 	@Autowired

@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jstl/fmt_rt" prefix="fmt"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -132,31 +134,12 @@
 
         <div class="carousel-track">
             <div class="d-flex">
-                <div class="carousel-item-product">
-                    <img src="image/product/AIR+FORCE+1+'07 (1).png" alt="Product 1">
-                    <p class="product-name">Nike Zoom Vomero Roam</p>
-                    <p class="product-category">Women's Winterized Shoes</p>
+                <c:forEach var="product" items="${listprd}">
+                	<div class="carousel-item-product">
+                    <img src="image/product/${product.images.imageUrl[0]}" alt="Product 1">
+                    <p class="product-name">${product.productName}</p>
                 </div>
-                <div class="carousel-item-product">
-                    <img src="image/product/AIR+FORCE+1+'07 (1).png" alt="Product 2">
-                    <p class="product-name">Nike Air Max Dn</p>
-                    <p class="product-category">Shoes</p>
-                </div>
-                <div class="carousel-item-product">
-                    <img src="image/product/AIR+FORCE+1+'07 (1).png" alt="Product 3">
-                    <p class="product-name">Nike Air Rift SE</p>
-                    <p class="product-category">Women's Shoes</p>
-                </div>
-                <div class="carousel-item-product">
-                    <img src="image/product/AIR+FORCE+1+'07 (1).png" alt="Product 4">
-                    <p class="product-name">Nike Free Run</p>
-                    <p class="product-category">Men's Shoes</p>
-                </div>
-                <div class="carousel-item-product">
-                    <img src="image/product/AIR+FORCE+1+'07 (1).png" alt="Product 5">
-                    <p class="product-name">Nike Pegasus</p>
-                    <p class="product-category">Running Shoes</p>
-                </div>
+                </c:forEach>
             </div>
         </div>
     </div>

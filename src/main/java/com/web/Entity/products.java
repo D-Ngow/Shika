@@ -31,6 +31,8 @@ public class products {
      String brand;
     
      String describe;
+     
+     String image;
 
     @OneToMany(mappedBy = "product")
      List<productImage> images;

@@ -16,7 +16,7 @@ public class Details {
     
     @ManyToOne
     @JoinColumn(name = "typeId", nullable = false)
-     Type Type;
+     Type type;
     
     @ManyToOne
     @JoinColumn(name = "productId", nullable = false)

@@ -2,8 +2,8 @@ package com.web.DAO;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.web.Entity.type;
+import com.web.Entity.Type;
 
-public interface typeDAO extends JpaRepository<type, Integer>{
+public interface typeDAO extends JpaRepository<Type, Integer>{
 
 }

@@ -6,20 +6,21 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "productImage")
-@Data @AllArgsConstructor @NoArgsConstructor
-public class productImage {
-    
+@Table(name = "categorydetails")
+@Data @NoArgsConstructor  @AllArgsConstructor
+public class CategoryDetails {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-     int imageId;
+    private int id;
 
     @ManyToOne
     @JoinColumn(name = "productId")
-     products product;
-    
-     String imageUrl;
+    private Products product;
 
+    @ManyToOne
+    @JoinColumn(name = "categoryId")
+    private Categories category;
 
 }
 

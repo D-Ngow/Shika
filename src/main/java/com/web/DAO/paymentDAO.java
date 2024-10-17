@@ -2,8 +2,8 @@ package com.web.DAO;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.web.Entity.payment;
+import com.web.Entity.Payment;
 
-public interface paymentDAO extends JpaRepository<payment, Integer>{
+public interface paymentDAO extends JpaRepository<Payment, Integer>{
 
 }

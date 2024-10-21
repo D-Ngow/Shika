@@ -1,4 +1,4 @@
-<footer class="bg-black text-white py-4">
+<footer class="bg-black text-white py-4" id="footer">
 	<div class="container d-flex justify-content-between gap-3">
 		<div>
 			<div class="d-flex justify-content-center">

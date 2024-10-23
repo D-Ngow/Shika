@@ -27,10 +27,10 @@ public class CartController {
 	public String cart(Model model) {
 		List<Cart> listCart = cartDAO.findAll();
 		List<Details> listDetail = detailDAO.findAll();
-		List<Type> listType = tDAO.findAll();
+//		List<Type> listType = tDAO.findAll();
 		model.addAttribute("listCart", listCart);
 		model.addAttribute("listDetail", listDetail);
-		model.addAttribute("listType", listType);
+//		model.addAttribute("listType", listType);
 		double subtotal =0, discount=0, total=0;
 		for (Cart c : listCart) {
 			subtotal += c.getDetail().getProduct().getPrice() * c.getQuantity();

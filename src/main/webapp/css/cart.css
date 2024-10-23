@@ -1,0 +1,19 @@
+.img-fluid {
+    width: 200px;
+    height: 200px;
+}
+
+.checkout {
+    padding: 12px 0px;
+}
+
+.container {
+    padding: 6px 0px;
+}
+
+.quantity {
+	max-width: 20px;
+	border: none;
+	text-align: center;
+	text-decoration: underline;
+}

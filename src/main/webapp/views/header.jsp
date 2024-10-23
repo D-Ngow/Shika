@@ -10,9 +10,9 @@
 		</button>
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 			<ul class="navbar-nav me-auto mb-2 mb-lg-0">
-				<li class="nav-item"><a href="#" class="text-dark nav-link">HOME</a>
+				<li class="nav-item"><a href="/home" class="text-dark nav-link">HOME</a>
 				</li>
-				<li class="nav-item"><a href="#" class="text-dark nav-link">PRODUCTS</a>
+				<li class="nav-item"><a href="/product" class="text-dark nav-link">PRODUCTS</a>
 				</li>
 				<li class="nav-item dropdown"><a
 					class="nav-link dropdown-toggle text-dark" href="#" role="button"
@@ -22,16 +22,14 @@
 						<li><a class="dropdown-item" href="#">Another action</a></li>
 						<li><a class="dropdown-item" href="#">Something else here</a></li>
 					</ul></li>
-				<li class="nav-item"><a class="text-dark nav-link">PRODUCTS</a>
-				</li>
-				<li class="nav-item"><a class="text-dark nav-link">CONTACT</a>
+				<li class="nav-item"><a href="#footer" class="text-dark nav-link">CONTACT</a>
 				</li>
 				<li class="nav-item"><a class="text-dark nav-link">ACCOUNT</a>
 				</li>
 			</ul>
 			<div class="d-flex align-items-center gap-5">
-				<form class="search-box" role="search" method="post">
-					<input type="text" class="search-input" />
+				<form action="/search" class="search-box" role="search" method="post">
+					<input type="text" class="search-input" name="search" />
 					<button class="search-btn">
 						<svg xmlns="http://www.w3.org/2000/svg" height="20" width="20"
 							viewBox="0 0 512 512">

@@ -36,6 +36,6 @@ public class ProductController {
 		model.addAttribute("proList", proSearch);
 		return "product";
 	}
-	
+		
 	
 }

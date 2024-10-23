@@ -15,7 +15,7 @@ public class Type {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
      int typeId;
     
-     String size;
+     int size;
 
     @OneToMany(mappedBy = "type")
      List<Details> Details;

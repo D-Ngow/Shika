@@ -19,8 +19,8 @@ public class Cart {
      Users user;
     
     @ManyToOne
-    @JoinColumn(name = "productId", nullable = false)
-     Products product;
+    @JoinColumn(name = "detailId", nullable = false)
+     Details detail;
     
      int quantity;
 

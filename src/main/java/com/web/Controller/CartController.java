@@ -33,9 +33,9 @@ public class CartController {
 		model.addAttribute("listType", listType);
 		double subtotal =0, discount=0, total=0;
 		for (Cart c : listCart) {
-			subtotal += c.getProduct().getPrice() * c.getQuantity();
-			if (!c.getProduct().getDiscountPrice().equals(null)) {
-				discount += c.getProduct().getDiscountPrice();
+			subtotal += c.getDetail().getProduct().getPrice() * c.getQuantity();
+			if (!c.getDetail().getProduct().getDiscountPrice().equals(null)) {
+				discount += c.getDetail().getProduct().getDiscountPrice();
 			}
 			else {
 				discount += 0;

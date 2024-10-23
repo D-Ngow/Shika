@@ -24,7 +24,7 @@
 		<div class="row">
 			<div class="col-md-8">
 				<h3 class="mb-4">Bag</h3>
-				<c:forEach var="cart" items="listCart">
+				<c:forEach var="cart" items="${listCart}">
 					<div class="card mb-3 border-0">
 						<div class="row g-0 align-items-center">
 							<div class="col-md-3">
@@ -37,19 +37,28 @@
 									<div class="d-flex justify-content-between">
 										<h5 class="card-title">${cart.product.productName}</h5>
 										<p class="card-text fw-bold">
-											<fmt:formatNumber type="number" value="${cart.product.price}" />
-											₫
+											<fmt:formatNumber type="number" value="${cart.product.price}" /> ₫
 										</p>
 									</div>
 									<p class="card-text text-muted mb-1">${cart.product.brand}</p>
 									<p class="card-text text-mute mb-1">${cart.product.color}</p>
 									<div class="d-flex">
 										Size: <select name="" id="" class="border-0 mx-2">
-											<c:forEach var="option" items="${listType}">
-												<option value="${option.size}">${option.size}</option>
+											<c:forEach var="detail" items="${listDetail}">
+												<c:if test="${cart.product.productId == detail.product.productId}">
+													<c:forEach var="type" items="${listType}">
+														<c:if test="${type.typeId == detail.type.typeId}">
+															<option value="${type.size}">${type.size}</option>
+														</c:if>
+													</c:forEach>
+												</c:if>
 											</c:forEach>
-										</select> Quantity: <input type="text" value="${cart.quantity}"
-											class="border-0 mx-2 text-decoration-underline">
+										</select> Quantity:
+										<div class="btn-group" role="group" aria-label="Basic example">
+											<button type="button" class="bg-white border-0 fw-medium">-</button>
+											<input type="text" class="quantity" value="${cart.quantity}" readonly>
+											<button type="button" class="bg-white border-0 fw-medium">+</button>
+										</div>
 									</div>
 									<button class="border-0 bg-white">
 										<svg xmlns="http://www.w3.org/2000/svg" height="20"
@@ -64,21 +73,20 @@
 					</div>
 				</c:forEach>
 			</div>
-		</div>
 		<div class="col-md-4">
 			<div class="card border-0">
 				<div class="card-body">
 					<h5 class="card-title">Summary</h5>
 					<hr>
 					<p class="d-flex justify-content-between">
-						<span class="fw-medium">Subtotal</span> <span class="fw-medium">2,929,000₫</span>
+						<span class="fw-medium">Subtotal</span> <span class="fw-medium"><fmt:formatNumber type="number" value="${subtotal}" />₫</span>
 					</p>
 					<p class="d-flex justify-content-between">
-						<span class="fw-medium">Discount</span> <span class="fw-medium">0₫</span>
+						<span class="fw-medium">Discount</span> <span class="fw-medium">${discount}%</span>
 					</p>
 					<hr>
 					<p class="d-flex justify-content-between fw-bold">
-						<span>Total</span> <span>2,929,000₫</span>
+						<span>Total</span> <span><fmt:formatNumber type="number" value="${total}" />₫</span>
 					</p>
 					<button class="btn btn-dark w-100 rounded-pill checkout">Checkout</button>
 				</div>
@@ -86,7 +94,6 @@
 		</div>
 	</div>
 	</div>
-
 	<!-- Footer -->
 	<c:import url="footer.jsp"></c:import>
 

@@ -10,3 +10,10 @@
 .container {
     padding: 6px 0px;
 }
+
+.quantity {
+	max-width: 20px;
+	border: none;
+	text-align: center;
+	text-decoration: underline;
+}

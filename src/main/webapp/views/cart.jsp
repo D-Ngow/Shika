@@ -45,12 +45,14 @@
 									<p class="card-text text-muted mb-1">${cart.detail.product.brand}</p>
 									<p class="card-text text-mute mb-1">${cart.detail.product.color}</p>
 									<div class="d-flex">
-										Size:${cart.detail.type.size} Quantity:
-										<div class="btn-group" role="group" aria-label="Basic example">
-											<button type="button" class="bg-white border-0 fw-medium">-</button>
-											<input type="text" class="quantity" value="${cart.quantity}"
-												readonly>
-											<button type="button" class="bg-white border-0 fw-medium">+</button>
+										<div class="me-3 d-flex align-items-center">Size: ${cart.detail.type.size}</div>
+										<div class="d-flex align-items-center">Quantity:
+											<div class="btn-group" role="group" aria-label="Basic example">
+												<a href="/changeQuantity?id=${cart.detail.product.productId}&method=decrease" class="bg-white border-0 fw-medium text-dark text-decoration-none">-</a>
+												<input type="text" class="quantity" value="${cart.quantity}"
+													readonly>
+												<a href="/changeQuantity?id=${cart.detail.product.productId}&method=increase" class="bg-white border-0 fw-medium text-dark text-decoration-none">+</a>
+											</div>
 										</div>
 									</div>
 									<button class="border-0 bg-white">
@@ -76,7 +78,8 @@
 									type="number" value="${subtotal}" />₫</span>
 						</p>
 						<p class="d-flex justify-content-between">
-							<span class="fw-medium">Discount</span> <span class="fw-medium">${discount}%</span>
+							<span class="fw-medium">Discount</span> <span class="fw-medium"><fmt:formatNumber
+									type="number" value="${discount}" />₫</span>
 						</p>
 						<hr>
 						<p class="d-flex justify-content-between fw-bold">

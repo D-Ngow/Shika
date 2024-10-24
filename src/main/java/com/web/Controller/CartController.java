@@ -14,6 +14,11 @@ import com.web.Entity.Cart;
 import com.web.Entity.Details;
 import com.web.Entity.Type;
 
+import jakarta.servlet.http.HttpServletRequest;
+
+import org.springframework.web.bind.annotation.RequestParam;
+
+
 @Controller
 public class CartController {
 	@Autowired
@@ -21,16 +26,14 @@ public class CartController {
 	@Autowired
 	detailsDAO detailDAO;
 	@Autowired
-	typeDAO tDAO;
+	HttpServletRequest req;
 	
 	@GetMapping("/cart")
 	public String cart(Model model) {
 		List<Cart> listCart = cartDAO.findAll();
 		List<Details> listDetail = detailDAO.findAll();
-//		List<Type> listType = tDAO.findAll();
 		model.addAttribute("listCart", listCart);
 		model.addAttribute("listDetail", listDetail);
-//		model.addAttribute("listType", listType);
 		double subtotal =0, discount=0, total=0;
 		for (Cart c : listCart) {
 			subtotal += c.getDetail().getProduct().getPrice() * c.getQuantity();
@@ -41,11 +44,32 @@ public class CartController {
 				discount += 0;
 			}
 		}
-		total = subtotal - (subtotal*discount/100);
+		total = subtotal - discount;
 		model.addAttribute("subtotal", subtotal);
 		model.addAttribute("discount", discount);
 		model.addAttribute("total", total);
 		return "cart";
+	}
+	
+	@GetMapping("/changeQuantity")
+	public String changeQuantity() {
+		String method = req.getParameter("method");
+		int id = Integer.parseInt(req.getParameter("id"));
+		List<Cart> listCart = cartDAO.findAll();
+		for (Cart c : listCart) {
+			if (id == c.getDetail().getProduct().getProductId()) {
+				int quantity = c.getQuantity();
+				if (method.equals("decrease")) {
+					c.setQuantity(quantity-1);
+					cartDAO.save(c);
+				}
+				else if (method.equals("increase")) {
+					c.setQuantity(quantity+1);
+					cartDAO.save(c);
+				}
+			}
+		}
+		return "redirect:/cart";
 	}
 	
 }

@@ -24,19 +24,15 @@
             <div class="col-md-12 col-lg-12 col-xl-9 col-xxl-8">
                 <div class="row">
                     <div class="col-md-8 row-col-12 d-flex">
-                        <img src="/image/product/AirForce1_Black.png" class="img-fluid mb-2 px-0 main-img" alt="Main Image">
+                        <img src="/image/product/${product.image}" class="img-fluid mb-2 px-0 main-img" alt="Main Image">
                     </div>
                     <div class="col-md-4 row-col-12">
                         <div class=" row side-img d-flex">
-                            <div class="col-md-12 col-4 sub-img">
-                                <img src="/image/product/AirForce1_Black.png" class="img-fluid" width="180px" alt="Thumbnail 1">
+                            <c:forEach var= "image" items="${image}">
+                            	<div class="col-md-12 col-4 sub-img">
+                                <img src="/image/product/${image.imageUrl}" class="img-fluid" width="180px" alt="Thumbnail 1">
                             </div>
-                            <div class="col-md-12 col-4 sub-img">
-                                <img src="/image/product/AirForce1_Black.png" class="img-fluid" width="180px" alt="Thumbnail 2">
-                            </div>
-                            <div class="col-md-12 col-4 sub-img">
-                                <img src="/image/product/AirForce1_Black.png" class="img-fluid" width="180px" alt="Thumbnail 3">
-                            </div>
+                            </c:forEach>
                         </div>
                     </div>
                 </div>
@@ -44,20 +40,18 @@
 
             <!-- Product Details -->
             <div class="col-md-12 col-lg-12 col-xl-3 col-xxl-4 px-0">
-                <h1 class="product-title">Nike React Element 55</h1>
-                <p class="price">£139</p>
+                <h1 class="product-title">${product.productName}</h1>
+                <p class="price">${product.price}</p>
                 <p class="description">
-                    The Nike React Element 55 Shoe borrows design lines from heritage runners
-                    like the Nike Internationalist and then places it all on Nike React technology.
+                    ${product.describe}
                 </p>
 
                 <div class="d-flex mb-3 align-items-center">
                     <select class="select-size" id="sizeSelect">
                         <option value="" disabled selected>Select Size</option>
-                        <option value="7">7</option>
-                        <option value="8">8</option>
-                        <option value="9">9</option>
-                        <option value="10">10</option>
+                        <c:forEach var="details" items="${detail}">
+                         <option value="${details.type.size}">${details.type.size}</option>
+                        </c:forEach>
                     </select>
                 </div>
                 <div class="d-grid gap-3">
@@ -138,9 +132,7 @@
         </div>
     </div>
 
-    <!-- Footer -->
     <c:import url="footer.jsp"></c:import>
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="js/home.js"></script>
 </body>

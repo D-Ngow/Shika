@@ -1,0 +1,36 @@
+.product-title {
+    font-weight: bold;
+    font-size: 2rem;
+}
+
+.price {
+    font-size: 1.5rem;
+    color: #555;
+    margin-bottom: 1rem;
+}
+
+.description {
+    font-size: 1rem;
+    color: #777;
+    margin-bottom: 1.5rem;
+}
+
+.sub-img img{
+    height: auto;
+    margin-bottom: 10px;
+}
+
+.select-size {
+    border: none;
+    margin-bottom: 70px;
+}
+
+.select-size:focus {
+    outline: none;
+    box-shadow: none;
+    border-color: transparent;
+}
+
+.main-img {
+    object-fit: cover;
+}

@@ -11,7 +11,7 @@
     <title>Shiko Store</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/home.css">
-    <link rel="icon" href="image/logo/Shiko_Logo_Black.png">
+    <link rel="icon" href="image/logo/Shiko_logo_bg.png">
 </head>
 
 <body>

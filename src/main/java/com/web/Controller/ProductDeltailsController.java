@@ -32,6 +32,9 @@ public class ProductDeltailsController {
 	productImageDAO procimgDAO;
 	@Autowired
 	detailsDAO detailsDAO;
+	@Autowired
+	productsDAO prdDAO;
+	
 	@GetMapping("/details")
 	public String getMethodName(Model model) {
 		String id = req.getParameter("id");
@@ -41,6 +44,8 @@ public class ProductDeltailsController {
 		model.addAttribute("detail",listDetails);
 		List<ProductImage> listimg = procimgDAO.findByProductId(Integer.parseInt(id));
 		model.addAttribute("image",listimg);
+		List<Products> listprd = prdDAO.findAll();
+		model.addAttribute("listprd",listprd);
 		return "productDetail";
 	}
 	

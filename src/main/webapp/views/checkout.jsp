@@ -14,7 +14,7 @@
 	rel="stylesheet">
 <link rel="stylesheet" href="css/home.css">
 <link rel="stylesheet" href="css/cart.css">
-<link rel="icon" href="image/logo/Shiko_Logo_Black.png">
+<link rel="icon" href="image/logo/Shiko_logo_bg.png">
 </head>
 
 <body>

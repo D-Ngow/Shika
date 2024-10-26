@@ -49,44 +49,50 @@
 
     <!-- Top Picks Section -->
 
-    <div class="carousel-container">
-        <div class="row">
-            <div class="col-6">
-                <h2 class="text-start mb-4 fw-bold">Top picks</h2>
-            </div>
-            <div class="col-6">
-                <div class="d-flex justify-content-end gap-1">
-                    <button class="carousel-btn border border-0 rounded-circle align-items-center" id="prevBtn">
-                        <svg xmlns="http://www.w3.org/2000/svg" height="20" width="12.5"
-                            viewBox="0 0 320 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+	<div class="carousel-container">
+		<div class="row">
+			<div class="col-6">
+				<h2 class="text-start mb-4 fw-bold">Top picks</h2>
+			</div>
+			<div class="col-6">
+				<div class="d-flex justify-content-end gap-1">
+					<button
+						class="carousel-btn border border-0 rounded-circle align-items-center"
+						id="prevBtn">
+						<svg xmlns="http://www.w3.org/2000/svg" height="20" width="12.5"
+							viewBox="0 0 320 512">
+							<!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
                             <path fill="#000000"
-                                d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l192 192c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256 246.6 86.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-192 192z" />
+								d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l192 192c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256 246.6 86.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-192 192z" />
                         </svg>
-                    </button>
-                    <button class="carousel-btn border border-0 rounded-circle align-items-center" id="nextBtn">
-                        <svg xmlns="http://www.w3.org/2000/svg" height="20" width="12.5"
-                            viewBox="0 0 320 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+					</button>
+					<button
+						class="carousel-btn border border-0 rounded-circle align-items-center"
+						id="nextBtn">
+						<svg xmlns="http://www.w3.org/2000/svg" height="20" width="12.5"
+							viewBox="0 0 320 512">
+							<!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
                             <path fill="#000000"
-                                d="M310.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-192 192c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L242.7 256 73.4 86.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l192 192z" />
+								d="M310.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-192 192c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L242.7 256 73.4 86.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l192 192z" />
                         </svg>
-                    </button>
-                </div>
-            </div>
-        </div>
+					</button>
+				</div>
+			</div>
+		</div>
 
-        <div class="carousel-track">
-            <div class="d-flex">
-                <c:forEach var="product" items="${listprd}">
-                	<div class="carousel-item-product">
-                    <img src="image/product/${product.image}" alt="Product 1">
-                    <p class="product-name">${product.productName}</p>
-                </div>
-                </c:forEach>
-            </div>
-        </div>
-    </div>
+		<div class="carousel-track">
+			<div class="d-flex">
+				<c:forEach var="product" items="${listprd}">
+					<div class="carousel-item-product">
+						<img src="image/product/${product.image}" alt="Product 1">
+						<p class="product-name">${product.productName}</p>
+					</div>
+				</c:forEach>
+			</div>
+		</div>
+	</div>
 
-    <div class="trending py-5 bg-light">
+	<div class="trending py-5 bg-light">
         <div class="container">
             <h2 class="text-center mb-4 fw-bold">Trending Now</h2>
             <div class="row d-flex justify-content-center">

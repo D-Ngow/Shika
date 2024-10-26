@@ -62,7 +62,7 @@
         <div class="row row-cols-2 row-cols-md-4 row-cols-sm-3 row-cols-xs-2 g-4">
             <c:forEach var="product" items="${proList}">
                 <div class="col-xs-6">
-                    <a href="/product?id=${product.productId}" class="text-decoration-none">
+                    <a href="/details?id=${product.productId}" class="text-decoration-none">
                         <div class="card border-0 text-dark">
                             <img src="/image/product/${product.image}" class="card-img-top" alt="...">
                             <div class="card-text mt-3 fw-bold">${product.productName}</div>

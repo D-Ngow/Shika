@@ -41,7 +41,7 @@
             <!-- Product Details -->
             <div class="col-md-12 col-lg-12 col-xl-3 col-xxl-4 px-0">
                 <h1 class="product-title">${product.productName}</h1>
-                <p class="price">${product.price}</p>
+                <p class="price"><fmt:formatNumber type="number" value="${product.price}" /> ₫</p>
                 <p class="description">
                     ${product.describe}
                 </p>

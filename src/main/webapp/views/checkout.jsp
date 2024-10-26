@@ -69,10 +69,33 @@
 				</c:forEach>
 			</div>
 			<div class="col-md-4">
-				<div class="card border-0">
-					<div class="card-body">
-						<h5 class="card-title mb-3">Summary</h5>
-						<p class="d-flex justify-content-between">
+                <div class="card border-0">
+                    <div class="card-body">
+                        <h5 class="card-title mb-3">Shipping Details</h5>
+                        <p class="d-flex justify-content-between fw-medium">
+                            <span>Name:</span>
+                            <span>Nguyễn Văn A</span>
+                        </p>
+                        <p class="d-flex justify-content-between fw-medium">
+                            <span>Phone Number:</span>
+                            <span>0912345678</span>
+                        </p>
+                        <p class="d-flex justify-content-between fw-medium">
+                            <span>Email:</span>
+                            <span>nguyenvana@gmail.com</span>
+                        </p>
+                        <select class="form-select form-select mb-3" aria-label="Large select example">
+                            <option selected disabled>Open this select menu</option>
+                            <option value="1">One</option>
+                            <option value="2">Two</option>
+                            <option value="3">Three</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="card border-0">
+                    <div class="card-body">
+                        <h5 class="card-title mb-3">Summary</h5>
+                        <p class="d-flex justify-content-between">
 							<span class="fw-medium">Subtotal</span> <span class="fw-medium"><fmt:formatNumber
 									type="number" value="${subtotal}" />₫</span>
 						</p>
@@ -85,10 +108,10 @@
 							<span>Total</span> <span><fmt:formatNumber type="number"
 									value="${total}" />₫</span>
 						</p>
-						<button class="btn btn-dark w-100 rounded-pill checkout">Checkout</button>
-					</div>
-				</div>
-			</div>
+                        <button class="btn btn-dark w-100 rounded-pill checkout">Checkout</button>
+                    </div>
+                </div>
+            </div>
 		</div>
 	</div>
 	<!-- Footer -->

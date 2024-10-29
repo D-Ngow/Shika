@@ -30,9 +30,9 @@ public class users {
 
      Date birthday;
     
-     boolean gender;
+     Boolean gender;
     
-     boolean role;
+     Boolean role;
 
     @OneToMany(mappedBy = "user")
      List<shippingAddress> shippingAddresses;

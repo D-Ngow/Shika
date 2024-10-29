@@ -1,0 +1,9 @@
+.offcanvas-body .nav-link:hover {
+    background-color: rgba(128, 128, 128, 0.148);
+}
+.offcanvas-body .nav-link {
+    border-radius: 0.5rem;
+}
+.overflow-auto {
+    max-height: 300px;
+}

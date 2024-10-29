@@ -7,14 +7,14 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import com.web.Entity.users;
+import com.web.Entity.Users;
 
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
 public class CustomerUserDetails implements UserDetails {
 
-	users user;
+	Users user;
 	
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {

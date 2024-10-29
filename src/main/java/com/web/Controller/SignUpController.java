@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.web.DAO.usersDAO;
-import com.web.Entity.users;
+import com.web.DAO.UsersDAO;
+import com.web.Entity.Users;
 
 @Controller
 @RequestMapping("/signup")
@@ -22,7 +22,7 @@ public class SignUpController {
 	private BCryptPasswordEncoder passwordEncoder;
 	
 	@Autowired
-	private usersDAO userDao;
+	private UsersDAO userDao;
 	
 	@GetMapping
 	private String signup() {
@@ -31,11 +31,11 @@ public class SignUpController {
 	}
 	
 	@PostMapping()
-	public ResponseEntity<users> signup(@RequestBody users user){
+	public ResponseEntity<Users> signup(@RequestBody Users user){
 	
 	System.out.println("hihi");
 		user.setPassword(passwordEncoder.encode(user.getPassword()));	
-		users savedUser = userDao.save(user);
+		Users savedUser = userDao.save(user);
 		
 		
 		return new ResponseEntity<>(savedUser,HttpStatus.CREATED);

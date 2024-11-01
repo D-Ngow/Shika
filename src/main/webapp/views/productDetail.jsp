@@ -12,7 +12,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/home.css">
     <link rel="stylesheet" href="css/productDetail.css">
-    <link rel="icon" href="image/logo/Shiko_Logo_Black.png">
+    <link rel="icon" href="image/logo/Shiko_logo_bg.png">
 </head>
 
 <body>
@@ -41,7 +41,7 @@
             <!-- Product Details -->
             <div class="col-md-12 col-lg-12 col-xl-3 col-xxl-4 px-0">
                 <h1 class="product-title">${product.productName}</h1>
-                <p class="price">${product.price}</p>
+                <p class="price"><fmt:formatNumber type="number" value="${product.price}" /> ₫</p>
                 <p class="description">
                     ${product.describe}
                 </p>

@@ -47,7 +47,6 @@ public class UserService implements UserDetailsService{
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		// TODO Auto-generated method stub
 
 		Users user = userDao.findByEmail(username);
 		if(user == null)

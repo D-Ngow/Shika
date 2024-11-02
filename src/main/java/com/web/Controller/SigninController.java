@@ -9,8 +9,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-
-import com.web.Entity.Users;
 import com.web.Security.AccountDetail;
 import com.web.Service.UserService;
 
@@ -23,6 +21,7 @@ public class SigninController {
 	@Autowired
 	HttpServletRequest req;
 	
+	@Autowired
 	AuthenticationManager authManager;
 	
 	@Autowired
@@ -36,7 +35,7 @@ public class SigninController {
 	@PostMapping("/submit")
 	public String postLogin() {
 		AccountDetail user = (AccountDetail) usersv.loadUserByUsername(req.getParameter("email"));
-		System.out.println(user.getUsername());
+//		System.out.println(user.getUsername());
 		if(user != null && user.getPassword().equals(req.getParameter("password"))){
 			Authentication auth = new UsernamePasswordAuthenticationToken(user, null, user.getAuthorities());
 			SecurityContextHolder.getContext().setAuthentication(auth);
@@ -47,5 +46,19 @@ public class SigninController {
 		}
 		
 	}
+//	@PostMapping("/submit")
+//	public String postLogin() {
+//	    UsernamePasswordAuthenticationToken authReq = 
+//	        new UsernamePasswordAuthenticationToken(req.getParameter("email"), req.getParameter("password"));
+//	    try {
+//	        Authentication auth = authManager.authenticate(authReq);
+//	        SecurityContextHolder.getContext().setAuthentication(auth);
+//	        String savedUri = (String) req.getSession().getAttribute("uri");
+//	        return "redirect:" + (savedUri != null ? savedUri : "/home");
+//	    } catch (AuthenticationException e) {
+//	        return "signin";
+//	    }
+//	}
+// làm cách này GPT viết nhưng nó kẹt login XD 
 
 }

@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="ISO-8859-1"%>
+    pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jstl/fmt_rt" prefix="fmt"%>
 <!DOCTYPE html>
@@ -25,19 +25,19 @@
                     <hr>
                 </div>
                 <div class="form-floating mb-3">
-                    <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+                    <input type="email" class="form-control" name="email" id="floatingInput" placeholder="name@example.com">
                     <label for="floatingInput">Email address</label>
                 </div>
                 <div class="form-floating mb-2">
-                    <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+                    <input type="password" class="form-control" name="password" id="floatingPassword" placeholder="Password">
                     <label for="floatingPassword">Password</label>
                 </div>
                 <div class="mb-4 text-start">
-                    <a href="#" class="text-dark text-decoration-none fw-medium">Quên mật khẩu</a>
+                    <a href="#" class="text-dark text-decoration-none fw-medium">Forgot password</a>
                 </div>
                 <div class="d-grid gap-2">
-                    <button formaction="#" class="btn btn-lg btn-dark">Đăng nhập</button>
-                    <button class="btn btn-lg btn-outline-dark">Đăng ký</button>
+                    <button formaction="/signin/submit" class="btn btn-lg btn-dark">Signin</button>
+                    <button class="btn btn-lg btn-outline-dark">Signup</button>
                 </div>
             </form>
         </div>

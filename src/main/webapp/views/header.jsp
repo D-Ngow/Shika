@@ -16,8 +16,8 @@
 				</li>
 				<li class="nav-item dropdown"><a
 					class="nav-link dropdown-toggle text-dark" href="#" role="button"
-					data-bs-toggle="dropdown" aria-expanded="false"> CATEGORIES </a>
-					<ul class="dropdown-menu border border-0 rounded-0 bg-light">
+					data-bs-toggle="dropdown" data-bs-target="#cateMenu" aria-expanded="false"> CATEGORIES </a>
+					<ul class="dropdown-menu border border-0 rounded-0 bg-light" id="cateMenu">
 						<li><a class="dropdown-item" href="#">Action</a></li>
 						<li><a class="dropdown-item" href="#">Another action</a></li>
 						<li><a class="dropdown-item" href="#">Something else here</a></li>
@@ -38,6 +38,18 @@
                             </svg>
 					</button>
 				</form>
+				<div class="dropdown-center d-flex alignment-item-center">
+					<button type="button" class="dropdown-toggle border-0 bg-light" data-bs-toggle="dropdown" data-bs-target="#userMenu" aria-expanded="false">
+					<svg xmlns="http://www.w3.org/2000/svg" height="20" width="17.5" viewBox="0 0 448 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#000000" d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512l388.6 0c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304l-91.4 0z"/></svg>
+				</button>
+				  <ul class="dropdown-menu">
+				    <li><a class="dropdown-item" href="/signin">Signin</a></li>
+				    <li><a class="dropdown-item" href="/profile">Profile</a></li>
+				    <li><a class="dropdown-item" href="#">Something else here</a></li>
+				    <li><hr class="dropdown-divider"></li>
+				    <li><a class="dropdown-item" href="#">Separated link</a></li>
+				  </ul>
+				</div>
 				<a href="/cart"> <svg xmlns="http://www.w3.org/2000/svg" height="20"
 						width="22.5" viewBox="0 0 576 512">
                             <path fill="#000000"

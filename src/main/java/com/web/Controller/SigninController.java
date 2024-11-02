@@ -1,20 +1,20 @@
 package com.web.Controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.web.Entity.Users;
 import com.web.Security.AccountDetail;
 import com.web.Service.UserService;
 
-import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
-
-import org.springframework.web.bind.annotation.RequestBody;
-
 
 @Controller
 @RequestMapping("/signin")
@@ -22,6 +22,8 @@ public class SigninController {
 	
 	@Autowired
 	HttpServletRequest req;
+	
+	AuthenticationManager authManager;
 	
 	@Autowired
 	UserService usersv;
@@ -33,20 +35,17 @@ public class SigninController {
 	
 	@PostMapping("/submit")
 	public String postLogin() {
-		AccountDetail ad = (AccountDetail) usersv.loadUserByUsername(req.getParameter("email"));
-		if(ad.getPassword().equals(req.getParameter("password"))){
-			return "redirect:/home";
+		AccountDetail user = (AccountDetail) usersv.loadUserByUsername(req.getParameter("email"));
+		System.out.println(user.getUsername());
+		if(user != null && user.getPassword().equals(req.getParameter("password"))){
+			Authentication auth = new UsernamePasswordAuthenticationToken(user, null, user.getAuthorities());
+			SecurityContextHolder.getContext().setAuthentication(auth);
+			String savedUri = (String) req.getSession().getAttribute("uri");
+	        return "redirect:" + (savedUri != null ? savedUri : "/home");
 		}else {
 			return "signin";
 		}
 		
-	}
-	
-	
-	@GetMapping("/success")
-	public ResponseEntity<String> successfully()
-	{
-		return ResponseEntity.ok("Login is successfully");
 	}
 
 }

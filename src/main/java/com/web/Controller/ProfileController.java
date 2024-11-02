@@ -24,7 +24,6 @@ public class ProfileController {
 	@GetMapping()
 	public String GetProfile(Model model) {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		System.out.println(auth.getName());
 
 		if (auth.isAuthenticated()) {
 			AccountDetail ad = (AccountDetail) auth.getPrincipal();

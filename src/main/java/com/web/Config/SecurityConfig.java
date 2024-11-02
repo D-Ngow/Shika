@@ -23,13 +23,13 @@ public class SecurityConfig {
 		.and()
 		.authorizeHttpRequests(req -> { req
 			.requestMatchers("/manager/**").hasAuthority("admin")
-			.requestMatchers("/addToCart", "/order", "/order/**","/manager","/manager/**").authenticated()
+			.requestMatchers("/profile","/cart", "/addToCart", "/order", "/order/**","/manager","/manager/**").authenticated()
 			.anyRequest().permitAll()
 			;
 		})
 		.formLogin(req -> {req
 			.loginPage("/signin")
-			.defaultSuccessUrl("/signin/success")
+			.defaultSuccessUrl("/home")
 			.permitAll()
 			;
 		})
@@ -43,7 +43,7 @@ public class SecurityConfig {
 	}
 
 	@Bean
-	public BCryptPasswordEncoder bCryptPasswordEncoder()
+	public BCryptPasswordEncoder getPasswordEncoder()
 	{
 		return new BCryptPasswordEncoder();
 	}

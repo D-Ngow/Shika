@@ -1,13 +1,17 @@
 package com.web.Controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import com.web.Entity.Users;
+import com.web.Security.AccountDetail;
 import com.web.Service.UserService;
 
 @Controller
@@ -17,12 +21,16 @@ public class ProfileController {
 	@Autowired
 	private UserService userService;
 
-	@GetMapping("/{id}")
-	public Users GetProfile(@PathVariable int id) {
+	@GetMapping()
+	public String GetProfile(Model model) {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 
-		Users user = userService.findById(id);
+		if (auth.isAuthenticated()) {
+			AccountDetail ad = (AccountDetail) auth.getPrincipal();
+			model.addAttribute("user", ad);
+		}
 
-		return user;
+		return "profile";
 	}
 
 	@PutMapping()

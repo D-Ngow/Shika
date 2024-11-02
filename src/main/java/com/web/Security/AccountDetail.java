@@ -32,4 +32,8 @@ public class AccountDetail implements UserDetails {
 		return user.getEmail();
 	}
 
+	public Users getUser() {
+        return user;
+    }
+
 }

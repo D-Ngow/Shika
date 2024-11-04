@@ -27,36 +27,4 @@ public class SigninController {
 	private String signin() {
 		return "signin";
 	}
-	
-	@PostMapping("/submit")
-	public String postLogin() {
-//		AccountDetail user = (AccountDetail) usersv.loadUserByUsername(req.getParameter("username"));
-//		if(user != null && user.getPassword().equals(req.getParameter("password"))){
-//			Authentication auth = new UsernamePasswordAuthenticationToken(user.getUsername(), user.getPassword(), user.getAuthorities());
-//			SecurityContextHolder.getContext().setAuthentication(auth);
-//			String savedUri = (String) req.getSession().getAttribute("uri");
-//			System.out.println(savedUri);
-//	        return "redirect:/cart";
-//		}else {
-//			return "signin";
-//		}
-		
-		return "/home";
-		
-	}
-//	@PostMapping("/submit")
-//	public String postLogin() {
-//	    UsernamePasswordAuthenticationToken authReq = 
-//	        new UsernamePasswordAuthenticationToken(req.getParameter("email"), req.getParameter("password"));
-//	    try {
-//	        Authentication auth = authManager.authenticate(authReq);
-//	        SecurityContextHolder.getContext().setAuthentication(auth);
-//	        String savedUri = (String) req.getSession().getAttribute("uri");
-//	        return "redirect:" + (savedUri != null ? savedUri : "/home");
-//	    } catch (AuthenticationException e) {
-//	        return "signin";
-//	    }
-//	}
-// làm cách này GPT viết nhưng nó kẹt login XD 
-
 }

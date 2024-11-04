@@ -7,11 +7,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import com.web.Entity.Users;
-import com.web.Security.AccountDetail;
 import com.web.Service.UserService;
 
 @Controller
@@ -24,21 +23,16 @@ public class ProfileController {
 	@GetMapping()
 	public String GetProfile(Model model) {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-
-		if (auth.isAuthenticated()) {
-			AccountDetail ad = (AccountDetail) auth.getPrincipal();
-			model.addAttribute("user", ad);
-		}
-
+		Users user = userService.findByEmail(auth.getName());
+		model.addAttribute("user", user);
 		return "profile";
 	}
 
-	@PutMapping()
-	public Users EditProfile (@RequestBody Users user) {
-
-		Users editUser = userService.EditProfile(user);
-		return editUser;
-	}
+//	@PostMapping()
+//	public String EditProfile (@RequestBody Users user) {
+//		userService.EditProfile(user);
+//		return "redirect:/profile";
+//	}
 
 
 }

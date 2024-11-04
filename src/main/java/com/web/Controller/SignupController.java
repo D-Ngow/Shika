@@ -31,11 +31,8 @@ public class SignupController {
 
 	@PostMapping()
 	public ResponseEntity<Users> signup(@RequestBody Users user){
-
-	System.out.println("hihi");
 		user.setPassword(passwordEncoder.encode(user.getPassword()));	
 		Users savedUser = userDao.save(user);
-
 
 		return new ResponseEntity<>(savedUser,HttpStatus.CREATED);
 	}

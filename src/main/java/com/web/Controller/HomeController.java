@@ -17,6 +17,8 @@ public class HomeController {
 	@Autowired
 	categoriesDAO cateDAO;
 	@GetMapping("/home")
+	
+	
 	public String getHome(Model model) {
 		List<Products> listprd = prdDAO.findAll();
 		model.addAttribute("listprd",listprd);

@@ -19,13 +19,13 @@
 
     <div class="container">
         <div class="d-flex justify-content-center">
-            <form method="post" class="w-50 px-5 my-4 mb-5">
+            <form method="post" class="w-50 px-5 my-4 mb-5" action="/j_spring_security_check">
                 <div class="title text-center">
                     <h1 class="fw-bold">SIGNIN</h1>
                     <hr>
                 </div>
                 <div class="form-floating mb-3">
-                    <input type="email" class="form-control" name="email" id="floatingInput" placeholder="name@example.com">
+                    <input type="email" class="form-control" name="username" id="floatingInput" placeholder="name@example.com">
                     <label for="floatingInput">Email address</label>
                 </div>
                 <div class="form-floating mb-2">
@@ -36,7 +36,7 @@
                     <a href="#" class="text-dark text-decoration-none fw-medium">Forgot password</a>
                 </div>
                 <div class="d-grid gap-2">
-                    <button formaction="/signin/submit" class="btn btn-lg btn-dark">Signin</button>
+                    <button type="submit" class="btn btn-lg btn-dark">Signin</button>
                     <button class="btn btn-lg btn-outline-dark">Signup</button>
                 </div>
             </form>

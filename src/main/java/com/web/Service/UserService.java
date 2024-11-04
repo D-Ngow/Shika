@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.web.DAO.usersDAO;
 import com.web.Entity.Users;
+import com.web.Security.AccountDetail;
 
 @Service
 public class UserService implements UserDetailsService{
@@ -43,23 +44,18 @@ public class UserService implements UserDetailsService{
 
 		return savedUser;
 	}
-//
-//	@Override
-//	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-//
-//		Users user = userDao.findByEmail(username);
-//		if(user == null)
-//		{
-//			throw new UsernameNotFoundException("Email not found: " +username);
-//		}
-//
-//		return new AccountDetail(user);
-//	}
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		// TODO Auto-generated method stub
-		return null;
+
+		Users user = userDao.findByEmail(username);
+		if(user == null)
+		{
+			throw new UsernameNotFoundException("Email not found: " +username);
+		}
+
+		return new AccountDetail(user);
 	}
 
 }

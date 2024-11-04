@@ -81,24 +81,24 @@
                             <form action="" method="post">
                                 <div class="form-floating mb-3">
                                     <input type="text" class="form-control" id="name" placeholder="name"
-                                        value="${user.name}">
+                                        value="Nguyễn Văn A">
                                     <label for="name">Họ tên</label>
                                 </div>
                                 <div class="form-floating mb-3">
                                     <input type="number" class="form-control" id="phone" placeholder="phone"
-                                        value="${user.phoneNumber}">
+                                        value="0912345678">
                                     <label for="phone">Số điện thoại</label>
                                 </div>
 
                                 <div class="form-floating mb-3">
                                     <input type="email" class="form-control" id="email" placeholder="email"
-                                        value="${user.email}">
+                                        value="nguyenvana@gmail.com">
                                     <label for="email">Email</label>
                                 </div>
 
                                 <div class="row mb-3">
                                     <div class="form-floating col-md-6">
-                                        <input type="date" class="form-control" id="dob" value="${user.birthday}">
+                                        <input type="date" class="form-control" id="dob">
                                         <label for="dob" class="ms-2 ps-3">Ngày sinh</label>
                                     </div>
                                     <div class="form-floating col-md-6">

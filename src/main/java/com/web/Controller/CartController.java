@@ -6,13 +6,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+
 import com.web.DAO.cartsDAO;
 import com.web.DAO.detailsDAO;
 import com.web.DAO.typeDAO;
 import com.web.Entity.Cart;
 import com.web.Entity.Details;
 import com.web.Entity.Type;
+
 import jakarta.servlet.http.HttpServletRequest;
+
 import org.springframework.web.bind.annotation.RequestParam;
 
 
@@ -27,7 +30,6 @@ public class CartController {
 	
 	@GetMapping("/cart")
 	public String cart(Model model) {
-		
 		List<Cart> listCart = cartDAO.findAll();
 		List<Details> listDetail = detailDAO.findAll();
 		model.addAttribute("listCart", listCart);

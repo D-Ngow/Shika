@@ -19,25 +19,25 @@
 
     <div class="container">
         <div class="d-flex justify-content-center">
-            <form method="post" class="w-50 px-5 my-4 mb-5" action="/j_spring_security_check">
+            <form method="post" class="w-50 px-5 my-4 mb-5">
                 <div class="title text-center">
                     <h1 class="fw-bold">SIGNIN</h1>
                     <hr>
                 </div>
                 <div class="form-floating mb-3">
-                    <input type="email" class="form-control" name="username" id="floatingInput" placeholder="name@example.com">
+                    <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
                     <label for="floatingInput">Email address</label>
                 </div>
                 <div class="form-floating mb-2">
-                    <input type="password" class="form-control" name="password" id="floatingPassword" placeholder="Password">
+                    <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
                     <label for="floatingPassword">Password</label>
                 </div>
                 <div class="mb-4 text-start">
-                    <a href="#" class="text-dark text-decoration-none fw-medium">Fotgot Password?</a>
+                    <a href="#" class="text-dark text-decoration-none fw-medium">Quên mật khẩu</a>
                 </div>
                 <div class="d-grid gap-2">
-                    <button type="submit" class="btn btn-lg btn-dark">Signin</button>
-                    <button class="btn btn-lg btn-outline-dark">Signup</button>
+                    <button formaction="#" class="btn btn-lg btn-dark">Đăng nhập</button>
+                    <button class="btn btn-lg btn-outline-dark">Đăng ký</button>
                 </div>
             </form>
         </div>

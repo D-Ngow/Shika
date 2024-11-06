@@ -27,13 +27,13 @@ public class AccountDetail implements UserDetailsService {
 				List<GrantedAuthority> grandlist = new ArrayList<GrantedAuthority>();
 				GrantedAuthority grand = new SimpleGrantedAuthority("Admin");
 				grandlist.add(grand);
-				UserDetails userDetails = new User(user.getName(), user.getPassword(), grandlist);
+				UserDetails userDetails = new User(user.getEmail(), user.getPassword(), grandlist);
 				return userDetails;
 			}else {
 				List<GrantedAuthority> grandlist = new ArrayList<GrantedAuthority>();
 				GrantedAuthority grand = new SimpleGrantedAuthority("User");
 				grandlist.add(grand);
-				UserDetails userDetails = new User(user.getName(), user.getPassword(), grandlist);
+				UserDetails userDetails = new User(user.getEmail(), user.getPassword(), grandlist);
 				return userDetails;
 			}
 		}else {

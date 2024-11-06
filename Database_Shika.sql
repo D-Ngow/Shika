@@ -1,7 +1,8 @@
-﻿create database Shiko
-use Shiko
+-- Tạo database và sử dụng
+CREATE DATABASE Shiko;
+USE Shiko;
 
-
+-- Tạo bảng products
 CREATE TABLE products (
     productId INT IDENTITY(1,1) PRIMARY KEY,
     productName NVARCHAR(255) NOT NULL,
@@ -11,10 +12,11 @@ CREATE TABLE products (
     discountPrice FLOAT,
     status BIT,
     brand NVARCHAR(30),
-    image Nvarchar(100),
+    image NVARCHAR(100),
     describe NVARCHAR(MAX)
 );
 
+-- Tạo bảng productImage
 CREATE TABLE productImage (
     imageId INT IDENTITY(1,1) PRIMARY KEY,
     productId INT,
@@ -22,11 +24,13 @@ CREATE TABLE productImage (
     FOREIGN KEY (productId) REFERENCES products(productId)
 );
 
+-- Tạo bảng type
 CREATE TABLE type (
     typeId INT IDENTITY(1,1) PRIMARY KEY,
-    size NVARCHAR(10)
+    size INT
 );
 
+-- Tạo bảng details
 CREATE TABLE details (
     detailId INT IDENTITY(1,1) PRIMARY KEY,
     typeId INT,
@@ -35,17 +39,19 @@ CREATE TABLE details (
     FOREIGN KEY (productId) REFERENCES products(productId)
 );
 
+-- Tạo bảng users
 CREATE TABLE users (
     userId INT IDENTITY(1,1) PRIMARY KEY,
     name NVARCHAR(255) NOT NULL,
     email NVARCHAR(255) NOT NULL UNIQUE,
     phoneNumber NVARCHAR(15),
-    password NVARCHAR(30) NOT NULL,
+    password NVARCHAR(255) NOT NULL,
     birthday DATETIME,
     gender BIT,
     role BIT
 );
 
+-- Tạo bảng shippingAddress
 CREATE TABLE shippingAddress (
     addressId INT IDENTITY(1,1) PRIMARY KEY,
     userId INT,
@@ -53,6 +59,7 @@ CREATE TABLE shippingAddress (
     FOREIGN KEY (userId) REFERENCES users(userId)
 );
 
+-- Tạo bảng invoices
 CREATE TABLE invoices (
     invoiceId INT IDENTITY(1,1) PRIMARY KEY,
     userId INT NOT NULL,
@@ -62,6 +69,7 @@ CREATE TABLE invoices (
     FOREIGN KEY (userId) REFERENCES users(userId)
 );
 
+-- Tạo bảng invoiceDetails
 CREATE TABLE invoiceDetails (
     invoiceDetailId INT IDENTITY(1,1) PRIMARY KEY,
     invoiceId INT NOT NULL,
@@ -72,29 +80,33 @@ CREATE TABLE invoiceDetails (
     FOREIGN KEY (detailsId) REFERENCES details(detailId)
 );
 
+-- Tạo bảng carts
 CREATE TABLE carts (
     cartId INT IDENTITY(1,1) PRIMARY KEY,
     userId INT NOT NULL,
-    productId INT NOT NULL,
+    detailId INT NOT NULL,
     quantity INT NOT NULL,
     FOREIGN KEY (userId) REFERENCES users(userId),
-    FOREIGN KEY (productId) REFERENCES products(productId)
+    FOREIGN KEY (detailId) REFERENCES details(detailId)
 );
 
+-- Tạo bảng categories
 CREATE TABLE categories (
     categorieId INT IDENTITY(1,1) PRIMARY KEY,
     name NVARCHAR(255) NOT NULL,
     image NVARCHAR(100)
 );
 
+-- Tạo bảng categorydetails
 CREATE TABLE categorydetails (
-	id int primary key,
+    id INT IDENTITY(1,1) PRIMARY KEY,
     productId INT NOT NULL,
     categoryId INT NOT NULL,
     FOREIGN KEY (productId) REFERENCES products(productId),
     FOREIGN KEY (categoryId) REFERENCES categories(categorieId)
 );
 
+-- Tạo bảng payment
 CREATE TABLE payment (
     paymentId INT IDENTITY(1,1) PRIMARY KEY,
     invoiceId INT,
@@ -102,16 +114,16 @@ CREATE TABLE payment (
     FOREIGN KEY (invoiceId) REFERENCES invoices(invoiceId)
 );
 
--- Insert into products
+-- Insert vào bảng products
 INSERT INTO products (productName, color, quantity, price, discountPrice, status, brand, image, describe)
 VALUES 
 ('Laptop A', 'Silver', 100, 1000.00, 900.00, 1, 'Brand A', 'AirForce1_Black.png', 'A powerful laptop for gaming.'),
 ('Smartphone B', 'Black', 50, 500.00, 450.00, 1, 'Brand B', 'AirForce1_Green.png', 'A sleek smartphone with excellent battery life.'),
 ('Headphones C', 'Blue', 200, 100.00, 80.00, 1, 'Brand C', 'AirForce1_White.png', 'Noise-cancelling over-ear headphones.'),
-('Tablet D', 'White', 70, 300.00, NULL, 1, 'Brand D', 'Nike.png', 'A lightweight and portable tablet.'),
+('Tablet D', 'White', 70, 300.00, 50.00, 1, 'Brand D', 'Nike.png', 'A lightweight and portable tablet.'),
 ('Smartwatch E', 'Black', 150, 200.00, 180.00, 1, 'Brand E', 'NikeDunkLowBlue.png', 'A smartwatch with multiple health features.');
 
--- Insert into productImage
+-- Insert vào bảng productImage
 INSERT INTO productImage (productId, imageUrl)
 VALUES 
 (1, 'AirForce1_Black.png'),
@@ -120,34 +132,29 @@ VALUES
 (4, 'Nike.png'),
 (5, 'NikeDunkLowBlue.png');
 
--- Insert into type
+-- Insert vào bảng type
 INSERT INTO type (size)
-VALUES 
-('S'),
-('M'),
-('L'),
-('XL'),
-('XXL');
+VALUES (38), (40), (42), (44), (46);
 
--- Insert into details
+-- Insert vào bảng details
 INSERT INTO details (typeId, productId)
 VALUES 
-(1, 1),  -- Size S for Laptop A
-(2, 2),  -- Size M for Smartphone B
-(3, 3),  -- Size L for Headphones C
-(4, 4),  -- Size XL for Tablet D
-(5, 5);  -- Size XXL for Smartwatch E
+(1, 1),
+(2, 2),
+(3, 3),
+(4, 4),
+(5, 5);
 
--- Insert into users
+-- Insert vào bảng users
 INSERT INTO users (name, email, phoneNumber, password, birthday, gender, role)
 VALUES 
-('John Doe', 'john.doe@example.com', '123456789', 'password123', '1990-01-01', 1, 1),
-('Jane Smith', 'jane.smith@example.com', '987654321', 'securepass', '1992-02-15', 0, 0),
+('John Doe', 'long@gmail.com', '123456789', '$2a$12$zIdRLPR/37w4L5tJtm8Jtu/YtZxOPqBQFB401a7hMjVEZd/P9p8Ua', '1990-01-01', 1, 1),
+('Jane Smith', 'duong@gmail.com', '987654321', '$2a$12$zIdRLPR/37w4L5tJtm8Jtu/YtZxOPqBQFB401a7hMjVEZd/P9p8Ua', '1992-02-15', 0, 0),
 ('Alice Johnson', 'alice.johnson@example.com', '123123123', 'alice123', '1985-05-10', 0, 1),
 ('Bob Brown', 'bob.brown@example.com', '555666777', 'bobpassword', '1995-07-20', 1, 0),
 ('Charlie Green', 'charlie.green@example.com', '777888999', 'charliepass', '2000-12-30', 1, 1);
 
--- Insert into shippingAddress
+-- Insert vào bảng shippingAddress
 INSERT INTO shippingAddress (userId, address)
 VALUES 
 (1, '123 Elm St, City A, Country A'),
@@ -156,7 +163,7 @@ VALUES
 (4, '101 Pine St, City D, Country D'),
 (5, '202 Cedar St, City E, Country E');
 
--- Insert into invoices
+-- Insert vào bảng invoices
 INSERT INTO invoices (userId, total, status)
 VALUES 
 (1, 1900.00, 1),
@@ -165,7 +172,7 @@ VALUES
 (4, 300.00, 1),
 (5, 200.00, 1);
 
--- Insert into invoiceDetails
+-- Insert vào bảng invoiceDetails
 INSERT INTO invoiceDetails (invoiceId, detailsId, quantity, price)
 VALUES 
 (1, 1, 1, 1000.00),
@@ -174,8 +181,8 @@ VALUES
 (3, 3, 1, 100.00),
 (4, 4, 1, 300.00);
 
--- Insert into carts
-INSERT INTO carts (userId, productId, quantity)
+-- Insert vào bảng carts
+INSERT INTO carts (userId, detailId, quantity)
 VALUES 
 (1, 1, 1),
 (2, 2, 2),
@@ -183,7 +190,7 @@ VALUES
 (4, 4, 1),
 (5, 5, 2);
 
--- Insert into categories
+-- Insert vào bảng categories
 INSERT INTO categories (name, image)
 VALUES 
 ('Electronics', 'electronics.jpg'),
@@ -192,16 +199,16 @@ VALUES
 ('Tablets', 'tablets.jpg'),
 ('Wearables', 'wearables.jpg');
 
--- Insert into categorydetails
-INSERT INTO categorydetails
+-- Insert vào bảng categorydetails
+INSERT INTO categorydetails (productId, categoryId)
 VALUES 
-(1,1, 1),  -- Laptop A belongs to Electronics
-(2,2, 2),  -- Smartphone B belongs to Smartphones
-(3,3, 3),  -- Headphones C belongs to Accessories
-(4,4, 4),  -- Tablet D belongs to Tablets
-(5,5, 5);  -- Smartwatch E belongs to Wearables
+(1, 1),
+(2, 2),
+(3, 3),
+(4, 4),
+(5, 5);
 
--- Insert into payment
+-- Insert vào bảng payment
 INSERT INTO payment (invoiceId, payment_type)
 VALUES 
 (1, 'Credit Card'),
@@ -209,6 +216,3 @@ VALUES
 (3, 'Bank Transfer'),
 (4, 'Credit Card'),
 (5, 'Cash on Delivery');
-
-
-

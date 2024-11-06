@@ -39,6 +39,7 @@ public class CartController {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		Users user = userDao.findByEmail(auth.getName());
 		
+		
 		List<Cart> listCart = cartDAO.findAll();
 		List<Details> listDetail = detailDAO.findAll();
 		model.addAttribute("listCart", listCart);

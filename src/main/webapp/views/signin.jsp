@@ -14,6 +14,7 @@
     <link rel="icon" href="image/logo/Shiko_logo_bg.png">
 </head>
 
+
 <body>
     <c:import url="header.jsp"></c:import>
 

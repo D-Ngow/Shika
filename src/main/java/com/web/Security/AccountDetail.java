@@ -19,6 +19,7 @@ import com.web.Entity.Users;
 public class AccountDetail implements UserDetailsService {
 	@Autowired
 	usersDAO userDao;
+
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		Users user = userDao.findByEmail(username);

@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="ISO-8859-1"%>
+    pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jstl/fmt_rt" prefix="fmt"%>
 <!DOCTYPE html>
@@ -25,28 +25,36 @@
                     <hr>
                 </div>
                 <div class="form-floating mb-3">
-                    <input type="email" class="form-control" id="floatingName" placeholder="name@example.com">
+                    <input type="text" class="form-control" name="name" id="floatingName" placeholder="name@example.com">
                     <label for="floatingName">Họ và tên</label>
                 </div>
                 <div class="form-floating mb-3">
-                    <input type="email" class="form-control" id="floatingEmail" placeholder="Password">
+                    <input type="email" class="form-control" name="email" id="floatingEmail" placeholder="Password">
                     <label for="floatingEmail">Email</label>
                 </div>
                 <div class="form-floating mb-3">
-                    <input type="number" class="form-control" id="floatingPhone" placeholder="Password">
+                    <input type="number" class="form-control" name="phone" id="floatingPhone" placeholder="Password">
                     <label for="floatingPhone">Số điện thoại</label>
                 </div>
                 <div class="form-floating mb-3">
-                    <input type="date" class="form-control" id="floatingBirthday" placeholder="Password">
+                    <input type="date" class="form-control" name="birthday" id="floatingBirthday" placeholder="Password">
                     <label for="floatingBirthday">Ngày sinh</label>
                 </div>
+                <div class="form-floating mb-3">
+					<select id="gender" class="form-select" name="gender">
+						<option>Nam</option>
+						<option>Nữ</option>
+						<option>Khác</option>
+					</select>
+					<label for="gender">Giới tính</label>
+				</div>
                 <div class="form-floating mb-4">
-                    <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+                    <input type="password" class="form-control" name="password" id="floatingPassword" placeholder="Password">
                     <label for="floatingPassword">Password</label>
                 </div>
                 <div class="d-grid gap-2">
-                    <button formaction="#" class="btn btn-lg btn-dark">Đăng nhập</button>
-                    <button class="btn btn-lg btn-outline-dark">Đăng ký</button>
+                    <button formaction="/signup/submit" class="btn btn-lg btn-dark">Đăng ký</button>
+                    <button class="btn btn-lg btn-outline-dark">Đăng nhập</button>
                 </div>
             </form>
         </div>

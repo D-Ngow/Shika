@@ -1,5 +1,6 @@
 package com.web.Controller;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,7 +47,9 @@ public class SignupController {
 			user.setPhoneNumber(req.getParameter("phone"));
 			user.setPassword(passwordEncoder.encode(req.getParameter("password")));
 			user.setGender(Boolean.parseBoolean(req.getParameter("gender")));
-			user.setBirthday(new Date(req.getParameter("birthday")));
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+			user.setBirthday(sdf.parse(req.getParameter("birthday")));
+			user.setRole(false);
 			
 			userSv.EditProfile(user);
 		} catch (Exception e) {

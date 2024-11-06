@@ -98,7 +98,7 @@
 
                                 <div class="row mb-3">
                                     <div class="form-floating col-md-6">
-                                        <input type="date" class="form-control" name="birthday" id="dob" value="${user.birthday}">
+                                        <input type="date" class="form-control" name="birthday" id="dob" value="<fmt:formatDate pattern="yyyy-MM-dd" value="${user.birthday}"/>">
                                         <label for="dob" class="ms-2 ps-3">Ngày sinh</label>
                                     </div>
                                     <div class="form-floating col-md-6">

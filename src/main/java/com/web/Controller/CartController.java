@@ -3,6 +3,8 @@ package com.web.Controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,9 +12,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import com.web.DAO.cartsDAO;
 import com.web.DAO.detailsDAO;
 import com.web.DAO.typeDAO;
+import com.web.DAO.usersDAO;
 import com.web.Entity.Cart;
 import com.web.Entity.Details;
 import com.web.Entity.Type;
+import com.web.Entity.Users;
 
 import jakarta.servlet.http.HttpServletRequest;
 
@@ -27,9 +31,14 @@ public class CartController {
 	detailsDAO detailDAO;
 	@Autowired
 	HttpServletRequest req;
-	
+	@Autowired
+	usersDAO userDao;
 	@GetMapping("/cart")
 	public String cart(Model model) {
+		
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		Users user = userDao.findByEmail(auth.getName());
+		
 		List<Cart> listCart = cartDAO.findAll();
 		List<Details> listDetail = detailDAO.findAll();
 		model.addAttribute("listCart", listCart);

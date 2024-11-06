@@ -1,6 +1,5 @@
 package com.web.Config;
 
-import java.util.Arrays;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import static org.springframework.security.config.Customizer.withDefaults;
@@ -12,11 +11,7 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.web.cors.CorsConfiguration;
-import org.springframework.web.cors.CorsConfigurationSource;
-import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import com.web.Security.AccountDetail;
 
 
@@ -38,7 +33,9 @@ public class SecurityConfig {
               })
               .formLogin(req -> {
                   req.loginProcessingUrl("/j_spring_security_check")
-                     .loginPage("/signin").defaultSuccessUrl("/home").permitAll().failureUrl("/signin?success=fail");
+                     .loginPage("/signin").defaultSuccessUrl("/home").permitAll().failureUrl("/signin?success=fail").failureHandler((request, response, exception) -> {
+                    	 System.out.println(exception);
+                     });
               })
               .logout(req -> {
                   req.logoutUrl("/logout").permitAll()
@@ -61,7 +58,7 @@ public class SecurityConfig {
     }
     
     public void configure(AuthenticationManagerBuilder auth) throws Exception {
-//        auth.userDetailsService(accountdetail);
+//        auth.userDetailsService(accountdetail).passwordEncoder(getPasswordEncoder());
     	auth.authenticationProvider(authenticationProvider());
     }
 

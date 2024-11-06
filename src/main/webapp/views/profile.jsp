@@ -80,29 +80,29 @@
                             <h5>Thông tin</h5>
                             <form action="" method="post">
                                 <div class="form-floating mb-3">
-                                    <input type="text" class="form-control" id="name" placeholder="name"
+                                    <input type="text" class="form-control" name="name" id="name" placeholder="name"
                                         value="${user.name}">
                                     <label for="name">Họ tên</label>
                                 </div>
                                 <div class="form-floating mb-3">
-                                    <input type="number" class="form-control" id="phone" placeholder="phone"
+                                    <input type="number" class="form-control" name="phoneNumber" id="phone" placeholder="phone"
                                         value="${user.phoneNumber}">
                                     <label for="phone">Số điện thoại</label>
                                 </div>
 
                                 <div class="form-floating mb-3">
-                                    <input type="email" class="form-control" id="email" placeholder="email"
+                                    <input type="email" class="form-control"  name="email" id="email" placeholder="email"
                                         value="${user.email}">
                                     <label for="email">Email</label>
                                 </div>
 
                                 <div class="row mb-3">
                                     <div class="form-floating col-md-6">
-                                        <input type="date" class="form-control" id="dob" value="${user.birthday}">
+                                        <input type="date" class="form-control" name="birthday" id="dob" value="${user.birthday}">
                                         <label for="dob" class="ms-2 ps-3">Ngày sinh</label>
                                     </div>
                                     <div class="form-floating col-md-6">
-                                        <select id="gender" class="form-select">
+                                        <select id="gender" class="form-select" name="gender">
                                             <option selected>Nam</option>
                                             <option>Nữ</option>
                                             <option>Khác</option>

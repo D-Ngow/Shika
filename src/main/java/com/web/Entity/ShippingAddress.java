@@ -20,5 +20,11 @@ public class ShippingAddress {
     
     private String address;
 
+	public ShippingAddress(Users user, String address) {
+		this.user = user;
+		this.address = address;
+	}
+    
+    
 }
 

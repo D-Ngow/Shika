@@ -3,7 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jstl/fmt_rt" prefix="fmt"%>
 <!DOCTYPE html>
-<html lang="en">
+<html ng-app="myApp" lang="en">
 
 <head>
 <meta charset="UTF-8">
@@ -17,19 +17,17 @@
 <link rel="icon" href="image/logo/Shiko_logo_bg.png">
 </head>
 
-<body ng-app="myApp" ng-controller="cartCtrl">
+<body ng-controller="cartCtrl">
 	<c:import url="header.jsp"></c:import>
 
 	<div class="container bag">
 		<div class="row">
 			<div class="col-md-8">
 				<h3 class="mb-4">Bag</h3>
-				<c:forEach var="cart" items="${listCart}">
-					<div class="card mb-3 border-0">
+					<div class="card mb-3 border-0" ng-repeat="cart in carts">
 						<div class="row g-0 align-items-center">
 							<div class="col-md-3">
-								<img src="/image/product/${cart.detail.product.image}"
-									class="img-fluid" alt="">
+								<img src="/image/product/{{cart.detail.product.image}}" class="img-fluid" alt="">
 							</div>
 							<div class="col-md-9">
 
@@ -45,7 +43,7 @@
 									<div class="d-flex">
 										<div class="me-3 d-flex align-items-center">Size: ${cart.detail.type.size}</div>
 										<div class="d-flex align-items-center">Quantity:
-											<input type="text" class="quantity text-decoration-underline" value="${cart.quantity}">
+											<input type="text" ng-change="calculateTotal()" ng-model="quantity" class="quantity text-decoration-underline" value="${cart.quantity}">
 										</div>
 									</div>
 									<button class="border-0 bg-white">
@@ -59,7 +57,6 @@
 							</div>
 						</div>
 					</div>
-				</c:forEach>
 			</div>
 			<div class="col-md-4">
 				<div class="card border-0">
@@ -89,6 +86,7 @@
 
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.min.js"></script>
 	<script src="js/home.js"></script>
 	<script src="js/cart.js"></script>
 </body>

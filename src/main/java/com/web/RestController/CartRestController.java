@@ -3,6 +3,7 @@ package com.web.RestController;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.web.DAO.cartsDAO;
+import com.web.Entity.Cart;
 
 import java.util.List;
 
@@ -17,12 +18,13 @@ public class CartRestController {
 	
 	@Autowired
 	cartsDAO cDAO;
-	Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 	
-	@GetMapping("/rest/cart")
-	public List<Float> getDiscount() {
-		List<Float> listDiscount = cDAO.findDiscountByUsername(auth.getName());
-		return listDiscount;
+	
+	@GetMapping("/rest/cart/findAll")
+	public List<Cart> getDiscount() {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		List<Cart> listCart = cDAO.findByEmail(auth.getName());
+		return listCart;
 	}
 	
 }

@@ -17,7 +17,7 @@
 <link rel="icon" href="image/logo/Shiko_logo_bg.png">
 </head>
 
-<body>
+<body ng-app="myApp" ng-controller="cartCtrl">
 	<c:import url="header.jsp"></c:import>
 
 	<div class="container bag">
@@ -36,10 +36,8 @@
 								<div class="card-body">
 									<div class="d-flex justify-content-between">
 										<h5 class="card-title">${cart.detail.product.productName}</h5>
-										<p class="card-text fw-bold">
-											<fmt:formatNumber type="number"
-												value="${cart.detail.product.price}" />
-											₫
+										<p class="card-text fw-bold price">
+											<fmt:formatNumber type="number" value="${cart.detail.product.price}" /> ₫
 										</p>
 									</div>
 									<p class="card-text text-muted mb-1">${cart.detail.product.brand}</p>
@@ -47,12 +45,7 @@
 									<div class="d-flex">
 										<div class="me-3 d-flex align-items-center">Size: ${cart.detail.type.size}</div>
 										<div class="d-flex align-items-center">Quantity:
-											<div class="btn-group" role="group" aria-label="Basic example">
-												<a href="/changeQuantity?id=${cart.detail.product.productId}&method=decrease" class="bg-white border-0 fw-medium text-dark text-decoration-none">-</a>
-												<input type="text" class="quantity" value="${cart.quantity}"
-													readonly>
-												<a href="/changeQuantity?id=${cart.detail.product.productId}&method=increase" class="bg-white border-0 fw-medium text-dark text-decoration-none">+</a>
-											</div>
+											<input type="text" class="quantity text-decoration-underline" value="${cart.quantity}">
 										</div>
 									</div>
 									<button class="border-0 bg-white">
@@ -73,11 +66,11 @@
 					<div class="card-body">
 						<h5 class="card-title mb-3">Summary</h5>
 						<p class="d-flex justify-content-between">
-							<span class="fw-medium">Subtotal</span> <span class="fw-medium"><fmt:formatNumber
+							<span class="fw-medium">Subtotal</span> <span class="fw-medium" id="subtotal"><fmt:formatNumber
 									type="number" value="${subtotal}" />₫</span>
 						</p>
 						<p class="d-flex justify-content-between">
-							<span class="fw-medium">Discount</span> <span class="fw-medium"><fmt:formatNumber
+							<span class="fw-medium">Discount</span> <span class="fw-medium" id="discount"><fmt:formatNumber
 									type="number" value="${discount}" />₫</span>
 						</p>
 						<hr>
@@ -94,9 +87,10 @@
 	<!-- Footer -->
 	<c:import url="footer.jsp"></c:import>
 
-	<script
-		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
 	<script src="js/home.js"></script>
+	<script src="js/cart.js"></script>
 </body>
 
 </html>

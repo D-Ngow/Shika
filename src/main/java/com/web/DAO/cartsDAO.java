@@ -8,4 +8,6 @@ import com.web.Entity.Cart;
 public interface cartsDAO extends JpaRepository<Cart,Integer>{
 	@Query("SELECT c FROM Cart c WHERE c.user.name LIKE :name")
     List<Cart> findByname(String name);
+	@Query("SELECT c.detail.product.discountPrice FROM Cart c WHERE c.user.email LIKE :email")
+	List<Float> findDiscountByUsername(String email);
 }

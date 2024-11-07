@@ -46,7 +46,7 @@ CREATE TABLE users (
     email NVARCHAR(255) NOT NULL UNIQUE,
     phoneNumber NVARCHAR(15),
     password NVARCHAR(255) NOT NULL,
-    birthday DATETIME,
+    birthday DATETIME2,
     gender BIT,
     role BIT
 );

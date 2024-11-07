@@ -1,5 +1,8 @@
 package com.web.Controller;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,6 +15,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.web.DAO.usersDAO;
 import com.web.Entity.Users;
+import com.web.Service.UserService;
+
+import jakarta.servlet.http.HttpServletRequest;
 
 @Controller
 @RequestMapping("/signup")
@@ -21,7 +27,10 @@ public class SignupController {
 	private BCryptPasswordEncoder passwordEncoder;
 
 	@Autowired
-	private usersDAO userDao;
+	private UserService userSv;
+	
+	@Autowired
+	HttpServletRequest req;
 
 	@GetMapping
 	private String signup() {
@@ -29,15 +38,26 @@ public class SignupController {
 
 	}
 
-	@PostMapping()
-	public ResponseEntity<Users> signup(@RequestBody Users user){
-
-	System.out.println("hihi");
-		user.setPassword(passwordEncoder.encode(user.getPassword()));	
-		Users savedUser = userDao.save(user);
-
-
-		return new ResponseEntity<>(savedUser,HttpStatus.CREATED);
+	@PostMapping("/submit")
+	public String signupSubmit() {
+		try {
+			Users user = new Users();
+			user.setEmail(req.getParameter("email"));
+			user.setName(req.getParameter("name"));
+			user.setPhoneNumber(req.getParameter("phone"));
+			user.setPassword(passwordEncoder.encode(req.getParameter("password")));
+			user.setGender(Boolean.parseBoolean(req.getParameter("gender")));
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+			user.setBirthday(sdf.parse(req.getParameter("birthday")));
+			user.setRole(false);
+			
+			userSv.EditProfile(user);
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+		
+		return "redirect:/signin";
 	}
+	
 
 }

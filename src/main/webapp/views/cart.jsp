@@ -20,7 +20,7 @@
 <body>
 	<c:import url="header.jsp"></c:import>
 
-	<div class="container py-5 px-5">
+	<div class="container bag">
 		<div class="row">
 			<div class="col-md-8">
 				<h3 class="mb-4">Bag</h3>

@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 
 import java.util.Date;
 import java.util.List;
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Table(name = "users")
@@ -24,7 +25,8 @@ public class Users {
      String phoneNumber;
 
      String password;
-
+     
+     @DateTimeFormat(pattern = "yyyy-MM-dd")
      Date birthday;
     
      Boolean gender;

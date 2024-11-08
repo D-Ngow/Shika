@@ -1,5 +1,7 @@
 package com.web.Entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -16,6 +18,7 @@ public class ShippingAddress {
     
     @ManyToOne
     @JoinColumn(name = "userId", nullable = false)
+    @JsonBackReference(value = "user-shippingAddress")
     private Users user;
     
     private String address;

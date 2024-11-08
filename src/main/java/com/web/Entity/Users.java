@@ -9,6 +9,8 @@ import java.util.Date;
 import java.util.List;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 @Table(name = "users")
 @Data @NoArgsConstructor @AllArgsConstructor
@@ -34,6 +36,7 @@ public class Users {
      Boolean role;
 
     @OneToMany(mappedBy = "user")
+    @JsonManagedReference(value = "user-shippingAddress")
      List<ShippingAddress> shippingAddresses;
 
 }

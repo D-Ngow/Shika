@@ -1,5 +1,7 @@
 package com.web.Entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -16,10 +18,12 @@ public class Cart {
     
     @ManyToOne
     @JoinColumn(name = "userId", nullable = false)
+    @JsonBackReference(value = "user-cart")
      Users user;
     
     @ManyToOne
     @JoinColumn(name = "detailId", nullable = false)
+    @JsonBackReference(value = "detail-cart")
      Details detail;
     
      int quantity;

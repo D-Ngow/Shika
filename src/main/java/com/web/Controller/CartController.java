@@ -28,49 +28,49 @@ public class CartController {
 	usersDAO userDAO;
 	@GetMapping("/cart")
 	public String cart(Model model) {
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		Users user = userDAO.findByEmail(auth.getName());
-		
-		List<Cart> listCart = cartDAO.findByname(user.getName());
-		List<Details> listDetail = detailDAO.findAll();
-		model.addAttribute("listCart", listCart);
-		model.addAttribute("listDetail", listDetail);
-		double subtotal =0, discount=0, total=0;
-		for (Cart c : listCart) {
-			subtotal += c.getDetail().getProduct().getPrice() * c.getQuantity();
-			if (!c.getDetail().getProduct().getDiscountPrice().equals(null)) {
-				discount += c.getDetail().getProduct().getDiscountPrice();
-			}
-			else {
-				discount += 0;
-			}
-		}
-		total = subtotal - discount;
-		model.addAttribute("subtotal", subtotal);
-		model.addAttribute("discount", discount);
-		model.addAttribute("total", total);
+//		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+//		Users user = userDAO.findByEmail(auth.getName());
+//		
+//		List<Cart> listCart = cartDAO.findByname(user.getName());
+//		List<Details> listDetail = detailDAO.findAll();
+//		model.addAttribute("listCart", listCart);
+//		model.addAttribute("listDetail", listDetail);
+//		double subtotal =0, discount=0, total=0;
+//		for (Cart c : listCart) {
+//			subtotal += c.getDetail().getProduct().getPrice() * c.getQuantity();
+//			if (!c.getDetail().getProduct().getDiscountPrice().equals(null)) {
+//				discount += c.getDetail().getProduct().getDiscountPrice();
+//			}
+//			else {
+//				discount += 0;
+//			}
+//		}
+//		total = subtotal - discount;
+//		model.addAttribute("subtotal", subtotal);
+//		model.addAttribute("discount", discount);
+//		model.addAttribute("total", total);
 		return "cart";
 	}
 	
-	@GetMapping("/changeQuantity")
-	public String changeQuantity() {
-		String method = req.getParameter("method");
-		int id = Integer.parseInt(req.getParameter("id"));
-		List<Cart> listCart = cartDAO.findAll();
-		for (Cart c : listCart) {
-			if (id == c.getDetail().getProduct().getProductId()) {
-				int quantity = c.getQuantity();
-				if (method.equals("decrease")) {
-					c.setQuantity(quantity-1);
-					cartDAO.save(c);
-				}
-				else if (method.equals("increase")) {
-					c.setQuantity(quantity+1);
-					cartDAO.save(c);
-				}
-			}
-		}
-		return "redirect:/cart";
-	}
+//	@GetMapping("/changeQuantity")
+//	public String changeQuantity() {
+//		String method = req.getParameter("method");
+//		int id = Integer.parseInt(req.getParameter("id"));
+//		List<Cart> listCart = cartDAO.findAll();
+//		for (Cart c : listCart) {
+//			if (id == c.getDetail().getProduct().getProductId()) {
+//				int quantity = c.getQuantity();
+//				if (method.equals("decrease")) {
+//					c.setQuantity(quantity-1);
+//					cartDAO.save(c);
+//				}
+//				else if (method.equals("increase")) {
+//					c.setQuantity(quantity+1);
+//					cartDAO.save(c);
+//				}
+//			}
+//		}
+//		return "redirect:/cart";
+//	}
 	
 }

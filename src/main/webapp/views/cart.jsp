@@ -27,26 +27,24 @@
 					<div class="card mb-3 border-0" ng-repeat="cart in carts">
 						<div class="row g-0 align-items-center">
 							<div class="col-md-3">
-								<img src="/image/product/{{cart.detail.product.image}}" class="img-fluid" alt="">
+								<img src="/image/product/{{cart.image}}" class="img-fluid" alt="">
 							</div>
 							<div class="col-md-9">
 
 								<div class="card-body">
 									<div class="d-flex justify-content-between">
-										<h5 class="card-title">${cart.detail.product.productName}</h5>
-										<p class="card-text fw-bold price">
-											<fmt:formatNumber type="number" value="${cart.detail.product.price}" /> ₫
-										</p>
+										<h5 class="card-title">{{cart.productName}}</h5>
+										<p class="card-text fw-bold price">{{cart.price | currency:'₫'}}</p>
 									</div>
-									<p class="card-text text-muted mb-1">${cart.detail.product.brand}</p>
-									<p class="card-text text-mute mb-1">${cart.detail.product.color}</p>
+									<p class="card-text text-muted mb-1">{{cart.brand}}</p>
+									<p class="card-text text-mute mb-1">{{cart.color}}</p>
 									<div class="d-flex">
-										<div class="me-3 d-flex align-items-center">Size: ${cart.detail.type.size}</div>
+										<div class="me-3 d-flex align-items-center">Size: {{cart.size}}</div>
 										<div class="d-flex align-items-center">Quantity:
-											<input type="text" ng-change="calculateTotal()" ng-model="quantity" class="quantity text-decoration-underline" value="${cart.quantity}">
+											<input type="text" ng-change="changeQuantity(cart.cartId, cart.quantity)" ng-model="cart.quantity" class="quantity">
 										</div>
 									</div>
-									<button class="border-0 bg-white">
+									<button class="border-0 bg-white" ng-click="deleteCart(cart.cartId)">
 										<svg xmlns="http://www.w3.org/2000/svg" height="20"
 											width="17.5" viewBox="0 0 448 512">
 											<!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
@@ -63,17 +61,17 @@
 					<div class="card-body">
 						<h5 class="card-title mb-3">Summary</h5>
 						<p class="d-flex justify-content-between">
-							<span class="fw-medium">Subtotal</span> <span class="fw-medium" id="subtotal"><fmt:formatNumber
-									type="number" value="${subtotal}" />₫</span>
+							<span class="fw-medium">Subtotal</span>
+							<span class="fw-medium" id="subtotal" ng-model="subtotal">{{subtotal | currency:'₫'}}</span>
 						</p>
 						<p class="d-flex justify-content-between">
-							<span class="fw-medium">Discount</span> <span class="fw-medium" id="discount"><fmt:formatNumber
-									type="number" value="${discount}" />₫</span>
+							<span class="fw-medium">Discount</span>
+							<span class="fw-medium" id="discount" ng-model="discount">{{discount | currency:'₫'}}</span>
 						</p>
 						<hr>
 						<p class="d-flex justify-content-between fw-bold">
-							<span>Total</span> <span><fmt:formatNumber type="number"
-									value="${total}" />₫</span>
+							<span>Total</span>
+							<span ng-model="total">{{total | currency:'₫'}}</span>
 						</p>
 						<button class="btn btn-dark w-100 rounded-pill checkout">Checkout</button>
 					</div>

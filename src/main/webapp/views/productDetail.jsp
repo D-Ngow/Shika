@@ -42,23 +42,23 @@
             <div class="col-md-12 col-lg-12 col-xl-3 col-xxl-4 px-0">
                 <h1 class="product-title">${product.productName}</h1>
                 <p class="price"><fmt:formatNumber type="number" value="${product.price}" /> ₫</p>
-                <p class="description">
-                    ${product.describe}
-                </p>
+                <p class="description">${product.describe}</p>
 
-                <div class="d-flex mb-3 align-items-center">
-                    <select class="select-size" id="sizeSelect">
-                        <option value="" disabled selected>Select Size</option>
-                        <c:forEach var="details" items="${detail}">
-                         <option value="${details.type.size}">${details.type.size}</option>
-                        </c:forEach>
-                    </select>
-                </div>
-                <div class="d-grid gap-3">
-                    <a class="btn btn-dark rounded-pill py-3 fw-bold">Add to cart</a>
-                    <a class="btn btn-dark rounded-pill py-3 fw-bold">Buy</a>
-                </div>
-            </div>
+				<form method="post">
+					<div class="d-flex mb-3 align-items-center">
+						<select class="select-size" name="sizeSelect">
+							<option disabled selected>Select Size</option>
+							<c:forEach var="details" items="${detail}">
+								<option value="${details.type.typeId}">${details.type.size}</option>
+							</c:forEach>
+						</select>
+					</div>
+					<div class="d-grid gap-3">
+						<button formaction="/addToCart/${product.productId}" class="btn btn-dark rounded-pill py-3 fw-bold">Add to cart</button>
+						<a class="btn btn-dark rounded-pill py-3 fw-bold">Buy</a>
+					</div>
+				</form>
+			</div>
         </div>
         <div class="carousel-container">
             <div class="row">

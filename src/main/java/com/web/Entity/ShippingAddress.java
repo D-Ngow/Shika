@@ -21,13 +21,10 @@ public class ShippingAddress {
     @JsonBackReference(value = "user-shippingAddress")
     private Users user;
     
-    private String address;
-
-	public ShippingAddress(Users user, String address) {
-		this.user = user;
-		this.address = address;
-	}
-    
+    private String city;
+    private String district;
+    private String ward;
+    private String road;
     
 }
 

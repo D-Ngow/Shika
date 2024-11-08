@@ -55,7 +55,10 @@ CREATE TABLE users (
 CREATE TABLE shippingAddress (
     addressId INT IDENTITY(1,1) PRIMARY KEY,
     userId INT,
-    address NVARCHAR(MAX),
+    city NVARCHAR(50),
+    district NVARCHAR(50),
+    ward NVARCHAR(50),
+    road NVARCHAR(50),
     FOREIGN KEY (userId) REFERENCES users(userId)
 );
 
@@ -155,13 +158,13 @@ VALUES
 ('Charlie Green', 'charlie.green@example.com', '777888999', 'charliepass', '2000-12-30', 1, 1);
 
 -- Insert vào bảng shippingAddress
-INSERT INTO shippingAddress (userId, address)
+INSERT INTO shippingAddress (userId, city, district, ward, road)
 VALUES 
-(1, '123 Elm St, City A, Country A'),
-(2, '456 Maple St, City B, Country B'),
-(3, '789 Oak St, City C, Country C'),
-(4, '101 Pine St, City D, Country D'),
-(5, '202 Cedar St, City E, Country E');
+(1, 'City A','Distric B','Ward C','123 XYZ St'),
+(2, 'City D','Distric E','Ward F','456 XYZ St'),
+(3, 'City G','Distric H','Ward I','789 XYZ St'),
+(4, 'City J','Distric K','Ward L','012 XYZ St'),
+(5, 'City M','Distric N','Ward O','901 XYZ St');
 
 -- Insert vào bảng invoices
 INSERT INTO invoices (userId, total, status)

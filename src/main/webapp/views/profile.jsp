@@ -188,12 +188,12 @@
 										<div
 											class="card-body d-flex justify-content-between align-items-center my-1">
 											<div>
-												<p class="mb-0">${address.address}</p>
+												<p class="mb-0">${address.road}, ${address.ward}, ${address.district}, ${address.city}</p>
 											</div>
 											<div class="d-flex">
 
 												<button type="button" class="btn btn-warning me-2"
-													data-bs-toggle="modal" data-bs-target="#exampleModal1">
+													data-bs-toggle="modal" data-bs-target="#exampleModal${address.addressId}">
 													<svg xmlns="http://www.w3.org/2000/svg" height="16"
 														width="16" viewBox="0 0 512 512">
 														<!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
@@ -201,7 +201,7 @@
 															d="M362.7 19.3L314.3 67.7 444.3 197.7l48.4-48.4c25-25 25-65.5 0-90.5L453.3 19.3c-25-25-65.5-25-90.5 0zm-71 71L58.6 323.5c-10.4 10.4-18 23.3-22.2 37.4L1 481.2C-1.5 489.7 .8 498.8 7 505s15.3 8.5 23.7 6.1l120.3-35.4c14.1-4.2 27-11.8 37.4-22.2L421.7 220.3 291.7 90.3z" />
                                                 </svg>
 												</button>
-												<div class="modal fade" id="exampleModal1" tabindex="-1"
+												<div class="modal fade" id="exampleModal${address.addressId}" tabindex="-1"
 													aria-labelledby="exampleModalLabel" aria-hidden="true">
 													<div class="modal-dialog">
 														<div class="modal-content">
@@ -211,27 +211,27 @@
 																<button type="button" class="btn-close"
 																	data-bs-dismiss="modal" aria-label="Close"></button>
 															</div>
-															<form action="/profile/address" method="post">
+															<form action="/profile/updateAddress?addressId=${address.addressId}" method="post">
 																<div class="modal-body">
 																	<div class="form-floating mb-3">
 																		<input type="text" class="form-control" name="tp"
-																			id="floatingInput" placeholder="name@example.com">
-																		<label for="floatingInput">Tỉnh / Thành phố</label>
+																			id="floatingInput" placeholder="name@example.com" value="${address.city}">
+																		<label for="floatingInput">Tỉnh/Thành phố</label>
 																	</div>
 																	<div class="form-floating mb-3">
 																		<input type="text" class="form-control" name="quan"
-																			id="floatingInput" placeholder="name@example.com">
-																		<label for="floatingInput">Quận / Huyện</label>
+																			id="floatingInput" placeholder="name@example.com" value="${address.district}">
+																		<label for="floatingInput">Quận/Huyện</label>
 																	</div>
 																	<div class="form-floating mb-3">
 																		<input type="text" class="form-control" name="xa"
-																			id="floatingInput" placeholder="name@example.com">
-																		<label for="floatingInput">Phường / Xã</label>
+																			id="floatingInput" placeholder="name@example.com" value="${address.ward}">
+																		<label for="floatingInput">Phường/Xã</label>
 																	</div>
 																	<div class="form-floating mb-3">
 																		<input type="text" class="form-control" name="duong"
-																			id="floatingInput" placeholder="name@example.com">
-																		<label for="floatingInput">Số nhà / Tên Đường</label>
+																			id="floatingInput" placeholder="name@example.com" value="${address.road}">
+																		<label for="floatingInput">Số nhà, Tên đường</label>
 																	</div>
 																</div>
 																<div class="modal-footer">
@@ -242,7 +242,7 @@
 														</div>
 													</div>
 												</div>
-												
+
 												<a class="btn btn-danger"
 													href="/profile/deleteadr?idadr=${address.addressId}"> <svg
 														xmlns="http://www.w3.org/2000/svg" height="16"

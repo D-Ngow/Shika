@@ -83,10 +83,12 @@
 		<div class="carousel-track">
 			<div class="d-flex">
 				<c:forEach var="product" items="${listprd}">
-					<div class="carousel-item-product">
-						<img src="image/product/${product.image}" alt="Product 1">
-						<p class="product-name">${product.productName}</p>
-					</div>
+					<a href="/details?id=${product.productId}" class="text-black text-decoration-none">
+						<div class="carousel-item-product">
+							<img src="image/product/${product.image}" alt="Product 1">
+							<p class="product-name">${product.productName}</p>
+						</div>
+					</a>
 				</c:forEach>
 			</div>
 		</div>
@@ -127,26 +129,19 @@
     <!-- New Design Section -->
     <div class="container py-5">
         <div class="row w-100">
-            <div class="col-12 col-lg-6 col-md-12 row">
-                <div class="col-6 col-lg-6 col-md-6 col-sm-6">
-                    <img src="image/product/AIR+FORCE+1+'07 (3).png" class="img-fluid mb-3" alt="Nike React Presto">
-                </div>
-                <div class="col-6 col-lg-6 col-md-6 col-sm-6 text-start">
-                    <h2 class="mb-3">NIKE REACT PRESTO BY YOU</h2>
-                    <p class="lead">Take advantage of brand new cushioning technology with fresh Nike React shoes.</p>
-                    <a href="#" class="btn btn-dark">View</a>
-                </div>
-            </div>
-            <div class="col-12 col-lg-6 col-md-12 row">
-                <div class="col-6 col-lg-6 col-md-6 col-sm-6">
-                    <img src="image/product/AIR+FORCE+1+'07 (3).png" class="img-fluid mb-3" alt="Nike React Presto">
-                </div>
-                <div class="col-6 col-lg-6 col-md-6 col-sm-6 text-start">
-                    <h2 class="mb-3">NIKE REACT PRESTO BY YOU</h2>
-                    <p class="lead">Take advantage of brand new cushioning technology with fresh Nike React shoes.</p>
-                    <a href="#" class="btn btn-dark">View</a>
-                </div>
-            </div>
+            <c:forEach var="top" items="${topSeller}">
+				<div class="col-12 col-lg-6 col-md-12 row">
+					<div class="col-6 col-lg-6 col-md-6 col-sm-6">
+						<img src="image/product/${top.image}"
+							class="img-fluid mb-3" alt="Nike React Presto">
+					</div>
+					<div class="col-6 col-lg-6 col-md-6 col-sm-6 text-start">
+						<h2 class="mb-3">${top.productName}</h2>
+						<p class="lead">${top.describe}</p>
+						<a href="#" class="btn btn-dark">View</a>
+					</div>
+				</div>
+			</c:forEach>
         </div>
     </div>
 

@@ -212,7 +212,7 @@ VALUES
 (5, 5);
 
 -- Insert vào bảng payment
-INSERT INTO payment (invoiceId, payment_type)
+INSERT INTO payment (invoiceId, paymentType)
 VALUES 
 (1, 'Credit Card'),
 (2, 'PayPal'),

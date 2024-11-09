@@ -129,7 +129,7 @@
     <!-- New Design Section -->
     <div class="container py-5">
         <div class="row w-100">
-            <c:forEach var="top" items="${topSeller}">
+            <c:forEach var="top" items="${listbestproc}">
 				<div class="col-12 col-lg-6 col-md-12 row">
 					<div class="col-6 col-lg-6 col-md-6 col-sm-6">
 						<img src="image/product/${top.image}"

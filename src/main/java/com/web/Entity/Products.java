@@ -7,6 +7,8 @@ import lombok.NoArgsConstructor;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 @Table(name = "products")
 @Data @AllArgsConstructor @NoArgsConstructor
@@ -35,6 +37,7 @@ public class Products {
      String describe;
 
     @OneToMany(mappedBy = "product")
+    @JsonManagedReference(value = "product-images")
      List<ProductImage> images;
 
 }

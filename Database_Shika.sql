@@ -66,7 +66,7 @@ CREATE TABLE shippingAddress (
 CREATE TABLE invoices (
     invoiceId INT IDENTITY(1,1) PRIMARY KEY,
     userId INT NOT NULL,
-    create_date DATETIME DEFAULT GETDATE(),
+    createDate DATETIME DEFAULT GETDATE(),
     total DECIMAL(18, 2) NOT NULL,
     status BIT,
     FOREIGN KEY (userId) REFERENCES users(userId)
@@ -113,7 +113,7 @@ CREATE TABLE categorydetails (
 CREATE TABLE payment (
     paymentId INT IDENTITY(1,1) PRIMARY KEY,
     invoiceId INT,
-    payment_type NVARCHAR(50) NOT NULL,
+    paymentType NVARCHAR(50) NOT NULL,
     FOREIGN KEY (invoiceId) REFERENCES invoices(invoiceId)
 );
 

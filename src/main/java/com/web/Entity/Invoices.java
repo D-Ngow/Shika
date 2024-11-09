@@ -29,5 +29,4 @@ public class Invoices {
 
     @OneToMany(mappedBy = "invoice")
      List<InvoiceDetails> InvoiceDetails;
-
 }

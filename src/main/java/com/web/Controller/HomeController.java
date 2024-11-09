@@ -22,6 +22,8 @@ public class HomeController {
 		model.addAttribute("listprd",listprd);
 		List<Categories> listcate = cateDAO.findAll();
 		model.addAttribute("listcate",listcate);
+//		List<Products> topSeller = prdDAO.findTop2BestSellingProducts();
+//		model.addAttribute("topSeller", topSeller);
 		return "index";
 	}
 

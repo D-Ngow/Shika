@@ -88,10 +88,12 @@
             <div class="carousel-track">
 				<div class="d-flex">
 					<c:forEach var="product" items="${listprd}">
-						<div class="carousel-item-product">
-							<img src="image/product/${product.image}" alt="Product 1">
-							<p class="product-name">${product.productName}</p>
-						</div>
+						<a href="/details?id=${product.productId}" class="text-black text-decoration-none">
+							<div class="carousel-item-product">
+								<img src="image/product/${product.image}" alt="Product 1">
+								<p class="product-name">${product.productName}</p>
+							</div>
+						</a>
 					</c:forEach>
 				</div>
 			</div>

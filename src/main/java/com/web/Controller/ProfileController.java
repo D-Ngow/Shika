@@ -64,11 +64,29 @@ public class ProfileController {
 	public String postAddress() {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		Users user1 = userService.findByEmail(auth.getName());
-		String address = req.getParameter("tp")+", "+req.getParameter("quan")+", "+req.getParameter("xa")+", "+req.getParameter("duong");
-		ShippingAddress spa = new ShippingAddress( user1,address);
+		ShippingAddress spa = new ShippingAddress();
+		spa.setCity(req.getParameter("tp"));
+		spa.setDistrict(req.getParameter("quan"));
+		spa.setWard(req.getParameter("xa"));
+		spa.setRoad(req.getParameter("duong"));
+		spa.setUser(user1);
 		sad.save(spa);
 		return "redirect:/profile";
 	}
+	
+	@PostMapping("/updateAddress")
+	public String updateAddress() {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		Users user = userService.findByEmail(auth.getName());
+		ShippingAddress spa = sad.findByIdAndUserId(Integer.parseInt(req.getParameter("addressId")), user.getUserId());
+		spa.setCity(req.getParameter("tp"));
+		spa.setDistrict(req.getParameter("quan"));
+		spa.setWard(req.getParameter("xa"));
+		spa.setRoad(req.getParameter("duong"));
+		sad.save(spa);
+		return "redirect:/profile";
+	}
+	
 	@GetMapping("/deleteadr")
 	public String getMethodName() {
 		sad.deleteById(Integer.parseInt(req.getParameter("idadr")));

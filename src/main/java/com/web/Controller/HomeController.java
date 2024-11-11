@@ -26,7 +26,8 @@ public class HomeController {
 		List<Categories> listcate = cateDAO.findAll();
 		model.addAttribute("listcate",listcate);
 		List<Products> listbestproc = ivdtDAO.findBestSellingProducts();
-		model.addAttribute("listbestproc",listbestproc);
+		List<Products> listbestproc2 = listbestproc.subList(0,Math.min(2,listbestproc.size()));
+		model.addAttribute("listbestproc",listbestproc2);
 		return "index";
 	}
 

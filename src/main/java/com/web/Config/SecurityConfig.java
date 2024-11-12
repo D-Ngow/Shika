@@ -33,7 +33,11 @@ public class SecurityConfig {
               })
               .formLogin(req -> {
                   req.loginProcessingUrl("/j_spring_security_check")
-                     .loginPage("/signin").defaultSuccessUrl("/home").permitAll().failureUrl("/signin?success=fail");
+                     .loginPage("/signin").defaultSuccessUrl("/home").permitAll()
+                     .failureHandler((request, response, exception) -> { 
+                         request.getSession().setAttribute("errorMessage", "Tên đăng nhập hoặc mật khẩu không đúng!");
+                         response.sendRedirect("/signin?error=true");
+                     });
               })
               .logout(req -> {
                   req.logoutUrl("/logout").permitAll()

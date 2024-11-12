@@ -24,7 +24,7 @@ app.controller("cartCtrl", function($scope, $http) {
         })
         .catch(function(error) {
             console.error("Error updating quantity:", error);
-            alert("Failed to update quantity. Please try again.");
+            //alert("Failed to update quantity. Please try again.");
         });
 	}
 	

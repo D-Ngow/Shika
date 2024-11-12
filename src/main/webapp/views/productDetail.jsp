@@ -47,7 +47,6 @@
 				<form method="post">
 					<div class="d-flex mb-3 align-items-center">
 						<select class="select-size" name="sizeSelect">
-							<option disabled selected>Select Size</option>
 							<c:forEach var="details" items="${detail}">
 								<option value="${details.type.typeId}">${details.type.size}</option>
 							</c:forEach>

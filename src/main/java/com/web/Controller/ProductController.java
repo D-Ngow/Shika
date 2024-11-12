@@ -9,6 +9,7 @@ import com.web.DAO.productsDAO;
 import com.web.Entity.Products;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -23,7 +24,12 @@ public class ProductController {
 	public String getProduct(Model model, @RequestParam(value = "brand", required = false) List<String> brands,
 			@RequestParam(value = "color", required = false) List<String> colors,
 			@RequestParam(value = "price", required = false) String price) {
-		if(price==null) {
+		String cateId = req.getParameter("cateId");
+		if (cateId != null && !cateId.isEmpty()) {
+			List<Products> listpro = proDAO.findProductsByCategoryId(cateId);
+			model.addAttribute("proList",listpro);
+		}
+		else if(price==null) {
 			List<Products> proList = proDAO.findByBrandAndColor(brands, colors);
 			model.addAttribute("proList", proList);
 		}else {
@@ -37,6 +43,14 @@ public class ProductController {
 		model.addAttribute("listcolor", listcolor);
 		return "product";
 	}
+	
+//	@GetMapping("/product/{catename}")
+//	public String getMethodName(@PathVariable String catename,Model model) {
+//		List<Products> listpro = proDAO.findProductsByCategoryName(catename);
+//		model.addAttribute("proList",listpro);
+//		return "product";
+//	}
+	
 
 	@PostMapping("/search")
 	public String search(Model model) {

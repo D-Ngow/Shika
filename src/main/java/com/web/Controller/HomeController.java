@@ -16,18 +16,15 @@ public class HomeController {
 	@Autowired
 	productsDAO prdDAO;
 	@Autowired
-	categoriesDAO cateDAO;
-	@Autowired
 	invoiceDetailsDAO ivdtDAO;
 	@GetMapping("/home")
 	public String getHome(Model model) {
 		List<Products> listprd = prdDAO.findAll();
 		model.addAttribute("listprd",listprd);
-		List<Categories> listcate = cateDAO.findAll();
-		model.addAttribute("listcate",listcate);
 		List<Products> listbestproc = ivdtDAO.findBestSellingProducts();
 		List<Products> listbestproc2 = listbestproc.subList(0,Math.min(2,listbestproc.size()));
 		model.addAttribute("listbestproc",listbestproc2);
+//		List<Categories> listcate = cateDAO.findAll();
 		return "index";
 	}
 

@@ -26,4 +26,9 @@ public interface productsDAO extends JpaRepository<Products, Integer> {
     List<String> findBybrand();
     @Query("SELECT DISTINCT p.color FROM Products p")
     List<String> findBycolor();
+    @Query("SELECT p FROM Products p " +
+            "JOIN CategoryDetails cd ON p.productId = cd.product.productId " +
+            "JOIN Categories c ON cd.category.categorieId = c.categorieId " +
+            "WHERE c.categorieId = :categorieId")
+     List<Products> findProductsByCategoryId(@Param("categorieId") String categorieId);
 }

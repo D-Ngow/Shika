@@ -9,7 +9,6 @@ import com.web.DAO.productsDAO;
 import com.web.Entity.Products;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -56,6 +55,10 @@ public class ProductController {
 	public String search(Model model) {
 		List<Products> proSearch = proDAO.findByNameContaining("%" + req.getParameter("search") + "%");
 		model.addAttribute("proList", proSearch);
+		List<String> listbrand = proDAO.findBybrand();
+		model.addAttribute("listbrand", listbrand);
+		List<String> listcolor = proDAO.findBycolor();
+		model.addAttribute("listcolor", listcolor);
 		return "product";
 	}
 

@@ -33,7 +33,10 @@
 						<div class="row g-1">
 							<c:forEach var="brand" items="${listbrand}">
 								<div class="col-6">
-									<input type="checkbox" name="brand" value="${brand}">${brand}
+									<div class="form-check">
+										<input class="form-check-input" type="checkbox" name="brand" value="${brand}" id="flexCheckDefault${brand}">
+										<label class="form-check-label" for="flexCheckDefault${brand}">${brand}</label>
+									</div>
 								</div>
 							</c:forEach>
 						</div>
@@ -41,35 +44,29 @@
 						<div class="row g-1">
 							<c:forEach var="color" items="${listcolor}">
 								<div class="col-6">
-									<input type="checkbox" name="color" value="${color}">${color}
+									<div class="form-check">
+											<input class="form-check-input" type="checkbox" name="color" value="${color}" id="flexCheckDefault${color}">
+											<label class="form-check-label" for="flexCheckDefault${color}">${color}</label>
+									</div>
 								</div>
 							</c:forEach>
 						</div>
-						<p class="mb-2 text-secondary fw-medium opacity-50 mt-2">COLOR</p>
+						<p class="mb-2 text-secondary fw-medium opacity-50 mt-2">PRICE</p>
 						<div class="row g-1">
-							<input type="radio" name="price" value="0">Low to High
-							<input type="radio" name="price" value="1">High to Low
+							<div class="form-check">
+							  <input class="form-check-input" type="radio" name="price" value="0" id="flexRadioDefault1">
+							  <label class="form-check-label" for="flexRadioDefault1">Low to High</label>
+							</div>
+							<div class="form-check">
+							  <input class="form-check-input" type="radio" name="price" value="1" id="flexRadioDefault2">
+							  <label class="form-check-label" for="flexRadioDefault2">High to Low</label>
+							</div>
 						</div>
-						<button formaction="/product">Fill</button>
+						<div class="row g-1 mt-3">
+							<button formaction="/product" class="btn btn-dark border-0 rounded-0">Fill</button>
+						</div>
 					</div>					
 				</form>
-			</div>
-			<div class="d-flex justify-content-end col-6">
-				<div class="dropdown">
-					<button class="bg-white border-0" data-bs-toggle="dropdown"
-						aria-expanded="false">
-						Sort by Price
-						<svg xmlns="http://www.w3.org/2000/svg" height="14" width="14"
-							viewBox="0 0 512 512">
-							<!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
-							<path fill="#000000"
-								d="M233.4 406.6c12.5 12.5 32.8 12.5 45.3 0l192-192c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L256 338.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l192 192z" /></svg>
-					</button>
-					<ul class="dropdown-menu border-1 rounded-0">
-						<li><a href="/product?price=0">Low to High</a></li>
-						<li><a href="/product?price=1">High to Low</a></li>
-					</ul>
-				</div>
 			</div>
 		</div>
 		<div

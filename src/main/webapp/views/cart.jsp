@@ -41,7 +41,7 @@
 									<div class="d-flex">
 										<div class="me-3 d-flex align-items-center">Size: {{cart.size}}</div>
 										<div class="d-flex align-items-center">Quantity:
-											<input type="text" ng-change="changeQuantity(cart.cartId, cart.quantity)" ng-model="cart.quantity" class="quantity">
+											<input type="number" ng-change="changeQuantity(cart.cartId, cart.quantity)" ng-model="cart.quantity" min="1" class="quantity">
 										</div>
 									</div>
 									<button class="border-0 bg-white" ng-click="deleteCart(cart.cartId)">

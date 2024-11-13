@@ -101,12 +101,13 @@
 													<p>Quantity:${prddt.quantity}</p>
 												</div>
 											</div>
+										</div>
 									</c:forEach>
 								</div>
 							</div>
 						</div>
-						<div class="card-footer border-0 rounded-0">
-							<div class="row">
+						<div class="card-footer bg-light border-0 rounded-0">
+							<div class="row px-3">
 								<div class="col-7">
 									<p class="fw-bold mb-1 mt-3">Shipping Address:</p>
 									<p>15 ABC, Đường XYZ, Phường 1, Quận 1, Thành phố Hồ Chí

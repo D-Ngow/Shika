@@ -25,7 +25,7 @@ public class UserService {
 		return user.get();
 	}
 
-	public void EditProfile(Users user) {
+	public void saveUser(Users user) {
 		try {
 			userDao.save(user);
 		} catch (Exception e) {

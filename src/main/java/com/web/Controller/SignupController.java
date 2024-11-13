@@ -51,7 +51,7 @@ public class SignupController {
 			user.setBirthday(sdf.parse(req.getParameter("birthday")));
 			user.setRole(false);
 			
-			userSv.EditProfile(user);
+			userSv.saveUser(user);
 		} catch (Exception e) {
 			System.out.println(e);
 		}

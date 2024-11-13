@@ -55,7 +55,7 @@ public class ProfileController {
 		us1.setUserId(Integer.parseInt(req.getParameter("id")));
 		us1.setPassword(user1.getPassword());
 		us1.setRole(user1.getRole());
-		userService.EditProfile(us1);
+		userService.saveUser(us1);
 		model.addAttribute("user",user);
 		return "redirect:/profile";
 	}

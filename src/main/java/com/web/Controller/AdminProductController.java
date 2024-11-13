@@ -16,46 +16,15 @@ import com.web.Entity.Products;
 import com.web.Service.ProductService;
 
 @Controller
-@RequestMapping("/manager/product")
-public class AdminProductController {
-
-	@Autowired
-	private ProductService productService;
-
-	@GetMapping()
-	public List<Products> selectAllProduct() {
-		return productService.findAll();
+public class AdminProductController 
+{
+	
+	@GetMapping("/manager_product")
+	public String index() 
+	{
+		System.out.println(1);
+		return "productAdmin";
 	}
 
-	@GetMapping("/{id}")
-	public Products getProductByID(@PathVariable int id) {
-
-		Products products = productService.findById(id);
-
-		return products;
-	}
-
-	@PutMapping()
-	public Products updateProduct(@RequestBody Products product) {
-
-		Products updateProduct = productService.updateProduct(product);
-
-		return updateProduct;
-	}
-
-	@PostMapping()
-	public Products createProduct(@RequestBody Products product) {
-
-		Products createProduct = productService.create(product);
-		return createProduct;
-	}
-
-	@DeleteMapping("/{id}")
-	public String deleteProductByID(@PathVariable int id) {
-
-		productService.deleteProduct(id);
-
-		return "Delete is successfully ! ";
-	}
 
 }

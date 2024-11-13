@@ -17,7 +17,7 @@
 <link rel="icon" href="image/logo/Shiko_logo_bg.png">
 </head>
 
-<body>
+<body class="bg-light">
 	<c:import url="header.jsp"></c:import>
 
 	<div class="container">

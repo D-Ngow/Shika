@@ -5,9 +5,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
-public class OTPResult {
-	private Boolean success;
-    private String message;
+@NoArgsConstructor
+public class OTP {
+	String otp;
+	Long expiryTime;
 }

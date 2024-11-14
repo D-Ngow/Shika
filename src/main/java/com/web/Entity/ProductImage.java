@@ -27,5 +27,6 @@ public class ProductImage {
     @JsonIgnore
     @JsonManagedReference(value = "product-images")
      Products product;
+    
      String imageUrl;
 }

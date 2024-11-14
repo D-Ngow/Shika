@@ -27,8 +27,10 @@ public class SecurityConfig {
         filter.csrf(csrf -> csrf.disable())
               .cors(withDefaults())
               .authorizeHttpRequests(req -> {
+
                   req.requestMatchers("/manager/**").hasAuthority("admin")
                      .requestMatchers("/profile", "/cart", "/addToCart/**", "/order", "/order/**", "/manager", "/manager/**").authenticated()
+
                      .anyRequest().permitAll();
               })
               .formLogin(req -> {

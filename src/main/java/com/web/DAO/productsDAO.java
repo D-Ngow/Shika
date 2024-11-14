@@ -30,5 +30,6 @@ public interface productsDAO extends JpaRepository<Products, Integer> {
             "JOIN CategoryDetails cd ON p.productId = cd.product.productId " +
             "JOIN Categories c ON cd.category.categorieId = c.categorieId " +
             "WHERE c.categorieId = :categorieId")
-     List<Products> findProductsByCategoryId(@Param("categorieId") String categorieId);
+    List<Products> findProductsByCategoryId(@Param("categorieId") String categorieId);
+    Products findById(int id);
 }

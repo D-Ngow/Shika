@@ -1,11 +1,7 @@
 package com.web.Controller;
 
 import java.text.SimpleDateFormat;
-import java.util.Date;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,10 +10,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-
 import com.web.Entity.Users;
 import com.web.Service.UserService;
-
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 
@@ -62,7 +56,7 @@ public class SignupController {
 	            user.setBirthday( us.getBirthday());
 	            user.setRole(false);
 	            System.out.println("user: " + user);
-	            userSv.EditProfile(user);
+	            userSv.saveUser(user);
 	            return "redirect:/signin";
 	            
 	        } catch (Exception e) {
@@ -70,6 +64,7 @@ public class SignupController {
 	            return "signup";
 	        }
 	    }
+	}
 // =======
 
 // 	@PostMapping("/submit")
@@ -94,6 +89,5 @@ public class SignupController {
 // >>>>>>> main
 // 	}
 
-	
 
 }

@@ -29,26 +29,26 @@
 					<hr>
 				</div>
 				<div class="form-floating mb-3">
-					<form:input path="name" type="text" class="form-control"
-						name="name"  id="floatingName" placeholder="name@example.com" />
+					<form:input path="name"  type="text" class="form-control"
+						name="name"  id="floatingName" placeholder="name@example.com" required="true" />
 					<label for="floatingName">Họ và tên</label>
 					<form:errors path="name" cssClass="text-danger" />
 				</div>
 				<div class="form-floating mb-3">
 					<form:input path="email" type="email" class="form-control"
-						name="email" id="floatingEmail" placeholder="Password" />
+						name="email" id="floatingEmail" placeholder="Password" required="true"/>
 					<label for="floatingEmail">Email</label>
 					<form:errors path="email" cssClass="text-danger" />
 				</div>
 				<div class="form-floating mb-3">
 					<form:input path="phoneNumber" type="text" class="form-control"
-						name="phone" id="floatingPhone" placeholder="Password" />
+						name="phone" id="floatingPhone" placeholder="Password" required="true"/>
 					<label for="floatingPhone">Số điện thoại</label>
 					<form:errors path="phoneNumber" cssClass="text-danger" />
 				</div>
 				<div class="form-floating mb-3">
 					<form:input path="birthday" type="date" class="form-control"
-						name="birthday" id="floatingBirthday" placeholder="Password"/>
+						name="birthday" id="floatingBirthday" placeholder="Password" required="true"/>
 					<label for="floatingBirthday">Ngày sinh</label>
 					<form:errors path="birthday" cssClass="text-danger" />
 				</div>
@@ -63,7 +63,7 @@
 				</div>
 				<div class="form-floating mb-4">
 					<form:input path="password" type="password" class="form-control"
-						name="password" id="floatingPassword" placeholder="Password" />
+						name="password" id="floatingPassword" placeholder="Password" required="true"/>
 					<label for="floatingPassword">Password</label>
 					<form:errors path="password" cssClass="text-danger" />
 				</div>

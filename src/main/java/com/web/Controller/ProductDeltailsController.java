@@ -54,7 +54,7 @@ public class ProductDeltailsController {
 	@GetMapping("/details")
 	public String getMethodName(Model model) {
 		String id = req.getParameter("id");
-		Products product = ProcDAO.findById(Integer.parseInt(id)).get();
+		Products product = ProcDAO.findById(Integer.parseInt(id));
 		model.addAttribute("product",product);
 		List<Details> listDetails = detailsDAO.findByProductId(Integer.parseInt(id));
 		model.addAttribute("detail",listDetails);

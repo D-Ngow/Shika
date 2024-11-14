@@ -21,11 +21,11 @@ public class ProductService {
 	}
 
 	public Products findById(int id) {
-		Optional<Products> product = proDao.findById(id);
-		if(product.isEmpty()) {
+		Products product = proDao.findById(id);
+		if(product==null) {
 			return null;
 		}
-		return product.get();
+		return product;
 	}
 
 	public List<Products> findAll(){

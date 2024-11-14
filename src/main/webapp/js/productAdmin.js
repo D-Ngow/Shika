@@ -3,7 +3,7 @@ const app = angular.module("myApp", []);
 
 app.controller("productAdminCtrl", function($scope, $http) {
  	$scope.loadData = function(){
-         $http.get("/manager/product/findAll")
+         $http.get("/manager/product/findall")
          .then(function(response){
 			 console.log("ee: " +response);
              $scope.products = response.data;

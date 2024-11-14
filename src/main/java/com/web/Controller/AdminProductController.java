@@ -7,11 +7,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 
 @Controller
-@RequestMapping("/manager")
+@RequestMapping("/managerProduct")
 public class AdminProductController 
 {
 	
-	@GetMapping("/product")
+	@GetMapping("")
 	public String index() 
 	{
 		System.out.println(1);

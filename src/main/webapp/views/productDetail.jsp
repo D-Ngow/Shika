@@ -42,23 +42,22 @@
             <div class="col-md-12 col-lg-12 col-xl-3 col-xxl-4 px-0">
                 <h1 class="product-title">${product.productName}</h1>
                 <p class="price"><fmt:formatNumber type="number" value="${product.price}" /> ₫</p>
-                <p class="description">
-                    ${product.describe}
-                </p>
+                <p class="description">${product.describe}</p>
 
-                <div class="d-flex mb-3 align-items-center">
-                    <select class="select-size" id="sizeSelect">
-                        <option value="" disabled selected>Select Size</option>
-                        <c:forEach var="details" items="${detail}">
-                         <option value="${details.type.size}">${details.type.size}</option>
-                        </c:forEach>
-                    </select>
-                </div>
-                <div class="d-grid gap-3">
-                    <a class="btn btn-dark rounded-pill py-3 fw-bold">Add to cart</a>
-                    <a class="btn btn-dark rounded-pill py-3 fw-bold">Buy</a>
-                </div>
-            </div>
+				<form method="post">
+					<div class="d-flex mb-3 align-items-center">
+						<select class="select-size" name="sizeSelect">
+							<c:forEach var="details" items="${detail}">
+								<option value="${details.type.typeId}">${details.type.size}</option>
+							</c:forEach>
+						</select>
+					</div>
+					<div class="d-grid gap-3">
+						<button formaction="/addToCart/${product.productId}" class="btn btn-dark rounded-pill py-3 fw-bold">Add to cart</button>
+						<a class="btn btn-dark rounded-pill py-3 fw-bold">Buy</a>
+					</div>
+				</form>
+			</div>
         </div>
         <div class="carousel-container">
             <div class="row">
@@ -88,10 +87,12 @@
             <div class="carousel-track">
 				<div class="d-flex">
 					<c:forEach var="product" items="${listprd}">
-						<div class="carousel-item-product">
-							<img src="image/product/${product.image}" alt="Product 1">
-							<p class="product-name">${product.productName}</p>
-						</div>
+						<a href="/details?id=${product.productId}" class="text-black text-decoration-none">
+							<div class="carousel-item-product">
+								<img src="image/product/${product.image}" alt="Product 1">
+								<p class="product-name">${product.productName}</p>
+							</div>
+						</a>
 					</c:forEach>
 				</div>
 			</div>

@@ -17,7 +17,7 @@ public class InvoiceService {
 
 	 public List<Invoices> findByUser(Users user) {
 
-		 List<Invoices> invoices = invoiceDao.findByUser(user);
+		 List<Invoices> invoices = invoiceDao.findByuserid(1);
 		 return invoices;
 	 }
 }

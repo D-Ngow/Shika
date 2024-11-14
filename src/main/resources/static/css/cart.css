@@ -12,8 +12,12 @@
 }
 
 .quantity {
-	max-width: 20px;
+	max-width: 35px;
 	border: none;
 	text-align: center;
 	text-decoration: underline;
+}
+
+.bag {
+	min-height: 371.5px;
 }

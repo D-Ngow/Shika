@@ -1,5 +1,13 @@
 package com.web.Entity;
 
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+// import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
+
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -16,10 +24,9 @@ public class ProductImage {
 
     @ManyToOne
     @JoinColumn(name = "productId")
+    @JsonIgnore
+    @JsonManagedReference(value = "product-images")
      Products product;
     
      String imageUrl;
-
-
 }
-

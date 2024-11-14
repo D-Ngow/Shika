@@ -25,8 +25,12 @@ public class UserService {
 		return user.get();
 	}
 
-	public void EditProfile(Users user) {
-		userDao.save(user);
+	public void saveUser(Users user) {
+		try {
+			userDao.save(user);
+		} catch (Exception e) {
+			e.getStackTrace();
+		}
 	}
 
 	public Users findByEmail(String email) {

@@ -46,7 +46,7 @@ CREATE TABLE users (
     email NVARCHAR(255) NOT NULL UNIQUE,
     phoneNumber NVARCHAR(15),
     password NVARCHAR(255) NOT NULL,
-    birthday DATETIME,
+    birthday DATETIME2,
     gender BIT,
     role BIT
 );
@@ -55,7 +55,10 @@ CREATE TABLE users (
 CREATE TABLE shippingAddress (
     addressId INT IDENTITY(1,1) PRIMARY KEY,
     userId INT,
-    address NVARCHAR(MAX),
+    city NVARCHAR(50),
+    district NVARCHAR(50),
+    ward NVARCHAR(50),
+    road NVARCHAR(50),
     FOREIGN KEY (userId) REFERENCES users(userId)
 );
 
@@ -63,7 +66,7 @@ CREATE TABLE shippingAddress (
 CREATE TABLE invoices (
     invoiceId INT IDENTITY(1,1) PRIMARY KEY,
     userId INT NOT NULL,
-    create_date DATETIME DEFAULT GETDATE(),
+    createDate DATETIME DEFAULT GETDATE(),
     total DECIMAL(18, 2) NOT NULL,
     status BIT,
     FOREIGN KEY (userId) REFERENCES users(userId)
@@ -110,7 +113,7 @@ CREATE TABLE categorydetails (
 CREATE TABLE payment (
     paymentId INT IDENTITY(1,1) PRIMARY KEY,
     invoiceId INT,
-    payment_type NVARCHAR(50) NOT NULL,
+    paymentType NVARCHAR(50) NOT NULL,
     FOREIGN KEY (invoiceId) REFERENCES invoices(invoiceId)
 );
 
@@ -155,13 +158,13 @@ VALUES
 ('Charlie Green', 'charlie.green@example.com', '777888999', 'charliepass', '2000-12-30', 1, 1);
 
 -- Insert vào bảng shippingAddress
-INSERT INTO shippingAddress (userId, address)
+INSERT INTO shippingAddress (userId, city, district, ward, road)
 VALUES 
-(1, '123 Elm St, City A, Country A'),
-(2, '456 Maple St, City B, Country B'),
-(3, '789 Oak St, City C, Country C'),
-(4, '101 Pine St, City D, Country D'),
-(5, '202 Cedar St, City E, Country E');
+(1, 'City A','Distric B','Ward C','123 XYZ St'),
+(2, 'City D','Distric E','Ward F','456 XYZ St'),
+(3, 'City G','Distric H','Ward I','789 XYZ St'),
+(4, 'City J','Distric K','Ward L','012 XYZ St'),
+(5, 'City M','Distric N','Ward O','901 XYZ St');
 
 -- Insert vào bảng invoices
 INSERT INTO invoices (userId, total, status)
@@ -209,7 +212,7 @@ VALUES
 (5, 5);
 
 -- Insert vào bảng payment
-INSERT INTO payment (invoiceId, payment_type)
+INSERT INTO payment (invoiceId, paymentType)
 VALUES 
 (1, 'Credit Card'),
 (2, 'PayPal'),

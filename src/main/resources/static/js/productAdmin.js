@@ -34,7 +34,7 @@ app.controller("productAdminCtrl", function($scope, $http) {
          });
      }
      
- 	$scope.editProduct = function(product){
+ 	$scope.editProduct = function(){
 		 console.log("update: " +$scope.pro)
          $http.put("/manager/product", $scope.pro)
          .then(function(response){

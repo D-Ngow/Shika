@@ -28,6 +28,7 @@ public class SecurityConfig {
               .cors(withDefaults())
               .authorizeHttpRequests(req -> {
                   req
+                  .requestMatchers("/css/**","/js/**","/image/**").permitAll()
                   .requestMatchers("/manager/**").hasAuthority("Admin")
                      .requestMatchers("/profile", "/cart", "/addToCart/**", "/order", "/order/**", "/manager", "/manager/**").authenticated()
                      .anyRequest().permitAll();

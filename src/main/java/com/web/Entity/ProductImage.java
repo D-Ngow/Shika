@@ -1,6 +1,8 @@
 package com.web.Entity;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 // import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
@@ -22,8 +24,9 @@ public class ProductImage {
 
     @ManyToOne
     @JoinColumn(name = "productId")
-//     @JsonIgnore
+    @JsonIgnore
     @JsonManagedReference(value = "product-images")
      Products product;
+    
      String imageUrl;
 }

@@ -14,6 +14,9 @@ import lombok.NoArgsConstructor;
 import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -38,8 +41,14 @@ public class Users {
 
 	 @NotEmpty(message = "{NotEmpty.us.password}")
      String password;
+// <<<<<<< Dao
 
-	 LocalDate birthday;
+// 	 LocalDate birthday;
+// =======
+     
+     @DateTimeFormat(pattern = "yyyy-MM-dd")
+     Date birthday;
+
     
      @NotNull(message = "{NotNull.us.gender}")
      Boolean gender;
@@ -47,6 +56,7 @@ public class Users {
      Boolean role;
 
     @OneToMany(mappedBy = "user")
+    @JsonManagedReference(value = "user-shippingAddress")
      List<ShippingAddress> shippingAddresses;
 
 }

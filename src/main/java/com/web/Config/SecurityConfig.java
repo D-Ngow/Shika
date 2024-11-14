@@ -27,13 +27,19 @@ public class SecurityConfig {
         filter.csrf(csrf -> csrf.disable())
               .cors(withDefaults())
               .authorizeHttpRequests(req -> {
-                  req.requestMatchers("/manager/**").hasAuthority("Admin")
-                     .requestMatchers("/profile", "/cart", "/addToCart", "/order", "/order/**", "/manager", "/manager/**").authenticated()
+
+                  req.requestMatchers("/manager/**").hasAuthority("admin")
+                     .requestMatchers("/profile", "/cart", "/addToCart/**", "/order", "/order/**", "/manager", "/manager/**").authenticated()
+
                      .anyRequest().permitAll();
               })
               .formLogin(req -> {
                   req.loginProcessingUrl("/j_spring_security_check")
-                     .loginPage("/signin").defaultSuccessUrl("/home").permitAll().failureUrl("/signin?success=fail");
+                     .loginPage("/signin").defaultSuccessUrl("/home").permitAll()
+                     .failureHandler((request, response, exception) -> { 
+                         request.getSession().setAttribute("errorMessage", "Tên đăng nhập hoặc mật khẩu không đúng!");
+                         response.sendRedirect("/signin?error=true");
+                     });
               })
               .logout(req -> {
                   req.logoutUrl("/logout").permitAll()

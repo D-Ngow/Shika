@@ -39,6 +39,7 @@ public class SignupController {
 		return "signup";
 
 	}
+
 	
 	@PostMapping()
 	public String signupSubmit(Model model, @Valid @ModelAttribute("us") Users us, BindingResult result) {
@@ -69,7 +70,29 @@ public class SignupController {
 	            return "signup";
 	        }
 	    }
-	}
+// =======
+
+// 	@PostMapping("/submit")
+// 	public String signupSubmit() {
+// 		try {
+// 			Users user = new Users();
+// 			user.setEmail(req.getParameter("email"));
+// 			user.setName(req.getParameter("name"));
+// 			user.setPhoneNumber(req.getParameter("phone"));
+// 			user.setPassword(passwordEncoder.encode(req.getParameter("password")));
+// 			user.setGender(Boolean.parseBoolean(req.getParameter("gender")));
+// 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+// 			user.setBirthday(sdf.parse(req.getParameter("birthday")));
+// 			user.setRole(false);
+			
+// 			userSv.saveUser(user);
+// 		} catch (Exception e) {
+// 			System.out.println(e);
+// 		}
+		
+// 		return "redirect:/signin";
+// >>>>>>> main
+// 	}
 
 	
 

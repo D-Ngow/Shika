@@ -17,10 +17,10 @@
 <link rel="icon" href="image/logo/Shiko_logo_bg.png">
 </head>
 
-<body ng-controller="cartCtrl">
+<body>
 	<c:import url="header.jsp"></c:import>
 
-	<div class="container bag">
+	<div ng-controller="cartCtrl" class="container bag">
 		<div class="row">
 			<div class="col-md-8">
 				<h3 class="mb-4">Bag</h3>

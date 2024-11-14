@@ -17,7 +17,7 @@
 <link rel="icon" href="image/logo/Shiko_logo_bg.png">
 </head>
 
-<body>
+<body class="bg-light">
 	<c:import url="header.jsp"></c:import>
 
 	<div class="container">
@@ -64,7 +64,7 @@
                                     </svg> Buy History
 							</a></li>
 							<li class="nav-item flex-fill rounded-3 mb-2"><a
-								class="nav-link text-black d-flex align-items-center" href="#">
+								class="nav-link text-black d-flex align-items-center" href="/changePass">
 									<svg xmlns="http://www.w3.org/2000/svg" class="me-2"
 										height="14" width="12.25" viewBox="0 0 448 512">
 										<!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->

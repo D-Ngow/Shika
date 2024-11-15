@@ -3,12 +3,13 @@ package com.web.RestController;
 import java.io.File;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -22,8 +23,7 @@ import org.springframework.web.multipart.MultipartFile;
 @RestController
 @CrossOrigin("*")
 @RequestMapping("/manager/product")
-public class AdminProductRestController 
-{
+public class AdminProductRestController {
 	
 	@Autowired
 	private ProductService productService;
@@ -36,63 +36,43 @@ public class AdminProductRestController
 		return products;
 	}
 
-	@GetMapping("/{id}")
-	public Products getProductByID(@PathVariable int id) {
+	@PostMapping(value="/update/{id}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+	public void updateProduct(@ModelAttribute Products pro, @PathVariable int id, @RequestParam("imgFile") MultipartFile imgFile) {
+	    pro.setProductId(id); // Đặt ID của sản phẩm
 
-		Products products = productService.findById(id);
+	    try {
+	        // Kiểm tra nếu có tệp hình ảnh mới
+	        if (!imgFile.isEmpty()) {
+	            // Lưu hình ảnh mới và lấy tên của tệp
+	            File imagePath = uploadService.save(imgFile, "/image/product/");
+	            pro.setImage(imagePath.getName()); // Cập nhật hình ảnh cho sản phẩm
+	        } else {
+	            // Nếu không có hình ảnh mới, giữ nguyên hình ảnh cũ
+	            Products existingProduct = productService.findById(pro.getProductId());
+	            pro.setImage(existingProduct.getImage());
+	        }
+	    } catch (Exception e) {
+	        e.printStackTrace(); // In ra lỗi nếu có
+	    }
 
-		return products;
+	    // Lưu thông tin sản phẩm cập nhật vào cơ sở dữ liệu
+	    productService.saveProduct(pro);
 	}
 
-	@PutMapping()
-	public Products updateProduct(@RequestBody Products product,@RequestParam("productimage")MultipartFile productimage) {
-
-		Products updateProduct = product;
-		try {
-            if (!productimage.isEmpty()) {
-                File imagePath = uploadService.save(productimage, "/image/product/");
-                updateProduct.setImage(imagePath.getName());
-            }
-            else {
-            	Products pd = productService.findById(updateProduct.getProductId());
-            	updateProduct.setImage(pd.getImage());
-            }
-//            if (!largeImageFile.isEmpty()) {
-//                File largeImagePath = uploadService.save(largeImageFile, "/image/Product/");
-//                prd.setLargeImageUrl("/image/Product/"+largeImagePath.getName());
-//            }
-//            else {
-//            	Product pd = proDAO.findByProductId(Integer.parseInt(req.getParameter("id")));
-//            	prd.setLargeImageUrl(pd.getLargeImageUrl());
-//            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-		productService.updateProduct(product);
-		return updateProduct;
-	}
 
 	@PostMapping()
-	public Products createProduct(@RequestBody Products product,@RequestParam("productimage")MultipartFile productimage) 
+	public Products createProduct(@PathVariable Products pro,@RequestParam("productimage")MultipartFile imgCreate) 
 	{
-		Products createProduct = productService.create(product);
+		Products createProduct = productService.create(pro);
 		 try {
-	            if (!productimage.isEmpty()) {
-	                File imagePath = uploadService.save(productimage, "/image/product/");
+	            if (!imgCreate.isEmpty()) {
+	                File imagePath = uploadService.save(imgCreate, "/image/product/");
 	                createProduct.setImage(imagePath.getName());
 	            }
 	            else {
 	            	Products pd = productService.findById(createProduct.getProductId());
 	            	createProduct.setImage(pd.getImage());
 	            }
-//	            if (!largeImageFile.isEmpty()) {
-//	                File largeImagePath = uploadService.save(largeImageFile, "/image/Product/");
-//	                prd.setLargeImageUrl("/image/Product/"+largeImagePath.getName());
-//	            }
-//	            else {
-//	            	Product pd = proDAO.findByProductId(Integer.parseInt(req.getParameter("id")));
-//	            	prd.setLargeImageUrl(pd.getLargeImageUrl());
-//	            }
 	        } catch (Exception e) {
 	            e.printStackTrace();
 	        }

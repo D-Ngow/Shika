@@ -14,7 +14,6 @@ public class AdminProductController
 	@GetMapping("")
 	public String index() 
 	{
-		System.out.println(1);
 		return "productAdmin";
 	}
 

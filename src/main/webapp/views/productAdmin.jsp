@@ -86,8 +86,7 @@
 								<button type="button" class="btn-close" data-bs-dismiss="modal"
 									aria-label="Close"></button>
 							</div>
-							<form method="post"
-							 >
+							<form method="post">
 								<div class="modal-body">
 									<div class="row g-5">
 										<div class="col-5">
@@ -97,12 +96,11 @@
 														Image</label> <img src="/image/product/{{pro.image}}"
 														class="card-img-top" alt="..." />
 													<div class="mb-2">
-														<input ng-model="check_image" class="form-control"
+														<input ng-model="productimage" class="form-control"
 															type="file" id="formFile" name="check_image">
 														<input ng-model="pro.productId" class="form-control"
 															type="text" id="formFile" name="productId" hidden>
 													</div>
-
 												</div>
 											</div>
 										</div>
@@ -156,7 +154,6 @@
 									<button type="button" class="btn btn-secondary"
 										data-bs-dismiss="modal"  ng-click="closeProduct()">Close</button>
 
-									<!-- Show Save button if pro is empty, Update and Delete if pro is not empty -->
 									<button type="button" class="btn btn-primary"
 										ng-if="!pro.productId" data-bs-dismiss="modal" ng-click="addProduct()">Save</button>
 									<button type="button" class="btn btn-warning"

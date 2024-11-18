@@ -1,4 +1,36 @@
 // const app = angular.module("myApp", ["ngRoute"]);
+const checkForm = function(id){
+	document.getElementById(id).addEventListener('submit', function(event) {
+    // Lấy tất cả các input trong form
+    const inputs = document.querySelectorAll('#productForm input');
+    let formValid = true;
+
+    // Kiểm tra từng input
+    inputs.forEach(function(input) {
+        // Kiểm tra trường 'input file'
+        if (input.type === 'file') {
+            if (input.files.length === 0) {  // Nếu không có tệp được chọn
+                formValid = false;  // Đánh dấu form không hợp lệ
+            }
+        } else if (input.type === 'radio') {
+            // Kiểm tra các trường radio button
+            const radioGroup = document.getElementsByName(input.name);
+            const isRadioChecked = Array.from(radioGroup).some(radio => radio.checked);
+            if (!isRadioChecked) {  // Nếu không có radio nào được chọn
+                formValid = false;
+            }
+        } else {
+            // Kiểm tra các trường input khác (text, number, etc.)
+            if (input.value.trim() === '') {
+                formValid = false;  // Nếu có trường nào trống, đánh dấu form không hợp lệ
+            }
+        }
+    });
+
+    // Nếu form không hợp lệ, ngừng hành động submit
+    return formValid;
+});
+}
 const app = angular.module("myApp", []);
 
 app.controller("productAdminCtrl", function($scope, $http) {
@@ -10,55 +42,103 @@ app.controller("productAdminCtrl", function($scope, $http) {
 	}
 
 	$scope.addProduct = function(pro) {
-		$http.post("/manager/product/" + pro)
-			.then(function(response) {
-				$scope.loadData();
-			})
+		// Tạo đối tượng FormData để gửi dữ liệu
+	    var formData = new FormData();
+	
+	    // Thêm các trường dữ liệu vào FormData
+		formData.append('productName', pro.productName);
+		formData.append('color', pro.color);
+		formData.append('quantity', pro.quantity);
+		formData.append('price', pro.price);
+		formData.append('discountPrice', pro.discountPrice);
+		formData.append('status', pro.status);
+		formData.append('brand', pro.brand);
+		formData.append('describe', pro.describe);
+		var fileInput = document.getElementById("imgPro");
+		formData.append('imgFile', fileInput.files[0]);
+	
+	    // Gửi yêu cầu POST với FormData
+	    $http.post("/manager/product/add", formData, {
+	        transformRequest: angular.identity,
+			headers: {'Content-Type': undefined}
+	    })
+	    .then(function(response) {
+	        // Tải lại dữ liệu sau khi cập nhật thành công
+	        swal("Thêm thành công", {
+                buttons: false,
+                timer: 3000,
+                icon: "success",
+            });
+	        $scope.loadData();
+	    })
+	    .catch(function(error) {
+			swal("Thêm thất bại", {
+                buttons: false,
+                timer: 3000,
+                icon: "error",
+            });
+	        console.error('Error:', error);
+	    });
 	}
 
-	$scope.onFileChange = function(event) {
-	    var file = event.target.files[0]; // Lấy tệp đã chọn
-	    $scope.product.image = file;  // Lưu trữ tệp ảnh vào product.image
-	};
-
-	$scope.editProduct = function(product, id) {
-    // Tạo đối tượng FormData để gửi dữ liệu
-    var formData = new FormData();
-
-    // Thêm các trường dữ liệu vào FormData
-    formData.append("productId", product.productId);
-    formData.append("productName", product.productName);
-    formData.append("color", product.color);
-    formData.append("quantity", product.quantity);
-    formData.append("price", product.price);
-    formData.append("discountPrice", product.discountPrice);
-    formData.append("status", product.status);
-    formData.append("brand", product.brand);
-    formData.append("describe", product.describe);
-
-    // Nếu có file hình ảnh, thêm vào FormData
-    if (product.image) {
-        formData.append("imgFile", document.getElementById("formFile").files[0]);
-    }
-
-    // Gửi yêu cầu POST với FormData
-    $http.post("/manager/product/update/" + id, formData, {
-        headers: { 
-            'Content-Type': undefined // Để cho FormData tự động thiết lập Content-Type
-        }
-    })
-    .then(function(response) {
-        // Tải lại dữ liệu sau khi cập nhật thành công
-        $scope.loadData();
-    })
-    .catch(function(error) {
-        console.error('Error:', error);
-    });
-}
+	$scope.editProduct = function(product) {
+		if (!checkForm("proForm")) {
+			swal("Vui lòng điền đầy đủ các trường!", {
+                buttons: false,
+                timer: 2000,
+                icon: "warning",
+            });
+	        return; // Dừng lại nếu form không hợp lệ
+	    }
+	    // Tạo đối tượng FormData để gửi dữ liệu
+	    var formData = new FormData();
+	
+	    // Thêm các trường dữ liệu vào FormData
+	    formData.append('productId', product.productId);
+		formData.append('productName', product.productName);
+		formData.append('color', product.color);
+		formData.append('quantity', product.quantity);
+		formData.append('price', product.price);
+		formData.append('discountPrice', product.discountPrice);
+		formData.append('status', product.status);
+		formData.append('brand', product.brand);
+		formData.append('describe', product.describe);
+		
+		var fileInput = document.getElementById("imgFile");
+	    if (fileInput.files.length > 0) {
+	        formData.append('imgFile', fileInput.files[0]); // Nếu có file thì thêm vào FormData
+	    }
+	    else{
+			formData.append('imgFile', null);
+		}
+	
+	    // Gửi yêu cầu POST với FormData
+	    $http.post("/manager/product/update", formData, {
+	        transformRequest: angular.identity,
+			headers: {'Content-Type': undefined}
+	    })
+	    .then(function(response) {
+	        // Tải lại dữ liệu sau khi cập nhật thành công
+	        swal("Update thành công", {
+                buttons: false,
+                timer: 3000,
+                icon: "success",
+            });
+	        $scope.loadData();
+	    })
+	    .catch(function(error) {
+			swal("Update thất bại", {
+                buttons: false,
+                timer: 3000,
+                icon: "error",
+            });
+	        console.error('Error:', error);
+	    });
+	}
 
 
 	$scope.deleteProduct = function(id) {
-		$http.delete("/manager/product/" + id)
+		$http.delete("/manager/product/delete/" + id)
 			.then(function(response) {
 				$scope.loadData();
 			})

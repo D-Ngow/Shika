@@ -59,16 +59,15 @@
 								<button type="button" class="btn-close" data-bs-dismiss="modal"
 									aria-label="Close"></button>
 							</div>
-							<form method="post">
+							<form ng-submit="addProduct(pro)" class="needs-validation" novalidate id="productForm" method="post" enctype="multipart/form-data">
 								<div class="modal-body">
 									<div class="row g-5">
 										<div class="col-5">
 											<div class="row">
 												<div class="col-12">
 													<label for="formFile" class="form-label">Product Image</label>
-													<img ng-src="/image/product/{{importImg}}" class="card-img-top" alt="..." name="imgCreate"/>
 													<div class="mb-2">
-														<input ng-model="pro.image" class="form-control"type="file" id="formFile">
+														<input ng-model="pro.image" class="form-control"type="file" id="imgPro" required>
 													</div>
 												</div>
 											</div>
@@ -76,40 +75,62 @@
 										<div class="col-7">
 											<div class="mb-2">
 												<label for="name" class="form-label">Name</label>
-												<input type="text" class="form-control" id="productName" ng-model="pro.productName" name="productName">
+												<input type="text" class="form-control" id="productName" ng-model="pro.productName" name="productName" required>
 											</div>
 											<div class="mb-2">
 												<label for="name" class="form-label">Color</label>
-												<input type="text" class="form-control" id="color" ng-model="pro.color" name="color">
+												<input type="text" class="form-control" id="color" ng-model="pro.color" name="color" required>
 											</div>
 											<div class="mb-2">
 												<label for="name" class="form-label">Quantity</label>
-												<input type="text" class="form-control" id="quantity" ng-model="pro.quantity" name="quantity">
+												<input type="number" min="1" class="form-control" id="quantity" ng-model="pro.quantity" name="quantity" required>
 											</div>
 											<div class="mb-2">
 												<label for="price" class="form-label">Price</label>
 												<div class="input-group">
-													<input type="number" class="form-control" id="price" name="price" ng-model="pro.price">
+													<input type="number" min="0" class="form-control" id="price" name="price" ng-model="pro.price" required>
 													<span class="input-group-text">VNĐ</span>
 												</div>
 											</div>
 											<div class="mb-2">
 												<label for="buyCount" class="form-label">Discount</label>
-												<input type="number" class="form-control" id="buyCount" name="buyCount" ng-model="pro.discountPrice">
+												<div class="input-group">
+													<input type="number" min="0" class="form-control" id="buyCount" name="buyCount" ng-model="pro.discountPrice" required>
+													<span class="input-group-text">VNĐ</span>
+												</div>
+											</div>
+											<div class="mb-2">
+												<label for="buyCount" class="form-label">Status:</label>
+											    <div class="d-flex">
+											    	<div class="form-check me-5">
+												        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" ng-value="true"
+												            ng-model="pro.status" required>
+												        <label class="form-check-label" for="flexRadioDefault1">
+												            Active
+												        </label>
+												    </div>
+												    <div class="form-check">
+												        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" ng-value="false"
+												            ng-model="pro.status" required>
+												        <label class="form-check-label" for="flexRadioDefault2">
+												            Inactive
+												        </label>
+												    </div>
+											    </div>
 											</div>
 											<div class="mb-2">
 												<label for="developer" class="form-label">Brand</label>
-												<input type="text" class="form-control" id="developer" name="developer" ng-model="pro.brand">
+												<input type="text" class="form-control" id="developer" name="developer" ng-model="pro.brand" required>
 											</div>
 											<div class="mb-2">
 												<label for="publisher" class="form-label">Describe</label>
-												<input type="text" class="form-control" id="publisher" name="publisher" ng-model="pro.describe">
+												<input type="text" class="form-control" id="publisher" name="publisher" ng-model="pro.describe" required>
 											</div>
 										</div>
 									</div>
 								</div>
 								<div class="modal-footer">
-									<button type="button" class="btn btn-primary" data-bs-dismiss="modal" ng-click="addProduct()">Save</button>
+									<button type="submit" class="btn btn-primary">Save</button>
 								</div>
 							</form>
 						</div>
@@ -175,7 +196,7 @@
 								<button type="button" class="btn-close" data-bs-dismiss="modal"
 									aria-label="Close"></button>
 							</div>
-							<form method="post" ng-submit="editProduct(product, product.productId)" enctype="multipart/form-data">
+							<form method="post" ng-submit="editProduct(product)" id="proForm" enctype="multipart/form-data">
 								<div class="modal-body">
 									<div class="row g-5">
 										<div class="col-5">
@@ -183,7 +204,7 @@
 												<div class="col-12">
 													<label for="formFile" class="form-label">Product Image</label>
 													<img src="/image/product/{{product.image}}" class="card-img-top">
-													<div class="mb-2">
+													<div class="mt-2">
 														<input type="file" ng-model="product.image" class="form-control" name="imgFile" id="imgFile">
 													</div>
 												</div>
@@ -192,40 +213,63 @@
 										<div class="col-7">
 											<div class="mb-2">
 												<label for="name" class="form-label">Name</label>
-												<input type="text" class="form-control" id="productName" ng-model="product.productName" name="productName">
+												<input type="text" class="form-control" id="productName" ng-model="product.productName" name="productName" required>
 											</div>
 											<div class="mb-2">
 												<label for="name" class="form-label">Color</label>
-												<input type="text" class="form-control" id="color" ng-model="product.color" name="color">
+												<input type="text" class="form-control" id="color" ng-model="product.color" name="color" required>
 											</div>
 											<div class="mb-2">
 												<label for="name" class="form-label">Quantity</label>
-												<input type="text" class="form-control" id="quantity" ng-model="product.quantity" name="quantity">
+												<input type="number" min="1" class="form-control" id="quantity" ng-model="product.quantity" name="quantity" required>
 											</div>
 											<div class="mb-2">
 												<label for="price" class="form-label">Price</label>
 												<div class="input-group">
-													<input type="number" class="form-control" id="price" name="price" ng-model="product.price">
+													<input type="number" min="0" class="form-control" id="price" name="price" ng-model="product.price" required>
 													<span class="input-group-text">VNĐ</span>
 												</div>
 											</div>
 											<div class="mb-2">
 												<label for="buyCount" class="form-label">Discount</label>
-												<input type="number" class="form-control" id="buyCount" name="buyCount" ng-model="product.discountPrice">
+												<div class="input-group">
+													<input type="number" min="0" class="form-control" id="buyCount" name="buyCount" ng-model="product.discountPrice" required>
+													<span class="input-group-text">VNĐ</span>
+												</div>
+											</div>
+											<div class="mb-2">
+												<label for="buyCount" class="form-label">Status:</label>
+											    <div class="d-flex">
+											    	<div class="form-check me-5">
+												        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" ng-value="true"
+												            ng-model="product.status">
+												        <label class="form-check-label" for="flexRadioDefault1">
+												            Active
+												        </label>
+												    </div>
+												    <div class="form-check">
+												        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" ng-value="false"
+												            ng-model="product.status">
+												        <label class="form-check-label" for="flexRadioDefault2">
+												            Inactive
+												        </label>
+												    </div>
+											    </div>
 											</div>
 											<div class="mb-2">
 												<label for="developer" class="form-label">Brand</label>
-												<input type="text" class="form-control" id="developer" name="developer" ng-model="product.brand">
+												<input type="text" class="form-control" id="developer" name="developer" ng-model="product.brand" required>
 											</div>
 											<div class="mb-2">
 												<label for="publisher" class="form-label">Describe</label>
-												<textarea class="form-control" id="describe" name="describe" rows="3" ng-model="product.describe"></textarea>
+												<textarea class="form-control" id="describe" name="describe" rows="3" ng-model="product.describe" required></textarea>
 											</div>
 										</div>
 									</div>
 								</div>
 								<div class="modal-footer">
-									<button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Save</button>
+									<button type="submit" class="btn btn-primary">Save</button>
+									<button type="button" class="btn btn-danger" ng-click="deleteProduct(product.productId)" data-bs-dismiss="modal">Delete</button>
 								</div>
 							</form>
 						</div>
@@ -238,9 +282,10 @@
 
 	<!-- Footer -->
 	<c:import url="footer.jsp"></c:import>
-
+	
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 	<script src="js/home.js"></script>
 	<script src="js/productAdmin.js"></script>
 </body>

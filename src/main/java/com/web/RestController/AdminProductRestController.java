@@ -36,56 +36,82 @@ public class AdminProductRestController {
 		return products;
 	}
 
-	@PostMapping(value="/update/{id}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-	public void updateProduct(@ModelAttribute Products pro, @PathVariable int id, @RequestParam("imgFile") MultipartFile imgFile) {
-	    pro.setProductId(id); // Đặt ID của sản phẩm
-
+	@PostMapping(value = "/update", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+	public void updateProduct(@RequestParam("productId") int productId,
+				            @RequestParam("productName") String productName,
+				            @RequestParam("color") String color,
+				            @RequestParam("quantity") int quantity,
+				            @RequestParam("price") double price,
+				            @RequestParam("discountPrice") float discountPrice,
+				            @RequestParam("status") boolean status,
+				            @RequestParam("brand") String brand,
+				            @RequestParam("describe") String describe,
+				            @RequestParam(value = "imgFile", required = false) MultipartFile imgFile) {
 	    try {
+	    	Products product = productService.findById(productId);
+	        product.setProductName(productName);
+	        product.setColor(color);
+	        product.setQuantity(quantity);
+	        product.setPrice(price);
+	        product.setDiscountPrice(discountPrice);
+	        product.setStatus(status);
+	        product.setBrand(brand);
+	        product.setDescribe(describe);
 	        // Kiểm tra nếu có tệp hình ảnh mới
-	        if (!imgFile.isEmpty()) {
+	        if (imgFile != null && !imgFile.isEmpty()) {
 	            // Lưu hình ảnh mới và lấy tên của tệp
 	            File imagePath = uploadService.save(imgFile, "/image/product/");
-	            pro.setImage(imagePath.getName()); // Cập nhật hình ảnh cho sản phẩm
-	        } else {
-	            // Nếu không có hình ảnh mới, giữ nguyên hình ảnh cũ
-	            Products existingProduct = productService.findById(pro.getProductId());
-	            pro.setImage(existingProduct.getImage());
+	            product.setImage(imagePath.getName()); // Cập nhật hình ảnh cho sản phẩm
 	        }
+	        else {
+	        	Products pro = productService.findById(product.getProductId());
+	        	pro.setImage(pro.getImage());
+	        }
+	     // Lưu thông tin sản phẩm cập nhật vào cơ sở dữ liệu
+		    productService.saveProduct(product);
 	    } catch (Exception e) {
 	        e.printStackTrace(); // In ra lỗi nếu có
 	    }
-
-	    // Lưu thông tin sản phẩm cập nhật vào cơ sở dữ liệu
-	    productService.saveProduct(pro);
 	}
 
 
-	@PostMapping()
-	public Products createProduct(@PathVariable Products pro,@RequestParam("productimage")MultipartFile imgCreate) 
-	{
-		Products createProduct = productService.create(pro);
-		 try {
-	            if (!imgCreate.isEmpty()) {
-	                File imagePath = uploadService.save(imgCreate, "/image/product/");
-	                createProduct.setImage(imagePath.getName());
-	            }
-	            else {
-	            	Products pd = productService.findById(createProduct.getProductId());
-	            	createProduct.setImage(pd.getImage());
-	            }
-	        } catch (Exception e) {
-	            e.printStackTrace();
-	        }
-		
-		return createProduct;
+	@PostMapping(value = "/add", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+	public void addProduct(@RequestParam("productName") String productName,
+				            @RequestParam("color") String color,
+				            @RequestParam("quantity") int quantity,
+				            @RequestParam("price") double price,
+				            @RequestParam("discountPrice") float discountPrice,
+				            @RequestParam("status") boolean status,
+				            @RequestParam("brand") String brand,
+				            @RequestParam("describe") String describe,
+				            @RequestParam(value = "imgFile", required = false) MultipartFile imgFile) {
+	    try {
+	    	Products product = new Products();
+	        product.setProductName(productName);
+	        product.setColor(color);
+	        product.setQuantity(quantity);
+	        product.setPrice(price);
+	        product.setDiscountPrice(discountPrice);
+	        product.setStatus(status);
+	        product.setBrand(brand);
+	        product.setDescribe(describe);
+
+	        File imagePath = uploadService.save(imgFile, "/image/product/");
+            product.setImage(imagePath.getName());
+            
+		    productService.saveProduct(product);
+	    } catch (Exception e) {
+	        e.printStackTrace(); // In ra lỗi nếu có
+	    }
 	}
 
-	@DeleteMapping("/{id}")
-	public String deleteProductByID(@PathVariable int id) {
-
-		productService.deleteProduct(id);
-
-		return "Delete is successfully ! ";
+	@DeleteMapping("/delete/{id}")
+	public void deleteProductByID(@PathVariable int id) {
+		try {
+			productService.deleteProduct(id);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
 }

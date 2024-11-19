@@ -10,8 +10,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/managerProduct")
 public class AdminProductController {
 	
-	@GetMapping()
-	public String index() {
+	@GetMapping("")
+	public String index() 
+	{
 		return "productAdmin";
 	}
 

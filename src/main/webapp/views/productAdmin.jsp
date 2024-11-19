@@ -59,7 +59,9 @@
 								<button type="button" class="btn-close" data-bs-dismiss="modal"
 									aria-label="Close"></button>
 							</div>
+
 							<form ng-submit="addProduct(pro)" class="needs-validation" novalidate id="productForm" method="post" enctype="multipart/form-data">
+
 								<div class="modal-body">
 									<div class="row g-5">
 										<div class="col-5">

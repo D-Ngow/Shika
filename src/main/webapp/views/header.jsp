@@ -48,6 +48,18 @@
 						class="text-dark nav-link">CONTACT</a></li>
 					<li class="nav-item"><a href="#footer"
 						class="text-dark nav-link">ABOUT US</a></li>
+					<c:if test="${userrole == 'Admin'}">
+						<li class="nav-item dropdown"><a
+						class="nav-link dropdown-toggle text-dark" href="#" role="button"
+						data-bs-toggle="dropdown" data-bs-target="#cateMenu1"
+						aria-expanded="false"> CRUD </a>
+						<ul class="dropdown-menu border border-0 rounded-0 bg-light"
+							id="cateMenu1">
+								<li><a class="dropdown-item" href="/managerProduct">Product</a></li>
+								<li><a class="dropdown-item" href="/managerCategory">Categories</a></li>
+								<li><a class="dropdown-item" href="#">Invoice</a></li>
+						</ul></li>
+					</c:if>
 				</ul>
 				<div class="d-flex align-items-center gap-5">
 					<form action="/search" class="search-box" role="search"

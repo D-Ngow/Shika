@@ -19,6 +19,10 @@ public class ProductService {
 		Products savedProduct = proDao.save(product);
 		return savedProduct;
 	}
+	
+	public void saveProduct(Products product) {
+		proDao.save(product);
+	}
 
 	public Products findById(int id) {
 		Products product = proDao.findById(id);

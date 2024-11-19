@@ -3,12 +3,13 @@ package com.web.RestController;
 import java.io.File;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -22,8 +23,7 @@ import org.springframework.web.multipart.MultipartFile;
 @RestController
 @CrossOrigin("*")
 @RequestMapping("/manager/product")
-public class AdminProductRestController 
-{
+public class AdminProductRestController {
 	
 	@Autowired
 	private ProductService productService;
@@ -36,76 +36,82 @@ public class AdminProductRestController
 		return products;
 	}
 
-	@GetMapping("/{id}")
-	public Products getProductByID(@PathVariable int id) {
-
-		Products products = productService.findById(id);
-
-		return products;
-	}
-
-	@PutMapping()
-	public Products updateProduct(@RequestBody Products product,@RequestParam("productimage")MultipartFile productimage) {
-
-		Products updateProduct = product;
-		try {
-            if (!productimage.isEmpty()) {
-                File imagePath = uploadService.save(productimage, "/image/product/");
-                updateProduct.setImage(imagePath.getName());
-            }
-            else {
-            	Products pd = productService.findById(updateProduct.getProductId());
-            	updateProduct.setImage(pd.getImage());
-            }
-//            if (!largeImageFile.isEmpty()) {
-//                File largeImagePath = uploadService.save(largeImageFile, "/image/Product/");
-//                prd.setLargeImageUrl("/image/Product/"+largeImagePath.getName());
-//            }
-//            else {
-//            	Product pd = proDAO.findByProductId(Integer.parseInt(req.getParameter("id")));
-//            	prd.setLargeImageUrl(pd.getLargeImageUrl());
-//            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-		productService.updateProduct(product);
-		return updateProduct;
-	}
-
-	@PostMapping()
-	public Products createProduct(@RequestBody Products product,@RequestParam("productimage")MultipartFile productimage) 
-	{
-		Products createProduct = productService.create(product);
-		 try {
-	            if (!productimage.isEmpty()) {
-	                File imagePath = uploadService.save(productimage, "/image/product/");
-	                createProduct.setImage(imagePath.getName());
-	            }
-	            else {
-	            	Products pd = productService.findById(createProduct.getProductId());
-	            	createProduct.setImage(pd.getImage());
-	            }
-//	            if (!largeImageFile.isEmpty()) {
-//	                File largeImagePath = uploadService.save(largeImageFile, "/image/Product/");
-//	                prd.setLargeImageUrl("/image/Product/"+largeImagePath.getName());
-//	            }
-//	            else {
-//	            	Product pd = proDAO.findByProductId(Integer.parseInt(req.getParameter("id")));
-//	            	prd.setLargeImageUrl(pd.getLargeImageUrl());
-//	            }
-	        } catch (Exception e) {
-	            e.printStackTrace();
+	@PostMapping(value = "/update", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+	public void updateProduct(@RequestParam("productId") int productId,
+				            @RequestParam("productName") String productName,
+				            @RequestParam("color") String color,
+				            @RequestParam("quantity") int quantity,
+				            @RequestParam("price") double price,
+				            @RequestParam("discountPrice") float discountPrice,
+				            @RequestParam("status") boolean status,
+				            @RequestParam("brand") String brand,
+				            @RequestParam("describe") String describe,
+				            @RequestParam(value = "imgFile", required = false) MultipartFile imgFile) {
+	    try {
+	    	Products product = productService.findById(productId);
+	        product.setProductName(productName);
+	        product.setColor(color);
+	        product.setQuantity(quantity);
+	        product.setPrice(price);
+	        product.setDiscountPrice(discountPrice);
+	        product.setStatus(status);
+	        product.setBrand(brand);
+	        product.setDescribe(describe);
+	        // Kiểm tra nếu có tệp hình ảnh mới
+	        if (imgFile != null && !imgFile.isEmpty()) {
+	            // Lưu hình ảnh mới và lấy tên của tệp
+	            File imagePath = uploadService.save(imgFile, "/image/product/");
+	            product.setImage(imagePath.getName()); // Cập nhật hình ảnh cho sản phẩm
 	        }
-		
-		return createProduct;
+	        else {
+	        	Products pro = productService.findById(product.getProductId());
+	        	pro.setImage(pro.getImage());
+	        }
+	     // Lưu thông tin sản phẩm cập nhật vào cơ sở dữ liệu
+		    productService.saveProduct(product);
+	    } catch (Exception e) {
+	        e.printStackTrace(); // In ra lỗi nếu có
+	    }
 	}
 
-	@DeleteMapping("/{id}")
-	public String deleteProductByID(@PathVariable int id) {
 
-		productService.deleteProduct(id);
+	@PostMapping(value = "/add", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+	public void addProduct(@RequestParam("productName") String productName,
+				            @RequestParam("color") String color,
+				            @RequestParam("quantity") int quantity,
+				            @RequestParam("price") double price,
+				            @RequestParam("discountPrice") float discountPrice,
+				            @RequestParam("status") boolean status,
+				            @RequestParam("brand") String brand,
+				            @RequestParam("describe") String describe,
+				            @RequestParam(value = "imgFile", required = false) MultipartFile imgFile) {
+	    try {
+	    	Products product = new Products();
+	        product.setProductName(productName);
+	        product.setColor(color);
+	        product.setQuantity(quantity);
+	        product.setPrice(price);
+	        product.setDiscountPrice(discountPrice);
+	        product.setStatus(status);
+	        product.setBrand(brand);
+	        product.setDescribe(describe);
 
-		return "Delete is successfully ! ";
+	        File imagePath = uploadService.save(imgFile, "/image/product/");
+            product.setImage(imagePath.getName());
+            
+		    productService.saveProduct(product);
+	    } catch (Exception e) {
+	        e.printStackTrace(); // In ra lỗi nếu có
+	    }
+	}
+
+	@DeleteMapping("/delete/{id}")
+	public void deleteProductByID(@PathVariable int id) {
+		try {
+			productService.deleteProduct(id);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
 }

@@ -19,7 +19,6 @@
 
 <body>
 	<c:import url="header.jsp"></c:import>
-
 	<div ng-controller="cartCtrl" class="container bag">
 		<div class="row">
 			<div class="col-md-8">

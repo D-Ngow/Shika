@@ -74,7 +74,6 @@ public class CartController {
 		return "redirect:/buyhistory";
 	}
 		
-	
 //	@GetMapping("/changeQuantity")
 //	public String changeQuantity() {
 //		String method = req.getParameter("method");

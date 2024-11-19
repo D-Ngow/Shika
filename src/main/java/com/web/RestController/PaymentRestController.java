@@ -33,12 +33,7 @@ import jakarta.servlet.http.HttpServletResponse;
 @Controller
 public class PaymentRestController {
 	
-//	@GetMapping("")
-//	public String getMethodName(@RequestParam(value = "vnp_ResponseCode") String status
-//			,@RequestParam(value = "vnp_Amount")String amount) {
-//		String show = status + amount;
-//		return show;
-//	}
+
 	@Autowired
 	usersDAO userDAO;
 	@Autowired

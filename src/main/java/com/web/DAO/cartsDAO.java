@@ -13,4 +13,5 @@ public interface cartsDAO extends JpaRepository<Cart,Integer>{
 	Cart findByCartId(int cartId);
 	@Query("SELECT c FROM Cart c WHERE c.user.userId = :userId AND c.detail.detailId = :detailId")
 	Cart findInCart(@Param("userId") int userId, @Param("detailId") int detailId);
+//    List<Cart> findAllById(List<Integer> cartIds);
 }

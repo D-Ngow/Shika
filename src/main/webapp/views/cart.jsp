@@ -80,7 +80,7 @@
 							<span>Total</span> <span ng-model="total">{{total |
 								currency:'₫'}}</span>
 						</p>
-						<button class="btn btn-dark w-100 rounded-pill checkout">Checkout</button>
+						<a href="/payment" class="btn btn-dark w-100 rounded-pill checkout">Checkout</a>
 					</div>
 				</div>
 			</div>

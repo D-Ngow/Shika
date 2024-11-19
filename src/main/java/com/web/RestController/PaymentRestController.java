@@ -12,37 +12,51 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.TimeZone;
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
-
 import com.web.Config.PaymentConfig;
+import com.web.DAO.cartsDAO;
+import com.web.DAO.usersDAO;
 import com.web.DTO.PaymentRestDTO;
-
-
+import com.web.Entity.Cart;
+import com.web.Entity.Users;
+import com.web.Service.OderService;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-@RestController
+@Controller
 public class PaymentRestController {
 	
-	@GetMapping("")
-	public String getMethodName(@RequestParam(value = "vnp_ResponseCode") String status
-			,@RequestParam(value = "vnp_Amount")String amount) {
-		String show = status + amount;
-		return show;
-	}
+//	@GetMapping("")
+//	public String getMethodName(@RequestParam(value = "vnp_ResponseCode") String status
+//			,@RequestParam(value = "vnp_Amount")String amount) {
+//		String show = status + amount;
+//		return show;
+//	}
+	@Autowired
+	usersDAO userDAO;
+	@Autowired
+	OderService oderservice;
+	@Autowired
+	cartsDAO cartDAO;
 	
 	@GetMapping("/payment")
-	protected ResponseEntity<?>	 doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        
-//        String vnp_OrderInfo = req.getParameter("vnp_OrderInfo");
-		String vnp_OrderInfo = "Pay for oder 157005";
+	protected String doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		Users user = userDAO.findByEmail(auth.getName());
+		List<Cart> listcart = cartDAO.findByEmail(user.getEmail());
+		double total = 0;
+		for (Cart cart : listcart) {
+			total+= cart.getDetail().getProduct().getPrice() * cart.getQuantity() - cart.getDetail().getProduct().getDiscountPrice() * cart.getQuantity() ;
+			}
+		
+		String vnp_OrderInfo = "Pay for"+user.getName();
 //        String orderType = req.getParameter("ordertype");
         String orderType = "100000";
         String vnp_TxnRef = PaymentConfig.getRandomNumber(8);
@@ -50,7 +64,7 @@ public class PaymentRestController {
         String vnp_TmnCode = PaymentConfig.vnp_TmnCode;
 
 //        int amount = Integer.parseInt(req.getParameter("amount")) * 100;
-        int amount = 1000000;
+        int amount = (int) (total*100);
         Map vnp_Params = new HashMap<>();
         vnp_Params.put("vnp_Version", PaymentConfig.vnp_Version);
         vnp_Params.put("vnp_Command", PaymentConfig.vnp_Command);
@@ -118,6 +132,6 @@ public class PaymentRestController {
         prDRO.setMessage("congra");
         prDRO.setStatus("succ");
         prDRO.setURL(paymentUrl);
-		return ResponseEntity.status(HttpStatus.OK).body(prDRO);
+		return "redirect:"+prDRO.getURL();
     }    
 }

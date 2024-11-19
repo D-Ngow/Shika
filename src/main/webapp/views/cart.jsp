@@ -19,7 +19,6 @@
 
 <body>
 	<c:import url="header.jsp"></c:import>
-
 	<div ng-controller="cartCtrl" class="container bag">
 		<div class="row">
 			<div class="col-md-8">
@@ -80,7 +79,7 @@
 							<span>Total</span> <span ng-model="total">{{total |
 								currency:'₫'}}</span>
 						</p>
-						<button class="btn btn-dark w-100 rounded-pill checkout">Checkout</button>
+						<a href="/payment" class="btn btn-dark w-100 rounded-pill checkout">Checkout</a>
 					</div>
 				</div>
 			</div>

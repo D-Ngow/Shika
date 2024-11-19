@@ -204,10 +204,14 @@
 										<div class="col-5">
 											<div class="row">
 												<div class="col-12">
-													<label for="formFile" class="form-label">Product Image</label>
 													<img src="/image/product/{{product.image}}" class="card-img-top">
-													<div class="mt-2">
-														<input type="file" ng-model="product.image" class="form-control" name="imgFile" id="imgFile">
+													<div class="row">
+														<div class="col-4 px-0 mt-2 ps-1" ng-repeat="image in product.images">
+			                                                <div class="card border rounded-4 uploadContainer" style="cursor: pointer;" ng-click="triggerFileInput('subFile')">
+			                                                    <img class="rounded-4" src="/image/subImage/{{image.imageUrl}}" alt="Sub Image" id="previewImg">
+			                                                    <input type="file" class="form-control" name="subFile" id="subFile" ng-model="product.images" multiple style="display: none;">
+			                                                </div>
+			                                            </div>
 													</div>
 												</div>
 											</div>
@@ -216,6 +220,10 @@
 											<div class="mb-2">
 												<label for="name" class="form-label">Name</label>
 												<input type="text" class="form-control" id="productName" ng-model="product.productName" name="productName" required>
+											</div>
+											<div class="mt-2">
+												<label for="formFile" class="form-label">Product Image</label>
+												<input type="file" ng-model="product.image" class="form-control" name="imgFile" id="imgFile">
 											</div>
 											<div class="mb-2">
 												<label for="name" class="form-label">Color</label>
@@ -270,7 +278,7 @@
 									</div>
 								</div>
 								<div class="modal-footer">
-									<button type="submit" class="btn btn-primary">Save</button>
+									<button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Save</button>
 									<button type="button" class="btn btn-danger" ng-click="deleteProduct(product.productId)" data-bs-dismiss="modal">Delete</button>
 								</div>
 							</form>

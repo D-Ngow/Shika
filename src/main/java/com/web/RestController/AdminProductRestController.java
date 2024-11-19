@@ -46,7 +46,8 @@ public class AdminProductRestController {
 				            @RequestParam("status") boolean status,
 				            @RequestParam("brand") String brand,
 				            @RequestParam("describe") String describe,
-				            @RequestParam(value = "imgFile", required = false) MultipartFile imgFile) {
+				            @RequestParam(value = "imgFile", required = false) MultipartFile imgFile,
+				            @RequestParam(value = "subImg", required = false) List<MultipartFile> subImg) {
 	    try {
 	    	Products product = productService.findById(productId);
 	        product.setProductName(productName);
@@ -67,6 +68,16 @@ public class AdminProductRestController {
 	        	Products pro = productService.findById(product.getProductId());
 	        	pro.setImage(pro.getImage());
 	        }
+	        if (subImg != null && !subImg.isEmpty()) {
+                // Lưu tất cả các ảnh phụ
+                for (MultipartFile file : subImg) {
+                    if (!file.isEmpty()) {
+                        File subImagePath = uploadService.save(file, "/image/subImage/");
+                        productService.saveSubImage(product, subImagePath.getName());
+                    }
+                }
+            }
+
 	     // Lưu thông tin sản phẩm cập nhật vào cơ sở dữ liệu
 		    productService.saveProduct(product);
 	    } catch (Exception e) {

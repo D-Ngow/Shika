@@ -6,7 +6,9 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.web.DAO.productImageDAO;
 import com.web.DAO.productsDAO;
+import com.web.Entity.ProductImage;
 import com.web.Entity.Products;
 
 @Service
@@ -14,6 +16,8 @@ public class ProductService {
 
 	@Autowired
 	private productsDAO proDao;
+	@Autowired
+	productImageDAO imgDAO;
 
 	public Products create(Products product) {
 		Products savedProduct = proDao.save(product);
@@ -23,7 +27,14 @@ public class ProductService {
 	public void saveProduct(Products product) {
 		proDao.save(product);
 	}
-
+	
+	public void saveSubImage (Products pro, String name) {
+		ProductImage proImg = new ProductImage();
+		proImg.setImageUrl(name);
+		proImg.setProduct(pro);
+		imgDAO.save(proImg);
+	}
+	
 	public Products findById(int id) {
 		Products product = proDao.findById(id);
 		if(product==null) {

@@ -26,7 +26,7 @@ public class OderService {
 	invoicesDAO ivDAO;
 	@Autowired
 	invoiceDetailsDAO ivdtDAO;
-	public void checkout(String email,boolean checkout) {
+	public void checkout(String email, boolean checkout, String shipAddress, int paymentId) {
 		if(!checkout) {
 			throw new IllegalStateException("Payment Fail Try Again");
 		}
@@ -43,6 +43,8 @@ public class OderService {
 		invoice.setCreateDate(new Date());
 		invoice.setStatus(false);
 		invoice.setTotal(total);
+		invoice.setShipAddress(shipAddress);
+		invoice.setPaymentId(paymentId);
 		ivDAO.save(invoice);
 		
 		for (Cart cart : listcart) {

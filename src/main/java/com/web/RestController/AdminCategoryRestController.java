@@ -14,6 +14,7 @@ import com.web.Entity.Products;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -37,10 +38,9 @@ public class AdminCategoryRestController {
 		return cateList;
 	}
 	
-	@GetMapping("/findAllCateDetail")
-	public List<CategoryDetails> findAllCateDetail() {
-		List<CategoryDetails> cateList = cdDAO.findAll();
-		return cateList;
+	@DeleteMapping("/deletePro/{cateId}/{proId}")
+	public void deletePro(@PathVariable int cateId, @PathVariable int proId) {
+		cdDAO.deleteProductByCategoryIdAndProductId(cateId, proId);
 	}
 	
 	@GetMapping("/findPro/{id}")

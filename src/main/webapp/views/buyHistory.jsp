@@ -56,7 +56,7 @@
 									Profile
 							</a></li>
 							<li class="nav-item flex-fill bg-light rounded-3 mb-2"><a
-								class="nav-link text-black d-flex align-items-center" href="#">
+								class="nav-link text-black d-flex align-items-center" href="/buyhistory">
 									<svg xmlns="http://www.w3.org/2000/svg" class="me-2"
 										height="14" width="10.5" viewBox="0 0 384 512">
 										<!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
@@ -65,7 +65,7 @@
 									Buy History
 							</a></li>
 							<li class="nav-item flex-fill rounded-3 mb-2"><a
-								class="nav-link text-black d-flex align-items-center" href="#">
+								class="nav-link text-black d-flex align-items-center" href="/changePass">
 									<svg xmlns="http://www.w3.org/2000/svg" class="me-2"
 										height="14" width="12.25" viewBox="0 0 448 512">
 										<!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
@@ -92,7 +92,7 @@
 											<div class="card-body">
 												<div class="d-flex justify-content-between">
 													<h5 class="card-title">${prddt.detail.product.productName}</h5>
-													<p class="card-text fw-bold">${prddt.detail.product.price}₫</p>
+													<p class="card-text fw-bold"><fmt:formatNumber type="number" value="${prddt.detail.product.price}" />₫</p>
 												</div>
 												<p class="card-text text-muted mb-1">Men's Shoes</p>
 												<p class="card-text text-mute mb-1">White/Black</p>
@@ -106,17 +106,15 @@
 								</div>
 							</div>
 						</div>
-						<div class="card-footer bg-light border-0 rounded-0">
+						<div class="card-footer bg-light border-0 rounded-0 mt-1 mb-4">
 							<div class="row px-3">
 								<div class="col-7">
 									<p class="fw-bold mb-1 mt-3">Shipping Address:</p>
-									<p>15 ABC, Đường XYZ, Phường 1, Quận 1, Thành phố Hồ Chí
-										Minh, Việt Nam</p>
+									<p>${listinvoices.shipAddress}</p>
 								</div>
 								<div class="col-5">
 									<div class="d-flex justify-content-end">
-										<h4 class="fw-bold mt-3">Total
-											Price:${listinvoices.total}</h4>
+										<h4 class="fw-bold mt-3">Total Price: <fmt:formatNumber type="number" value="${listinvoices.total}" />₫</h4>
 									</div>
 									<div class="d-flex justify-content-end">
 										<div class="fw-bold me-2">Pay Date:</div>
@@ -125,11 +123,11 @@
 								</div>
 							</div>
 						</div>
+						<hr>
+					</c:forEach>
 				</div>
-				</c:forEach>
 			</div>
 		</div>
-	</div>
 	</div>
 
 	<c:import url="footer.jsp"></c:import>

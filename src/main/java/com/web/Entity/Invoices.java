@@ -24,6 +24,10 @@ public class Invoices {
      Date createDate = new Date();
 
      double total;
+     
+     String shipAddress;
+     
+     int paymentId;
     
      Boolean status;
 

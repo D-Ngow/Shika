@@ -14,10 +14,6 @@ public class Payment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
      int paymentId;
 
-    @ManyToOne
-    @JoinColumn(name = "invoiceId", nullable = false)
-     Invoices invoice;
-
      String paymentType;
 
 }

@@ -17,7 +17,7 @@
 <link rel="icon" href="image/logo/Shiko_logo_bg.png">
 </head>
 
-<body>
+<body onload="alertMess()">
 	<c:import url="header.jsp"></c:import>
 	<div ng-controller="cartCtrl" class="container bag">
 		<div class="row">
@@ -79,7 +79,7 @@
 							<span>Total</span> <span ng-model="total">{{total |
 								currency:'₫'}}</span>
 						</p>
-						<a href="/payment" class="btn btn-dark w-100 rounded-pill checkout">Checkout</a>
+						<a href="/checkout" class="btn btn-dark w-100 rounded-pill checkout">Checkout</a>
 					</div>
 				</div>
 			</div>
@@ -94,6 +94,7 @@
 		src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.min.js"></script>
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 	<script src="js/home.js"></script>
 	<script src="js/cart.js"></script>
 </body>

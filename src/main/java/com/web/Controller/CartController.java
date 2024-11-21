@@ -1,22 +1,14 @@
 package com.web.Controller;
 
-import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import com.web.DAO.cartsDAO;
 import com.web.DAO.detailsDAO;
 import com.web.DAO.usersDAO;
-import com.web.Entity.Cart;
-import com.web.Entity.Details;
-import com.web.Entity.Users;
-import com.web.Service.OderService;
 
 import jakarta.servlet.http.HttpServletRequest;
-import org.springframework.web.bind.annotation.RequestParam;
 
 
 
@@ -30,8 +22,7 @@ public class CartController {
 	HttpServletRequest req;
 	@Autowired
 	usersDAO userDAO;
-	@Autowired
-	OderService oderservice;
+	
 	@GetMapping("/cart")
 	public String cart(Model model) {
 //		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -56,22 +47,6 @@ public class CartController {
 //		model.addAttribute("discount", discount);
 //		model.addAttribute("total", total);
 		return "cart";
-	}
-	@GetMapping("/checkout")
-	public String getMethodName(@RequestParam(value = "vnp_ResponseCode") String status) {
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		Users user = userDAO.findByEmail(auth.getName());
-		boolean stt = false;
-		if(status.equals("00")) {
-		stt = true;
- 		}
-		try {
-			oderservice.checkout(user.getEmail(),stt);
-		} catch (Exception e) {
-			System.out.println(e);
-			return "redirect:/cart";
-		}
-		return "redirect:/buyhistory";
 	}
 		
 //	@GetMapping("/changeQuantity")

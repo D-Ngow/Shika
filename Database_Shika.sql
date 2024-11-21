@@ -39,6 +39,12 @@ CREATE TABLE details (
     FOREIGN KEY (productId) REFERENCES products(productId)
 );
 
+-- Tạo bảng payment
+CREATE TABLE payment (
+    paymentId INT IDENTITY(1,1) PRIMARY KEY,
+    paymentType NVARCHAR(50) NOT NULL
+);
+
 -- Tạo bảng users
 CREATE TABLE users (
     userId INT IDENTITY(1,1) PRIMARY KEY,
@@ -68,8 +74,11 @@ CREATE TABLE invoices (
     userId INT NOT NULL,
     createDate DATETIME DEFAULT GETDATE(),
     total DECIMAL(18, 2) NOT NULL,
+	shipAddress NVARCHAR(100),
+	paymentId INT,
     status BIT,
-    FOREIGN KEY (userId) REFERENCES users(userId)
+    FOREIGN KEY (userId) REFERENCES users(userId),
+	FOREIGN KEY (paymentId) REFERENCES payment(paymentId)
 );
 
 -- Tạo bảng invoiceDetails
@@ -109,13 +118,6 @@ CREATE TABLE categorydetails (
     FOREIGN KEY (categoryId) REFERENCES categories(categorieId)
 );
 
--- Tạo bảng payment
-CREATE TABLE payment (
-    paymentId INT IDENTITY(1,1) PRIMARY KEY,
-    invoiceId INT,
-    paymentType NVARCHAR(50) NOT NULL,
-    FOREIGN KEY (invoiceId) REFERENCES invoices(invoiceId)
-);
 
 -- Insert vào bảng products
 INSERT INTO products (productName, color, quantity, price, discountPrice, status, brand, image, describe)
@@ -166,24 +168,6 @@ VALUES
 (4, 'City J','Distric K','Ward L','012 XYZ St'),
 (5, 'City M','Distric N','Ward O','901 XYZ St');
 
--- Insert vào bảng invoices
-INSERT INTO invoices (userId, total, status)
-VALUES 
-(1, 1900.00, 1),
-(2, 500.00, 1),
-(3, 100.00, 1),
-(4, 300.00, 1),
-(5, 200.00, 1);
-
--- Insert vào bảng invoiceDetails
-INSERT INTO invoiceDetails (invoiceId, detailsId, quantity, price)
-VALUES 
-(1, 1, 1, 1000.00),
-(1, 2, 2, 450.00),
-(2, 2, 1, 500.00),
-(3, 3, 1, 100.00),
-(4, 4, 1, 300.00);
-
 -- Insert vào bảng carts
 INSERT INTO carts (userId, detailId, quantity)
 VALUES 
@@ -196,11 +180,12 @@ VALUES
 -- Insert vào bảng categories
 INSERT INTO categories (name, image)
 VALUES 
-('Electronics', 'electronics.jpg'),
-('Smartphones', 'smartphones.jpg'),
-('Accessories', 'accessories.jpg'),
-('Tablets', 'tablets.jpg'),
-('Wearables', 'wearables.jpg');
+('Running', 'running.jpg'),
+('Tenis', 'tenis.jpg'),
+('Skateboard', 'skateboard.jpg'),
+('Football', 'football.jpg'),
+('Trainning and gym', 'trainning_and_gym.jpg'),
+('Basketball', 'basketball.jpg');
 
 -- Insert vào bảng categorydetails
 INSERT INTO categorydetails (productId, categoryId)
@@ -212,10 +197,7 @@ VALUES
 (5, 5);
 
 -- Insert vào bảng payment
-INSERT INTO payment (invoiceId, paymentType)
+INSERT INTO payment ( paymentType)
 VALUES 
-(1, 'Credit Card'),
-(2, 'PayPal'),
-(3, 'Bank Transfer'),
-(4, 'Credit Card'),
-(5, 'Cash on Delivery');
+('VNPay'),
+('Thanh toán khi nhận hàng');

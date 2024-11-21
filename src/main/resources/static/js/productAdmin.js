@@ -116,7 +116,7 @@ app.controller("productAdminCtrl", function($scope, $http, $timeout) {
     formData.append('describe', product.describe);
 
     // Lấy file chính (imgFile)
-    var fileInput = document.getElementById("imgFile");
+    var fileInput = document.getElementById("imgFile"+product.productId);
     if (fileInput.files.length > 0) {
         formData.append('imgFile', fileInput.files[0]); // Nếu có file thì thêm vào FormData
     }

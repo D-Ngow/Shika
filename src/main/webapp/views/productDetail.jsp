@@ -30,7 +30,7 @@
                         <div class=" row side-img d-flex">
                             <c:forEach var= "image" items="${image}">
                             	<div class="col-md-12 col-4 sub-img">
-                                <img src="/image/product/${image.imageUrl}" class="img-fluid" width="180px" alt="Thumbnail 1">
+                                <img src="/image/subImage/${image.imageUrl}" class="img-fluid" width="180px" alt="Thumbnail 1">
                             </div>
                             </c:forEach>
                         </div>

@@ -223,7 +223,7 @@
 											</div>
 											<div class="mt-2">
 												<label for="formFile" class="form-label">Product Image</label>
-												<input type="file" ng-model="product.image" class="form-control" name="imgFile" id="imgFile">
+												<input type="file" ng-model="product.image" class="form-control" name="imgFile" id="imgFile{{product.productId}}">
 											</div>
 											<div class="mb-2">
 												<label for="name" class="form-label">Color</label>

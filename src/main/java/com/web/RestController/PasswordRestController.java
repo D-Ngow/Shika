@@ -64,7 +64,6 @@ public class PasswordRestController {
 		if (otpRes.getSuccess()) {
 			Users user = userService.findByEmail(email);
 			if (passwordEncoder.matches(oldPass, user.getPassword())) {
-				System.out.println("vàoooooooooooooo");
 				user.setPassword(passwordEncoder.encode(newPass));
 				userService.saveUser(user);
 			}

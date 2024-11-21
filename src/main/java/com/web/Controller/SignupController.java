@@ -16,7 +16,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 
 @Controller
-@RequestMapping("/signup")
+//@RequestMapping("/signup")
 public class SignupController {
 
 	@Autowired
@@ -28,66 +28,66 @@ public class SignupController {
 	@Autowired
 	HttpServletRequest req;
 	
-	@GetMapping
+	@GetMapping("/signup")
 	private String signup(@ModelAttribute("us") Users us) {
 		return "signup";
 
 	}
 
 	
-	@PostMapping()
-	public String signupSubmit(Model model, @Valid @ModelAttribute("us") Users us, BindingResult result) {
-    	System.out.println("0");
-    	System.out.println("err: " +result);
-    	System.out.println("bir: " +us.getBirthday());
-	    if (result.hasErrors()) {
-	        model.addAttribute("message", "Lỗi rồi kìa, vui lòng kiểm tra lại nhé!");
-	        return "signup"; 
-	    } else {
-	        try {
-	        	System.out.println("1");
-	            Users user = new Users();
-	            user.setEmail(us.getEmail());
-	            user.setName(us.getName());
-	            user.setPhoneNumber(us.getPhoneNumber());
-	            user.setPassword(passwordEncoder.encode(us.getPassword()));
-	            user.setGender(us.getGender());
-	            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-	            user.setBirthday( us.getBirthday());
-	            user.setRole(false);
-	            System.out.println("user: " + user);
-	            userSv.saveUser(user);
-	            return "redirect:/signin";
-	            
-	        } catch (Exception e) {
-	            System.out.println(e);
-	            return "signup";
-	        }
-	    }
-	}
+//	@PostMapping()
+//	public String signupSubmit(Model model, @Valid @ModelAttribute("us") Users us, BindingResult result) {
+//    	System.out.println("0");
+//    	System.out.println("err: " +result);
+//    	System.out.println("bir: " +us.getBirthday());
+//	    if (result.hasErrors()) {
+//	        model.addAttribute("message", "Lỗi rồi kìa, vui lòng kiểm tra lại nhé!");
+//	        return "signup"; 
+//	    } else {
+//	        try {
+//	        	System.out.println("1");
+//	            Users user = new Users();
+//	            user.setEmail(us.getEmail());
+//	            user.setName(us.getName());
+//	            user.setPhoneNumber(us.getPhoneNumber());
+//	            user.setPassword(passwordEncoder.encode(us.getPassword()));
+//	            user.setGender(us.getGender());
+//	            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+//	            user.setBirthday( us.getBirthday());
+//	            user.setRole(false);
+//	            System.out.println("user: " + user);
+//	            userSv.saveUser(user);
+//	            return "redirect:/signin";
+//	            
+//	        } catch (Exception e) {
+//	            System.out.println(e);
+//	            return "signup";
+//	        }
+//	    }
+//	}
 // =======
 
-// 	@PostMapping("/submit")
-// 	public String signupSubmit() {
-// 		try {
-// 			Users user = new Users();
-// 			user.setEmail(req.getParameter("email"));
-// 			user.setName(req.getParameter("name"));
-// 			user.setPhoneNumber(req.getParameter("phone"));
-// 			user.setPassword(passwordEncoder.encode(req.getParameter("password")));
-// 			user.setGender(Boolean.parseBoolean(req.getParameter("gender")));
-// 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-// 			user.setBirthday(sdf.parse(req.getParameter("birthday")));
-// 			user.setRole(false);
+ 	@PostMapping("/submit")
+ 	public String signupSubmit() {
+ 		try {
+ 			Users user = new Users();
+ 			user.setEmail(req.getParameter("email"));
+ 			user.setName(req.getParameter("name"));
+ 			System.out.println(req.getParameter("phone"));
+			user.setPhoneNumber(req.getParameter("phone"));
+			user.setPassword(passwordEncoder.encode(req.getParameter("password")));
+ 			user.setGender(Boolean.parseBoolean(req.getParameter("gender")));
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+ 			user.setBirthday(sdf.parse(req.getParameter("birthday")));
+ 			user.setRole(false);
 			
-// 			userSv.saveUser(user);
-// 		} catch (Exception e) {
-// 			System.out.println(e);
-// 		}
+ 			userSv.saveUser(user);
+ 		} catch (Exception e) {
+ 			System.out.println(e);
+ 		}
 		
-// 		return "redirect:/signin";
-// >>>>>>> main
-// 	}
+ 		return "redirect:/signin";
+ 	}
 
 
 }

@@ -38,20 +38,20 @@
                                     aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                                <form action="/crudUpdate" method="post" enctype="multipart/form-data">
+                                <form ng-submit="addCate(Catename)" method="post" enctype="multipart/form-data">
                                     <div class="row g-5">
                                         <div class="col-12">
                                             <div class="mb-2">
                                                 <label for="name" class="form-label">Name</label> <input type="text"
-                                                    class="form-control" id="name" name="name" value="${pro.name}">
+                                                    class="form-control" ng-model="Catename" name="Catename" >
                                             </div>
                                             <div class="mb-2">
                                                 <label for="formFile" class="form-label">9:16
-                                                    image</label> <input class="form-control" type="file" id="formFile"
-                                                    name="image">
+                                                    image</label> <input class="form-control" type="file" id="cateimage"
+                                                    name="Cateimage" >
                                             </div>
                                             <div class="d-flex justify-content-end">
-                                                <button formaction="/crudUpdate?id=${pro.id}" class="btn btn-primary mx-2">Save</button>
+                                                <button class="btn btn-primary mx-2">Save</button>
                                             </div>
                                         </div>
 
@@ -132,7 +132,7 @@
                             </div>
                             <div class="modal-footer">
                                 <button ng-click="loadAllPro()" class="btn btn-primary mx-2" data-bs-target="#exampleModalToggle{{cate.categorieId}}" data-bs-toggle="modal">Add</button>
-                                <button formaction="/crudDelete?id=${pro.id}" class="btn btn-danger mx-2">Delete</button>
+                                <button ng-click="deletecate(cate.categorieId)" class="btn btn-danger mx-2" data-bs-dismiss="modal">Delete</button>
                               </div>
                         </form>
                     </div>

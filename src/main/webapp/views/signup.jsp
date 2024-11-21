@@ -22,57 +22,57 @@
 
 	<div class="container">
 		<div class="d-flex justify-content-center">
-			<form:form method="post" class="w-50 px-5 my-4 mb-5" modelAttribute="us">
+			<form method="post" class="w-50 px-5 my-4 mb-5" >
 				<div class="title text-center">
 					<h1 class="fw-bold">SIGNUP</h1>
 					
 					<hr>
 				</div>
 				<div class="form-floating mb-3">
-					<form:input path="name"  type="text" class="form-control"
-						name="name"  id="floatingName" placeholder="name@example.com" required="true" />
+					<input type="text" class="form-control"
+						name="name"  id="floatingName" placeholder="name@example.com" required= />
 					<label for="floatingName">Họ và tên</label>
-					<form:errors path="name" cssClass="text-danger" />
+					
 				</div>
 				<div class="form-floating mb-3">
-					<form:input path="email" type="email" class="form-control"
-						name="email" id="floatingEmail" placeholder="Password" required="true"/>
+					<input type="email" class="form-control"
+						name="email" id="floatingEmail" placeholder="Password" required=/>
 					<label for="floatingEmail">Email</label>
-					<form:errors path="email" cssClass="text-danger" />
+					
 				</div>
 				<div class="form-floating mb-3">
-					<form:input path="phoneNumber" type="text" class="form-control"
-						name="phone" id="floatingPhone" placeholder="Password" required="true"/>
+					<input type="text" class="form-control"
+						name="phone" id="floatingPhone" placeholder="PhoneNumber" required/>
 					<label for="floatingPhone">Số điện thoại</label>
-					<form:errors path="phoneNumber" cssClass="text-danger" />
+					
 				</div>
 				<div class="form-floating mb-3">
-					<form:input path="birthday" type="date" class="form-control"
-						name="birthday" id="floatingBirthday" placeholder="Password" required="true"/>
+					<input type="date" class="form-control"
+						name="birthday" id="floatingBirthday" placeholder="Password" required/>
 					<label for="floatingBirthday">Ngày sinh</label>
-					<form:errors path="birthday" cssClass="text-danger" />
+					
 				</div>
 				<div class="form-floating mb-3">
-					<form:select path="gender" id="gender" class="form-select"
+					<select id="gender" class="form-select"
 						name="gender">
-						<option value="true">Nam<option>
+						<option value=>Nam<option>
 						<option value="false">Nữ<option>
-					</form:select>
+					</select>
 					<label for="gender">Giới tính</label>
-					<form:errors path="gender" cssClass="text-danger" />
+					
 				</div>
 				<div class="form-floating mb-4">
-					<form:input path="password" type="password" class="form-control"
-						name="password" id="floatingPassword" placeholder="Password" required="true"/>
+					<input type="password" class="form-control"
+						name="password" id="floatingPassword" placeholder="Password" required/>
 					<label for="floatingPassword">Password</label>
-					<form:errors path="password" cssClass="text-danger" />
+					
 				</div>
 				<div class="d-grid gap-2">
-					<button formaction="/signup"
+					<button formaction="/submit"
 						class="btn btn-lg btn-dark">Đăng ký</button>
 					<button class="btn btn-lg btn-outline-dark">Đăng nhập</button>
 				</div>
-			</form:form>
+			</form>
 		</div>
 	</div>
 

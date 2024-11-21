@@ -10,11 +10,9 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import com.web.Security.AccountDetail;
-
 
 @Configuration
 @EnableWebSecurity
@@ -37,16 +35,7 @@ public class SecurityConfig {
               .formLogin(req -> {
                   req.loginProcessingUrl("/j_spring_security_check")
                      .loginPage("/signin").defaultSuccessUrl("/home").permitAll()
-                     .successHandler((request, response, exception) -> { 
-                    	 String role = SecurityContextHolder.getContext()
-                                 .getAuthentication()
-                                 .getAuthorities()
-                                 .iterator()
-                                 .next()
-                                 .getAuthority();
-                         request.getSession().setAttribute("userrole",role);
-                         response.sendRedirect("/home");
-                     })
+                     .successHandler(new CustomAuthenticationSuccessHandler())
                      .failureHandler((request, response, exception) -> { 
                          request.getSession().setAttribute("errorMessage", "Tên đăng nhập hoặc mật khẩu không đúng!");
                          response.sendRedirect("/signin?error=true");

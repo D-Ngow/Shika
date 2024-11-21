@@ -12,7 +12,7 @@ import java.util.concurrent.ConcurrentHashMap;
 @Service
 public class OTPService {
     private final Map<String, OTP> otpStore = new ConcurrentHashMap<>();
-    private final int OTP_VALID_DURATION = 5 * 60 * 1000; // 5 phút (đơn vị: milliseconds)
+    private final int OTP_VALID_DURATION = 1 * 60 * 1000; // 5 phút (đơn vị: milliseconds)
 
     public String generateOTP(String email) {
         Random random = new Random();

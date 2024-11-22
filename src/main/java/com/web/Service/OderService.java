@@ -7,10 +7,12 @@ import org.springframework.stereotype.Service;
 import com.web.DAO.cartsDAO;
 import com.web.DAO.invoiceDetailsDAO;
 import com.web.DAO.invoicesDAO;
+import com.web.DAO.paymentDAO;
 import com.web.DAO.usersDAO;
 import com.web.Entity.Cart;
 import com.web.Entity.InvoiceDetails;
 import com.web.Entity.Invoices;
+import com.web.Entity.Payment;
 import com.web.Entity.Users;
 
 import jakarta.transaction.Transactional;
@@ -26,6 +28,8 @@ public class OderService {
 	invoicesDAO ivDAO;
 	@Autowired
 	invoiceDetailsDAO ivdtDAO;
+	@Autowired
+	paymentDAO pmDAO;
 	public void checkout(String email, boolean checkout, String shipAddress, int paymentId) {
 		if(!checkout) {
 			throw new IllegalStateException("Payment Fail Try Again");
@@ -41,10 +45,11 @@ public class OderService {
 		Invoices invoice = new Invoices();
 		invoice.setUser(user);
 		invoice.setCreateDate(new Date());
-		invoice.setStatus(false);
+		invoice.setStatus(0);
 		invoice.setTotal(total);
 		invoice.setShipAddress(shipAddress);
-		invoice.setPaymentId(paymentId);
+		Payment payment = pmDAO.findById(paymentId).get();
+		invoice.setPayment(payment);
 		ivDAO.save(invoice);
 		
 		for (Cart cart : listcart) {

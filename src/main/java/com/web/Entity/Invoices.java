@@ -8,6 +8,8 @@ import lombok.NoArgsConstructor;
 import java.util.Date;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "invoices")
 @Data @NoArgsConstructor @AllArgsConstructor
@@ -27,10 +29,13 @@ public class Invoices {
      
      String shipAddress;
      
-     int paymentId;
+     @ManyToOne
+     @JoinColumn(name = "paymentId", nullable = false)
+     Payment payment;
     
-     Boolean status;
+     int status;
 
     @OneToMany(mappedBy = "invoice")
+    @JsonIgnore
      List<InvoiceDetails> InvoiceDetails;
 }

@@ -76,7 +76,7 @@ CREATE TABLE invoices (
     total DECIMAL(18, 2) NOT NULL,
 	shipAddress NVARCHAR(100),
 	paymentId INT,
-    status BIT,
+    status INT,
     FOREIGN KEY (userId) REFERENCES users(userId),
 	FOREIGN KEY (paymentId) REFERENCES payment(paymentId)
 );

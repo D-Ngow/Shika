@@ -1,17 +1,3 @@
-function alertMess(){
-	const queryString = window.location.search;
-	const params = new URLSearchParams(queryString);
-	const message = params.get('message');
-	console.log("vàooooooooo")
-	if(message.length>0){
-		swal(message, {
-		  buttons: false,
-		  timer: 3000,
-		  icon: "warning",
-		});
-	}
-}
-
 const app = angular.module("myApp", ["ngRoute"]);
 app.controller("cartCtrl", function($scope, $http) {
 	

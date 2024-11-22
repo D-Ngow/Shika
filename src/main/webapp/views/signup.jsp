@@ -17,7 +17,7 @@
 <link rel="icon" href="image/logo/Shiko_logo_bg.png">
 </head>
 
-<body>
+<body onload="alertMess()">
 	<c:import url="header.jsp"></c:import>
 
 	<div class="container">
@@ -53,13 +53,11 @@
 					
 				</div>
 				<div class="form-floating mb-3">
-					<select id="gender" class="form-select"
-						name="gender">
-						<option value=>Nam<option>
-						<option value="false">Nữ<option>
+					<select id="gender" class="form-select" name="gender">
+						<option value="true">Nam</option>
+						<option value="false">Nữ</option>
 					</select>
 					<label for="gender">Giới tính</label>
-					
 				</div>
 				<div class="form-floating mb-4">
 					<input type="password" class="form-control"
@@ -79,8 +77,8 @@
 	<!-- Footer -->
 	<c:import url="footer.jsp"></c:import>
 
-	<script
-		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 	<script src="js/home.js"></script>
 </body>
 

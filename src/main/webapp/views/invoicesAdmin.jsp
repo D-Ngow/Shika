@@ -28,7 +28,7 @@
 				<option value="3" >All</option>
 				<option value="0">Not yet Confirm</option>
 				<option value="1">Confirmed</option>
-				<option value="2">Canceled</option>
+				<option value="2">Cancelled</option>
 			</select> 
 			<select class="form-select w-25 mx-2" id="fillbydate" ng-change="fill()" ng-model="date"
 				aria-label="Default select example">

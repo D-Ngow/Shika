@@ -1,17 +1,13 @@
 package com.web.RestController;
 
 import org.springframework.web.bind.annotation.RestController;
-
 import com.web.DAO.cartsDAO;
 import com.web.DTO.CartDTO;
 import com.web.Entity.Cart;
-
 import jakarta.servlet.http.HttpSession;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -21,8 +17,6 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-
-
 
 
 @RestController

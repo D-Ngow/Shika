@@ -102,7 +102,7 @@
 		<div class="container">
 			<h2 class="text-center mb-4 fw-bold">Trending Now</h2>
 			<div class="row d-flex justify-content-center">
-				<c:forEach var="cate" items="${listcate}">
+				<c:forEach var="cate" items="${listcate1}">
 					<div class="col-6 col-lg-4 col-md-6 col-sm-6 category">
 						<a href="/product?cateId=${cate.categorieId}"> <img
 							src="image/category/${cate.image}" class="img-fluid"

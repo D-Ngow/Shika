@@ -65,5 +65,7 @@ public class OderService {
 			ivdtDAO.save(ivdt);
 		}
 		cartDAO.deleteAll(listcart);
+		req.getSession().removeAttribute(user.getEmail());
+		System.out.println(req.getSession().getAttribute(user.getEmail()));
 	}
 }

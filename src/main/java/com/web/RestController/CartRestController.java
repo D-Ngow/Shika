@@ -6,6 +6,9 @@ import com.web.DAO.cartsDAO;
 import com.web.DTO.CartDTO;
 import com.web.Entity.Cart;
 
+import jakarta.servlet.http.HttpSession;
+
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -27,9 +30,31 @@ public class CartRestController {
 	
 	@Autowired
 	cartsDAO cDAO;
+	@Autowired
+    private HttpSession session;
 	
+	@PostMapping("/cart/saveSelectedProducts")
+    public void saveSelectedProducts(@RequestBody List<CartDTO> selectedProducts) {
+		List<Cart> listCheckout = new ArrayList<>();
+		for (CartDTO cDTO : selectedProducts) {
+			try {
+				Cart c = cDAO.findByCartId(cDTO.getCartId());
+				listCheckout.add(c);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        session.setAttribute(auth.getName(), listCheckout);
+    }
 	
-	@GetMapping("/rest/cart/findAll")
+	@GetMapping("/cart/getSelectedProducts")
+	public List<Cart> getSelectedProducts(HttpSession session) {
+	    Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    return (List<Cart>) session.getAttribute(auth.getName());
+	}
+	
+	@GetMapping("/cart/findAll")
 	public List<CartDTO> getDiscount() {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		List<Cart> listCart = cDAO.findByEmail(auth.getName());
@@ -49,14 +74,14 @@ public class CartRestController {
         }).collect(Collectors.toList());
 	}
 	
-	@PutMapping("rest/cart/changeQuantity/{id}/{quantity}")
+	@PutMapping("/cart/changeQuantity/{id}/{quantity}")
 	public void putMethodName(@PathVariable int id,@PathVariable int quantity) {
 		Cart cart = cDAO.findByCartId(id);
 		cart.setQuantity(quantity);
 		cDAO.save(cart);
 	}
 	
-	@DeleteMapping("/rest/cart/deleteCart/{id}")
+	@DeleteMapping("/cart/deleteCart/{id}")
 	public void postMethodName(@PathVariable int id) {
 		cDAO.deleteById(id);
 	}

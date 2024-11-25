@@ -45,7 +45,7 @@ public class PaymentRestController {
 	protected String doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		Users user = userDAO.findByEmail(auth.getName());
-		List<Cart> listcart = cartDAO.findByEmail(user.getEmail());
+		List<Cart> listcart = (List<Cart>) req.getSession().getAttribute(user.getEmail());
 		double total = 0;
 		for (Cart cart : listcart) {
 			total+= cart.getDetail().getProduct().getPrice() * cart.getQuantity() - cart.getDetail().getProduct().getDiscountPrice() * cart.getQuantity() ;

@@ -25,11 +25,14 @@
 				<h3 class="mb-4">Bag</h3>
 				<div class="card mb-3 border-0" ng-repeat="cart in carts">
 					<div class="row g-0 align-items-center">
-						<div class="col-md-3">
+						<div class="col-md-1">
+							<input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"
+                        ng-change="toggleCartSelection(cart)" ng-model="cart.selected">
+						</div>
+						<div class="col-md-2">
 							<img src="/image/product/{{cart.image}}" class="img-fluid" alt="">
 						</div>
 						<div class="col-md-9">
-
 							<div class="card-body">
 								<div class="d-flex justify-content-between">
 									<h5 class="card-title">{{cart.productName}}</h5>
@@ -42,13 +45,11 @@
 									<div class="me-3 d-flex align-items-center">Size:
 										{{cart.size}}</div>
 									<div class="d-flex align-items-center">
-										Quantity: <input type="number"
-											ng-change="changeQuantity(cart.cartId, cart.quantity)"
-											ng-model="cart.quantity" min="1" class="quantity">
+										Quantity: 
+										<input type="number" ng-change="changeQuantity(cart.cartId, cart.quantity)" ng-model="cart.quantity" min="1" max="10" class="quantity">
 									</div>
 								</div>
-								<button class="border-0 bg-white"
-									ng-click="deleteCart(cart.cartId)">
+								<button class="border-0 bg-white" ng-click="deleteCart(cart.cartId)">
 									<svg xmlns="http://www.w3.org/2000/svg" height="20"
 										width="17.5" viewBox="0 0 448 512">
 											<!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->

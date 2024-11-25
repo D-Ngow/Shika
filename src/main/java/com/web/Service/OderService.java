@@ -15,6 +15,7 @@ import com.web.Entity.Invoices;
 import com.web.Entity.Payment;
 import com.web.Entity.Users;
 
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.transaction.Transactional;
 
 @Service
@@ -30,17 +31,20 @@ public class OderService {
 	invoiceDetailsDAO ivdtDAO;
 	@Autowired
 	paymentDAO pmDAO;
+	@Autowired
+	HttpServletRequest req;
+	
 	public void checkout(String email, boolean checkout, String shipAddress, int paymentId) {
 		if(!checkout) {
 			throw new IllegalStateException("Payment Fail Try Again");
 		}
-		List<Cart> listcart = cartDAO.findByEmail(email);
+		Users user = usDAO.findByEmail(email);
+		List<Cart> listcart = (List<Cart>) req.getSession().getAttribute(user.getEmail());
 		double total = 0;
 		for (Cart cart : listcart) {
 			total+= cart.getDetail().getProduct().getPrice() * cart.getQuantity() - cart.getDetail().getProduct().getDiscountPrice() * cart.getQuantity() ;
 			}
-		//Find User
-		Users user = usDAO.findByEmail(email); 
+		
 		//New invoice
 		Invoices invoice = new Invoices();
 		invoice.setUser(user);

@@ -29,7 +29,7 @@ public class SecurityConfig {
                   req
                   .requestMatchers("/css/**","/js/**","/image/**").permitAll()
                   .requestMatchers("/manager/**").hasAuthority("Admin")
-                     .requestMatchers("/profile", "/cart", "/addToCart/**", "/order", "/order/**", "/manager", "/manager/**","/checkout" ).authenticated()
+                     .requestMatchers("/buyhistory", "/changePass", "/profile", "/cart", "/addToCart/**", "/order", "/order/**", "/manager", "/manager/**","/checkout" ).authenticated()
                      .anyRequest().permitAll();
               })
               .formLogin(req -> {

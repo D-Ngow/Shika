@@ -39,7 +39,7 @@ public class CheckoutController {
 	public String checkout(Model model) {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		Users user = userDAO.findByEmail(auth.getName());
-		List<Cart> listCart = cartDAO.findByEmail(user.getEmail());
+		List<Cart> listCart = (List<Cart>) req.getSession().getAttribute(user.getEmail());
 		List<Payment> payment = payDAO.findAll();
 		try {
 			if (listCart.isEmpty()) {
@@ -48,8 +48,22 @@ public class CheckoutController {
 		} catch (Exception e) {
 			e.printStackTrace();
 			String mess = "No product in cart!";
-			return "redirect:/cart?message="+mess;
+			return "redirect:/cart?message="+mess+"&&status=warning";
 		}
+		double subtotal =0, discount=0, total=0;
+		for (Cart c : listCart) {
+			subtotal += c.getDetail().getProduct().getPrice() * c.getQuantity();
+			if (!c.getDetail().getProduct().getDiscountPrice().equals(null)) {
+				discount += c.getDetail().getProduct().getDiscountPrice();
+			}
+			else {
+				discount += 0;
+			}
+		}
+		total = subtotal - discount;
+		model.addAttribute("subtotal", subtotal);
+		model.addAttribute("discount", discount);
+		model.addAttribute("total", total);
 		model.addAttribute("listPayment", payment);
 		model.addAttribute("listCart", listCart);
 		model.addAttribute("user", user);

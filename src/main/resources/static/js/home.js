@@ -1,3 +1,17 @@
+function alertMess(){
+	const queryString = window.location.search;
+	const params = new URLSearchParams(queryString);
+	const message = params.get('message');
+	const status = params.get('status');
+	if(message.length>0){
+		swal(message, {
+		  buttons: false,
+		  timer: 3000,
+		  icon: status,
+		});
+	}
+}
+
 document.querySelector('.search-btn').addEventListener('click', function (event) {
 	const input = this.previousElementSibling; // Truy xuất ô input
 

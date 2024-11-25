@@ -16,7 +16,6 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 
 @Controller
-//@RequestMapping("/signup")
 public class SignupController {
 
 	@Autowired
@@ -29,64 +28,42 @@ public class SignupController {
 	HttpServletRequest req;
 	
 	@GetMapping("/signup")
-	private String signup(@ModelAttribute("us") Users us) {
+	private String signup() {
 		return "signup";
 
 	}
 
-	
-//	@PostMapping()
-//	public String signupSubmit(Model model, @Valid @ModelAttribute("us") Users us, BindingResult result) {
-//    	System.out.println("0");
-//    	System.out.println("err: " +result);
-//    	System.out.println("bir: " +us.getBirthday());
-//	    if (result.hasErrors()) {
-//	        model.addAttribute("message", "Lỗi rồi kìa, vui lòng kiểm tra lại nhé!");
-//	        return "signup"; 
-//	    } else {
-//	        try {
-//	        	System.out.println("1");
-//	            Users user = new Users();
-//	            user.setEmail(us.getEmail());
-//	            user.setName(us.getName());
-//	            user.setPhoneNumber(us.getPhoneNumber());
-//	            user.setPassword(passwordEncoder.encode(us.getPassword()));
-//	            user.setGender(us.getGender());
-//	            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-//	            user.setBirthday( us.getBirthday());
-//	            user.setRole(false);
-//	            System.out.println("user: " + user);
-//	            userSv.saveUser(user);
-//	            return "redirect:/signin";
-//	            
-//	        } catch (Exception e) {
-//	            System.out.println(e);
-//	            return "signup";
-//	        }
-//	    }
-//	}
-// =======
-
  	@PostMapping("/submit")
  	public String signupSubmit() {
+ 		String mess = null;
+ 		String stat = null;
  		try {
- 			Users user = new Users();
- 			user.setEmail(req.getParameter("email"));
- 			user.setName(req.getParameter("name"));
- 			System.out.println(req.getParameter("phone"));
-			user.setPhoneNumber(req.getParameter("phone"));
-			user.setPassword(passwordEncoder.encode(req.getParameter("password")));
- 			user.setGender(Boolean.parseBoolean(req.getParameter("gender")));
-			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
- 			user.setBirthday(sdf.parse(req.getParameter("birthday")));
- 			user.setRole(false);
-			
- 			userSv.saveUser(user);
+ 			Users user = userSv.findByEmail(req.getParameter("email"));
+ 			if (user==null) {
+ 				user = new Users();
+ 				user.setEmail(req.getParameter("email"));
+ 	 			user.setName(req.getParameter("name"));
+ 				user.setPhoneNumber(req.getParameter("phone"));
+ 				user.setPassword(passwordEncoder.encode(req.getParameter("password")));
+ 	 			user.setGender(Boolean.parseBoolean(req.getParameter("gender")));
+ 				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+ 	 			user.setBirthday(sdf.parse(req.getParameter("birthday")));
+ 	 			user.setRole(false);
+ 	 			userSv.saveUser(user);
+			}else {
+				mess = "Email is already used";
+				stat= "warning";
+				return "redirect:/signup?message="+mess+"&&status="+stat;
+			}
  		} catch (Exception e) {
  			System.out.println(e);
+ 			mess = "Something wrong, please try again";
+ 			stat= "error";
+			return "redirect:/signup?message="+mess+"&&status="+stat;
  		}
-		
- 		return "redirect:/signin";
+		mess = "Sign up success";
+		stat= "success";
+ 		return "redirect:/signin?message="+mess+"&&status="+stat;
  	}
 
 

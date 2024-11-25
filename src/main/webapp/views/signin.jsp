@@ -14,7 +14,7 @@
     <link rel="icon" href="image/logo/Shiko_logo_bg.png">
 </head>
 
-<body>
+<body onload="alertMess()">
     <c:import url="header.jsp"></c:import>
 
     <div class="container">
@@ -52,6 +52,7 @@
     <c:import url="footer.jsp"></c:import>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="js/home.js"></script>
 </body>
 

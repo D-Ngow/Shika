@@ -95,7 +95,7 @@
 
 								<div class="form-floating mb-3">
 									<input type="email" class="form-control" name="email"
-										id="email" placeholder="email" value="${user.email}">
+										id="email" placeholder="email" value="${user.email}" readonly>
 									<label for="email">Email</label>
 								</div>
 

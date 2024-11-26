@@ -80,7 +80,13 @@ public class CheckoutController {
 			req.getSession().setAttribute("payment", payment);
 			return "redirect:/payment";
 		case 2:
-			oderservice.checkout(user.getEmail(),true, address, payment);
+			try {
+				oderservice.checkout(user.getEmail(),true, address, payment);
+			} catch (Exception e) {
+				System.out.println(e);
+				req.getSession().removeAttribute(user.getEmail());
+				return "redirect:/cart?message=Not enough quantity&&status=error";
+			}
 			return "redirect:/buyhistory";
 		}
 		return "redirect:/checkout";

@@ -118,6 +118,42 @@ CREATE TABLE categorydetails (
     FOREIGN KEY (categoryId) REFERENCES categories(categorieId)
 );
 
+CREATE OR ALTER TRIGGER trg_UpdateProductQuantity
+ON invoiceDetails
+AFTER INSERT
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    -- Cập nhật số lượng sản phẩm trong bảng products
+    UPDATE p
+    SET p.quantity = p.quantity - i.quantity
+    FROM products p
+    JOIN details d ON p.productId = d.productId
+    JOIN inserted i ON d.detailId = i.detailsId
+    WHERE p.quantity >= i.quantity; -- Chỉ trừ nếu số lượng đủ
+
+END;
+GO
+
+CREATE OR ALTER TRIGGER trg_UpdateProductStatus
+ON products
+AFTER UPDATE
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    -- Cập nhật status thành false nếu quantity = 0
+    UPDATE p
+    SET p.status = 0
+    FROM products p
+    JOIN inserted i ON p.productId = i.productId
+    WHERE i.quantity = 0;
+END;
+GO
+
+
+
 
 -- Insert vào bảng products
 INSERT INTO products (productName, color, quantity, price, discountPrice, status, brand, image, describe)

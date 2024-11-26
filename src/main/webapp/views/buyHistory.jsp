@@ -47,27 +47,27 @@
 					<div class="offcanvas-body">
 						<ul class="nav flex-column w-100 fw-bold">
 							<li class="nav-item flex-fill rounded-3 mb-2"><a
-								class="nav-link text-black d-flex align-items-center" href="/profile">
-									<svg xmlns="http://www.w3.org/2000/svg" class="me-2"
-										height="14" width="12.25" viewBox="0 0 448 512">
+								class="nav-link text-black d-flex align-items-center"
+								href="/profile"> <svg xmlns="http://www.w3.org/2000/svg"
+										class="me-2" height="14" width="12.25" viewBox="0 0 448 512">
 										<!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
 										<path fill="#000000"
 											d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512l388.6 0c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304l-91.4 0z" /></svg>
 									Profile
 							</a></li>
 							<li class="nav-item flex-fill bg-light rounded-3 mb-2"><a
-								class="nav-link text-black d-flex align-items-center" href="/buyhistory">
-									<svg xmlns="http://www.w3.org/2000/svg" class="me-2"
-										height="14" width="10.5" viewBox="0 0 384 512">
+								class="nav-link text-black d-flex align-items-center"
+								href="/buyhistory"> <svg xmlns="http://www.w3.org/2000/svg"
+										class="me-2" height="14" width="10.5" viewBox="0 0 384 512">
 										<!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
 										<path fill="#000000"
 											d="M14 2.2C22.5-1.7 32.5-.3 39.6 5.8L80 40.4 120.4 5.8c9-7.7 22.3-7.7 31.2 0L192 40.4 232.4 5.8c9-7.7 22.3-7.7 31.2 0L304 40.4 344.4 5.8c7.1-6.1 17.1-7.5 25.6-3.6s14 12.4 14 21.8l0 464c0 9.4-5.5 17.9-14 21.8s-18.5 2.5-25.6-3.6L304 471.6l-40.4 34.6c-9 7.7-22.3 7.7-31.2 0L192 471.6l-40.4 34.6c-9 7.7-22.3 7.7-31.2 0L80 471.6 39.6 506.2c-7.1 6.1-17.1 7.5-25.6 3.6S0 497.4 0 488L0 24C0 14.6 5.5 6.1 14 2.2zM96 144c-8.8 0-16 7.2-16 16s7.2 16 16 16l192 0c8.8 0 16-7.2 16-16s-7.2-16-16-16L96 144zM80 352c0 8.8 7.2 16 16 16l192 0c8.8 0 16-7.2 16-16s-7.2-16-16-16L96 336c-8.8 0-16 7.2-16 16zM96 240c-8.8 0-16 7.2-16 16s7.2 16 16 16l192 0c8.8 0 16-7.2 16-16s-7.2-16-16-16L96 240z" /></svg>
 									Buy History
 							</a></li>
 							<li class="nav-item flex-fill rounded-3 mb-2"><a
-								class="nav-link text-black d-flex align-items-center" href="/changePass">
-									<svg xmlns="http://www.w3.org/2000/svg" class="me-2"
-										height="14" width="12.25" viewBox="0 0 448 512">
+								class="nav-link text-black d-flex align-items-center"
+								href="/changePass"> <svg xmlns="http://www.w3.org/2000/svg"
+										class="me-2" height="14" width="12.25" viewBox="0 0 448 512">
 										<!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
 										<path fill="#000000"
 											d="M144 144l0 48 160 0 0-48c0-44.2-35.8-80-80-80s-80 35.8-80 80zM80 192l0-48C80 64.5 144.5 0 224 0s144 64.5 144 144l0 48 16 0c35.3 0 64 28.7 64 64l0 192c0 35.3-28.7 64-64 64L64 512c-35.3 0-64-28.7-64-64L0 256c0-35.3 28.7-64 64-64l16 0z" /></svg>
@@ -92,10 +92,16 @@
 											<div class="card-body">
 												<div class="d-flex justify-content-between">
 													<h5 class="card-title">${prddt.detail.product.productName}</h5>
-													<p class="card-text fw-bold"><fmt:formatNumber type="number" value="${prddt.detail.product.price}" />₫</p>
+													<p class="card-text fw-bold">
+														<fmt:formatNumber type="number"
+															value="${prddt.detail.product.price}" />
+														₫
+													</p>
 												</div>
-												<p class="card-text text-muted mb-1">Men's Shoes</p>
-												<p class="card-text text-mute mb-1">White/Black</p>
+												<p class="card-text text-muted mb-1">Brand:
+													${prddt.detail.product.brand}</p>
+												<p class="card-text text-mute mb-1">Color:
+													${prddt.detail.product.color}</p>
 												<div class="d-flex">
 													<p class="me-4">Size:${prddt.detail.type.size}</p>
 													<p>Quantity:${prddt.quantity}</p>
@@ -109,12 +115,24 @@
 						<div class="card-footer bg-light border-0 rounded-0 mt-1 mb-4">
 							<div class="row px-3">
 								<div class="col-7">
-									<p class="fw-bold mb-1 mt-3">Shipping Address:</p>
-									<p>${listinvoices.shipAddress}</p>
+									<div class="d-flex alignment-items-center mb-1 mt-3">
+										<p class="fw-bold me-2">Shipping Address: </p>
+										<p>${listinvoices.shipAddress}</p>
+									</div>
+									<div class="d-flex alignment-items-center mb-1 mt-3">
+										<p class="fw-bold me-2">Status:</p>
+									<c:if test="${listinvoices.status == 0}">Not yet confirm </c:if>
+									<c:if test="${listinvoices.status == 1}">Confirmed</c:if>
+									<c:if test="${listinvoices.status == 2}">Cancelled </c:if>
+									</div>
 								</div>
 								<div class="col-5">
 									<div class="d-flex justify-content-end">
-										<h4 class="fw-bold mt-3">Total Price: <fmt:formatNumber type="number" value="${listinvoices.total}" />₫</h4>
+										<h4 class="fw-bold mt-3">
+											Total Price:
+											<fmt:formatNumber type="number" value="${listinvoices.total}" />
+											₫
+										</h4>
 									</div>
 									<div class="d-flex justify-content-end">
 										<div class="fw-bold me-2">Pay Date:</div>

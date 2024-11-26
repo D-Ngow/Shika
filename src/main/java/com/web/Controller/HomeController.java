@@ -22,7 +22,7 @@ public class HomeController {
 	categoriesDAO cateDAO;
 	@GetMapping("/home")
 	public String getHome(Model model) {
-		List<Products> listprd = prdDAO.findAll();
+		List<Products> listprd = prdDAO.findAllActive();
 		model.addAttribute("listprd",listprd);
 		List<Products> listbestproc = ivdtDAO.findBestSellingProducts();
 		List<Products> listbestproc2 = listbestproc.subList(0,Math.min(2,listbestproc.size()));

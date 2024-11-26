@@ -60,6 +60,7 @@
 								<li><a class="dropdown-item" href="/managerProduct">Product</a></li>
 								<li><a class="dropdown-item" href="/managerCategory">Categories</a></li>
 								<li><a class="dropdown-item" href="/managerInvoice">Invoice</a></li>
+								<li><a class="dropdown-item" href="/managerSize">Size</a></li>
 							</ul></li>
 					</c:if>
 				</ul>

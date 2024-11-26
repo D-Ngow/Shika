@@ -23,11 +23,13 @@
 	<div class="container py-5">
 		<h3 class="text-start fw-bold mb-3">Product Size Manager</h3>
 		<div class="d-flex justify-content-end">
+			<input type="text" ng-model="name" class="form-control w-25" placeholder="Search product">
 		</div>
 		<table class="table">
 			<thead>
 				<tr>
 					<th scope="col">Product</th>
+					<th scope="col">Name</th>
 					<th scope="col">34</th>
 					<th scope="col">35</th>
 					<th scope="col">36</th>
@@ -41,19 +43,72 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr ng-repeat="product in products">
-					<td><img src="/image/product/{{product.image}}" class="img-fluid" alt="" style="max-width: 50px"></td>
-					<td><input class="form-check-input" type="checkbox"></td>
-					<td><input class="form-check-input" type="checkbox"></td>
-					<td><input class="form-check-input" type="checkbox"></td>
-					<td><input class="form-check-input" type="checkbox"></td>
-					<td><input class="form-check-input" type="checkbox"></td>
-					<td><input class="form-check-input" type="checkbox"></td>
-					<td><input class="form-check-input" type="checkbox"></td>
-					<td><input class="form-check-input" type="checkbox"></td>
-					<td><input class="form-check-input" type="checkbox"></td>
-					<td><input class="form-check-input" type="checkbox"></td>
-				</tr>
+			    <tr ng-repeat="product in products | filter:name">
+			        <td>
+			            <img src="/image/product/{{product.image}}" class="img-fluid" alt="" style="max-width: 50px"/>
+			        </td>
+			        <td><span>{{product.productName}}</span></td>
+			        <td>
+			            <input class="form-check-input"
+						           type="checkbox"
+						           ng-checked="product.sizes.includes(34)"
+						           ng-click="updateSize(product.productId, 34, $event.target.checked)">
+					</td>
+					<td>
+			            <input class="form-check-input"
+						           type="checkbox"
+						           ng-checked="product.sizes.includes(35)"
+						           ng-click="updateSize(product.productId, 35, $event.target.checked)">
+					</td>
+					<td>
+			            <input class="form-check-input"
+						           type="checkbox"
+						           ng-checked="product.sizes.includes(36)"
+						           ng-click="updateSize(product.productId, 36, $event.target.checked)">
+					</td>
+					<td>
+			            <input class="form-check-input"
+						           type="checkbox"
+						           ng-checked="product.sizes.includes(37)"
+						           ng-click="updateSize(product.productId, 37, $event.target.checked)">
+					</td>
+					<td>
+			            <input class="form-check-input"
+						           type="checkbox"
+						           ng-checked="product.sizes.includes(38)"
+						           ng-click="updateSize(product.productId, 38, $event.target.checked)">
+					</td>
+					<td>
+			            <input class="form-check-input"
+						           type="checkbox"
+						           ng-checked="product.sizes.includes(39)"
+						           ng-click="updateSize(product.productId, 39, $event.target.checked)">
+					</td>
+					<td>
+			            <input class="form-check-input"
+						           type="checkbox"
+						           ng-checked="product.sizes.includes(40)"
+						           ng-click="updateSize(product.productId, 40, $event.target.checked)">
+					</td>
+					<td>
+			            <input class="form-check-input"
+						           type="checkbox"
+						           ng-checked="product.sizes.includes(41)"
+						           ng-click="updateSize(product.productId, 41, $event.target.checked)">
+					</td>
+					<td>
+			            <input class="form-check-input"
+						           type="checkbox"
+						           ng-checked="product.sizes.includes(42)"
+						           ng-click="updateSize(product.productId, 42, $event.target.checked)">
+					</td>
+					<td>
+			            <input class="form-check-input"
+						           type="checkbox"
+						           ng-checked="product.sizes.includes(43)"
+						           ng-click="updateSize(product.productId, 43, $event.target.checked)">
+					</td>
+			    </tr>
 			</tbody>
 		</table>
 	</div>

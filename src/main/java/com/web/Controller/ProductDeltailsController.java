@@ -82,7 +82,8 @@ public class ProductDeltailsController {
 			cart.setQuantity(cart.getQuantity()+1);
 			cDAO.save(cart);
 		}
-		return "redirect:/details?id="+id;
+		String mess = "Added to cart";
+		return "redirect:/details?id="+id+"&&message="+mess+"&&status=success";
 	}
 	
 	

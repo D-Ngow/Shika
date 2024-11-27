@@ -73,6 +73,7 @@ app.controller("cartCtrl", function($scope, $http) {
 
 				// Cập nhật lại tổng sau khi thay đổi số lượng
 				$scope.calculateTotals();
+				$scope.toggleCartSelection();
 			})
 			.catch(function(error) {
 				console.error("Error updating quantity:", error);

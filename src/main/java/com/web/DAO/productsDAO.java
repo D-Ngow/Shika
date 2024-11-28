@@ -10,7 +10,7 @@ import org.springframework.data.repository.query.Param;
 import com.web.Entity.Products;
 
 public interface productsDAO extends JpaRepository<Products, Integer> {
-	@Query("SELECT p FROM Products p WHERE (:name IS NULL OR p.productName LIKE %:name%) AND p.status = true")
+	@Query("SELECT p FROM Products p WHERE p.productName LIKE :name AND p.status = true")
 	List<Products> findByNameContaining(@Param("name") String name);
 
 	@Query("SELECT p FROM Products p WHERE (:brand IS NULL OR p.brand IN :brand) AND (:color IS NULL OR p.color IN :color) AND p.status = true")

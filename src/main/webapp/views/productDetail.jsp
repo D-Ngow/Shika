@@ -45,7 +45,8 @@
                 <p class="description">${product.describe}</p>
 
 				<form method="post">
-					<div class="d-flex mb-3 align-items-center">
+					<div class="d-flex mb-3">
+						<span class="me-1">Select size:</span>
 						<select class="select-size" name="sizeSelect">
 							<c:forEach var="details" items="${detail}">
 								<option value="${details.type.typeId}">${details.type.size}</option>
@@ -54,7 +55,6 @@
 					</div>
 					<div class="d-grid gap-3">
 						<button formaction="/addToCart/${product.productId}" class="btn btn-dark rounded-pill py-3 fw-bold">Add to cart</button>
-						<a class="btn btn-dark rounded-pill py-3 fw-bold">Buy</a>
 					</div>
 				</form>
 			</div>

@@ -28,7 +28,7 @@ public class SecurityConfig {
               .authorizeHttpRequests(req -> {
                   req
                   .requestMatchers("/css/**","/js/**","/image/**").permitAll()
-                  .requestMatchers("/manager/**", "/managerSize", "/managerProduct", "/managerCategory", "/managerInvoice").hasAuthority("Admin")
+                  .requestMatchers("/manager/**", "/managerSize", "/managerProduct", "/managerCategory", "/managerInvoice", "/report/**").hasAuthority("Admin")
                      .requestMatchers("/buyhistory", "/changePass", "/profile", "/cart", "/addToCart/**", "/order", "/order/**", "/manager", "/manager/**","/checkout" ).authenticated()
                      .anyRequest().permitAll();
               })

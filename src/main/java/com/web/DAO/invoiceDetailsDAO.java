@@ -5,6 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import com.web.DTO.InvoiceDetailDTO;
 import com.web.Entity.InvoiceDetails;
 import com.web.Entity.Products;
 
@@ -22,5 +23,4 @@ public interface invoiceDetailsDAO extends JpaRepository<InvoiceDetails,Integer>
 		       "JOIN d.product p " +
 		       "WHERE id.invoice.invoiceId = :invoiceId")
 		List<Products> findProductsByInvoiceId(@Param("invoiceId") int invoiceId);
-
 }

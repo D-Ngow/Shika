@@ -43,21 +43,21 @@
 				<div class="form-floating mb-3">
 					<input type="text" class="form-control"
 						name="phone" id="floatingPhone" placeholder="PhoneNumber" required/>
-					<label for="floatingPhone">Số điện thoại</label>
+					<label for="floatingPhone">Phone Number</label>
 					
 				</div>
 				<div class="form-floating mb-3">
 					<input type="date" class="form-control"
 						name="birthday" id="floatingBirthday" placeholder="Password" required/>
-					<label for="floatingBirthday">Ngày sinh</label>
+					<label for="floatingBirthday">Birthday</label>
 					
 				</div>
 				<div class="form-floating mb-3">
 					<select id="gender" class="form-select" name="gender">
-						<option value="true">Nam</option>
-						<option value="false">Nữ</option>
+						<option value="true">Male</option>
+						<option value="false">Female</option>
 					</select>
-					<label for="gender">Giới tính</label>
+					<label for="gender">Gender</label>
 				</div>
 				<div class="form-floating mb-4">
 					<input type="password" class="form-control"
@@ -67,8 +67,8 @@
 				</div>
 				<div class="d-grid gap-2">
 					<button formaction="/submit"
-						class="btn btn-lg btn-dark">Đăng ký</button>
-					<button class="btn btn-lg btn-outline-dark">Đăng nhập</button>
+						class="btn btn-lg btn-dark">Sign up</button>
+					<a href="/signin" class="btn btn-lg btn-outline-dark">Sign in</a>
 				</div>
 			</form>
 		</div>

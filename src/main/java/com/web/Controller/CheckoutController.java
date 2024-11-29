@@ -87,7 +87,7 @@ public class CheckoutController {
 				req.getSession().removeAttribute(user.getEmail());
 				return "redirect:/cart?message=Not enough quantity&&status=error";
 			}
-			return "redirect:/buyhistory";
+			return "redirect:/buyhistory?message=Pay successfully&&status=success";
 		}
 		return "redirect:/checkout";
 	}
@@ -109,6 +109,6 @@ public class CheckoutController {
 			System.out.println(e);
 			return "redirect:/checkout";
 		}
-		return "redirect:/buyhistory";
+		return "redirect:/buyhistory?message=Pay successfully&&status=success";
 	}
 }

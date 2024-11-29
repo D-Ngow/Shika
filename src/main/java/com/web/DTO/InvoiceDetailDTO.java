@@ -10,6 +10,8 @@ import lombok.NoArgsConstructor;
 public class InvoiceDetailDTO {
 	private String img;
 	private String name;
-	private int soldQuantity;
-	private float totalRevenue;
+	private int size;
+	private String color;
+	private double price;
+	private int quantity;
 }

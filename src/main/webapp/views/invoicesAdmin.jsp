@@ -52,9 +52,9 @@
 				<tr ng-repeat="invoice in listinvoice">
 					<th>{{invoice.user.name}}</th>
 					<td>{{invoice.shipAddress}}</td>
-					<td>{{invoice.total}}</td>
+					<td>{{invoice.total | currency:'₫'}}</td>
 					<td>{{invoice.payment.paymentType}}</td>
-					<td>{{invoice.createDate}}</td>
+					<td>{{invoice.createDate | date:'dd/MM/yyyy'}}</td>
 					<td ng-if="invoice.status === 0">Chưa xác nhận</td>
 					<td ng-if="invoice.status === 1">Đã xác nhận</td>
 					<td ng-if="invoice.status === 2">Đã hủy</td>
@@ -80,17 +80,17 @@
 													<th scope="col">Name</th>
 													<th scope="col">Color</th>
 													<th scope="col">Price</th>
-													<th scope="col">Brand</th>
+													<th scope="col">Quantity</th>
 												</tr>
 											</thead>
 											<tbody>
 												<tr ng-repeat="product in listpro">
-													<td><img src="/image/product/{{product.image}}"
+													<td><img src="/image/product/{{product.img}}"
 														style="max-width: 70px"></td>
-													<td>{{product.productName}}</td>
+													<td>{{product.name}}</td>
 													<td>{{product.color}}</td>
-													<td>{{product.price}}</td>
-													<td>{{product.brand}}</td>
+													<td>{{product.price | currency:'₫'}}</td>
+													<td>{{product.quantity}}</td>
 												</tr>
 											</tbody>
 										</table>
@@ -103,9 +103,9 @@
 							</div>
 						</div>
 						<button ng-click="changeivstt(invoice.invoiceId,1)" type="button"
-							class="btn btn-success">Confirm</button>
+							class="btn btn-success {{invoice.status==0?'':'disabled'}}">Confirm</button>
 						<button ng-click="changeivstt(invoice.invoiceId,2)" type="button"
-							class="btn btn-danger">Cancel</button>
+							class="btn btn-danger {{invoice.status==0?'':'disabled'}}">Cancel</button>
 					</td>
 				</tr>
 			</tbody>

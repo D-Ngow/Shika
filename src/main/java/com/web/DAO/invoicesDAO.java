@@ -13,4 +13,5 @@ public interface invoicesDAO extends JpaRepository<Invoices,Integer>{
 	@Query("SELECT i FROM Invoices i WHERE i.status = :status")
     List<Invoices> findInvoicesByStatus(@Param("status") int status,Sort sort);
 	List<Invoices> findAll(Sort sort);
+	Invoices findByInvoiceId(int invoiceId);
 }

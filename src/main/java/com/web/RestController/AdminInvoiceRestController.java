@@ -1,5 +1,6 @@
 package com.web.RestController;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.web.DAO.invoiceDetailsDAO;
 import com.web.DAO.invoicesDAO;
+import com.web.DTO.InvoiceDetailDTO;
+import com.web.Entity.InvoiceDetails;
 import com.web.Entity.Invoices;
 import com.web.Entity.Products;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -32,15 +35,14 @@ public class AdminInvoiceRestController {
 	}
 	
 	@GetMapping("/findone/{ivid}")
-	public List<Products> getoneinvoice(@PathVariable int ivid) {
-		List<Products> listpro = ivdtDAO.findProductsByInvoiceId(ivid);
-		return listpro;
-	}
-	@PostMapping("/")
-	public String postMethodName(@RequestBody String entity) {
-		//TODO: process POST request
-		
-		return entity;
+	public List<InvoiceDetailDTO> getoneinvoice(@PathVariable int ivid) {
+		List<InvoiceDetailDTO> listIvd = new ArrayList<InvoiceDetailDTO>();
+		List<InvoiceDetails> ivds = ivdtDAO.findByinvoiceId(ivid);
+		for (InvoiceDetails ivd : ivds) {
+			InvoiceDetailDTO ivdDTO = new InvoiceDetailDTO(ivd.getDetail().getProduct().getImage(), ivd.getDetail().getProduct().getProductName(), ivd.getDetail().getType().getSize(), ivd.getDetail().getProduct().getColor(), ivd.getDetail().getProduct().getPrice(), ivd.getQuantity());
+			listIvd.add(ivdDTO);
+		}
+		return listIvd;
 	}
 	
 	@PutMapping("/changestt/{id}/{stt}")

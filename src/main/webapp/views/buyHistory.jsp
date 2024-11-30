@@ -3,7 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jstl/fmt_rt" prefix="fmt"%>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="myApp">
 
 <head>
 <meta charset="UTF-8">
@@ -18,7 +18,7 @@
 <link rel="icon" href="image/logo/Shiko_logo_bg.png">
 </head>
 
-<body class="bg-light">
+<body class="bg-light" ng-controller="buyHistoryCtrl" onload="showMess()">
 	<c:import url="header.jsp"></c:import>
 
 	<div class="container">
@@ -82,11 +82,11 @@
 					<c:forEach var="listinvoices" items="${listiv}">
 						<div class="card rounded-0 border-0">
 							<div class="card border-0">
-								<div class="row g-0 align-items-center">
-									<c:forEach var="prddt" items="${listinvoices.invoiceDetails}">
+								<c:forEach var="prddt" items="${listinvoices.invoiceDetails}">
+									<div class="row g-0 align-items-center border-bottom">
 										<div class="col-md-2">
 											<img src="/image/product/${prddt.detail.product.image}"
-												class="img-fluid" alt="Nike Blazer Mid '77 Vintage">
+												class="img-fluid" alt="">
 										</div>
 										<div class="col-md-10">
 											<div class="card-body">
@@ -108,22 +108,27 @@
 												</div>
 											</div>
 										</div>
-									</c:forEach>
-								</div>
+									</div>
+								</c:forEach>
 							</div>
 						</div>
 						<div class="card-footer bg-light border-0 rounded-0 mt-1 mb-4">
 							<div class="row px-3">
 								<div class="col-7">
-									<div class="d-flex alignment-items-center mb-1 mt-3">
-										<p class="fw-bold me-2">Shipping Address: </p>
-										<p>${listinvoices.shipAddress}</p>
+									<div class="d-flex alignment-items-center mt-3">
+										<p class="fw-bold me-2 mb-1">Shipping Address: </p>
+										<p class="mb-1">${listinvoices.shipAddress}</p>
 									</div>
-									<div class="d-flex alignment-items-center mb-1 mt-3">
-										<p class="fw-bold me-2">Status:</p>
-									<c:if test="${listinvoices.status == 0}">Not yet confirm </c:if>
-									<c:if test="${listinvoices.status == 1}">Confirmed</c:if>
-									<c:if test="${listinvoices.status == 2}">Cancelled </c:if>
+									<div class="d-flex alignment-items-center">
+										<p class="fw-bold me-2 mb-1">Status:</p>
+										<p class="mb-1">
+											<c:if test="${listinvoices.status == 0}">Not yet confirm </c:if>
+											<c:if test="${listinvoices.status == 1}">Confirmed</c:if>
+											<c:if test="${listinvoices.status == 2}">Cancelled </c:if>
+										</p>
+									</div>
+									<div class="mb-2">
+										<button ng-click="confirm(${listinvoices.invoiceId})" class="btn btn-dark" ${listinvoices.status == 0 ? '' : 'disabled'}>Cancel</button>
 									</div>
 								</div>
 								<div class="col-5">
@@ -135,8 +140,8 @@
 										</h4>
 									</div>
 									<div class="d-flex justify-content-end">
-										<div class="fw-bold me-2">Pay Date:</div>
-										<p>${listinvoices.createDate}</p>
+										<p class="fw-bold me-2 mb-1">Pay Date:</p>
+										<p class="mb-1">${listinvoices.createDate}</p>
 									</div>
 								</div>
 							</div>
@@ -150,9 +155,13 @@
 
 	<c:import url="footer.jsp"></c:import>
 
-	<script
-		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.min.js"></script>
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 	<script src="js/home.js"></script>
+	<script src="js/buyHistory.js"></script>
 </body>
 
 </html>

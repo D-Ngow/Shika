@@ -25,10 +25,11 @@
 		<div class="d-flex justify-content-end">
 			<select class="form-select w-25 mx-2" id="fillbystt" ng-change="fill()" ng-model="status"
 				aria-label="Default select example">
-				<option value="3" >All</option>
+				<option value="10" >All</option>
 				<option value="0">Not yet Confirm</option>
 				<option value="1">Confirmed</option>
 				<option value="2">Cancelled</option>
+				<option value="3">Waiting for refund</option>
 			</select> 
 			<select class="form-select w-25 mx-2" id="fillbydate" ng-change="fill()" ng-model="date"
 				aria-label="Default select example">
@@ -58,6 +59,7 @@
 					<td ng-if="invoice.status === 0">Chưa xác nhận</td>
 					<td ng-if="invoice.status === 1">Đã xác nhận</td>
 					<td ng-if="invoice.status === 2">Đã hủy</td>
+					<td ng-if="invoice.status === 3">Chờ hoàn tiền</td>
 					<td>
 						<button ng-click="showivlistpro(invoice.invoiceId)" type="button"
 							class="btn btn-warning" data-bs-toggle="modal"

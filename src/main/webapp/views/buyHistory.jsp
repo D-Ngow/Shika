@@ -125,6 +125,7 @@
 											<c:if test="${listinvoices.status == 0}">Not yet confirm </c:if>
 											<c:if test="${listinvoices.status == 1}">Confirmed</c:if>
 											<c:if test="${listinvoices.status == 2}">Cancelled </c:if>
+											<c:if test="${listinvoices.status == 3}">Waiting for refund </c:if>
 										</p>
 									</div>
 									<div class="mb-2">

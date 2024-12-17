@@ -67,6 +67,10 @@ public class PasswordRestController {
 				user.setPassword(passwordEncoder.encode(newPass));
 				userService.saveUser(user);
 			}
+			else {
+				otpRes.setSuccess(false);
+				otpRes.setMessage("Mật khẩu không khớp");
+			}
 		}
 		return otpRes;
 	}

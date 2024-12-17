@@ -96,9 +96,9 @@
                                     <label for="floatingPassword">New password</label>
                                 </div>
                                 <div class="d-grid gap-2">
-                                    <button ng-click="genOTP('${user.email}')" type="button" class="btn btn-lg btn-dark" data-bs-toggle="modal" data-bs-target="#exampleModal">
-									  Đổi mật khẩu
-									</button>
+                                    <button ng-click="genOTP('${user.email}')" type="button" class="btn btn-lg btn-dark">
+										  Đổi mật khẩu
+										</button>
 									
 									<!-- Modal -->
 									<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -120,7 +120,7 @@
 										        </div>
 									        </div>
 									        <div class="row mt-3 px-3">
-									        	<button ng-click="validateOTP('${user.email}',oldPass,newPass)" class="btn btn-dark border-0 rounded-0">Submit</button>
+									        	<button ng-click="validateOTP('${user.email}',oldPass,newPass)" class="btn btn-dark border-0 rounded-0" data-bs-dismiss="modal">Submit</button>
 									        </div>
 									      </div>
 									    </div>

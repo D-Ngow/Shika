@@ -1,6 +1,8 @@
 package com.web.Controller;
 
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,6 +57,31 @@ public class ProfileController {
 		us1.setUserId(Integer.parseInt(req.getParameter("id")));
 		us1.setPassword(user1.getPassword());
 		us1.setRole(user1.getRole());
+		
+		String phoneRegex = "^(0[1-9][0-9]{8})$";
+		if (!us1.getPhoneNumber().matches(phoneRegex)) {
+			String mess = "Phone number invalid";
+			String stat= "warning";
+			return "redirect:/profile?message="+mess+"&&status="+stat;
+		}
+		
+		Date birthday = us1.getBirthday();
+
+		// Tính tuổi từ ngày sinh
+		Calendar birthDate = Calendar.getInstance();
+		birthDate.setTime(birthday);
+		Calendar today = Calendar.getInstance();
+
+		int age = today.get(Calendar.YEAR) - birthDate.get(Calendar.YEAR);
+		if (today.get(Calendar.DAY_OF_YEAR) < birthDate.get(Calendar.DAY_OF_YEAR)) {
+		    age--; // Giảm tuổi nếu chưa tới ngày sinh nhật trong năm hiện tại
+		}
+
+		if (age < 18) {
+		    String mess = "Can not set age to under 18!";
+		    String stat = "warning";
+		    return "redirect:/profile?message="+mess+"&&status="+stat;
+		}
 		userService.saveUser(us1);
 		model.addAttribute("user",user);
 		return "redirect:/profile";

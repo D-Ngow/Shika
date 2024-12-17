@@ -47,7 +47,7 @@ public class CheckoutController {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			String mess = "No product in selected!";
+			String mess = "No product is selected!";
 			return "redirect:/cart?message="+mess+"&&status=warning";
 		}
 		double subtotal =0, discount=0, total=0;

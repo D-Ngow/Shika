@@ -48,7 +48,11 @@ public class AdminInvoiceRestController {
 	@PutMapping("/changestt/{id}/{stt}")
 	public void putMethodName(@PathVariable int id,@PathVariable int stt) {
 		Invoices invoice = ivDAO.findById(id).get();
-		invoice.setStatus(stt);
+		if(invoice.getPayment().getPaymentId() != 1) {
+			invoice.setStatus(stt);
+		}else {
+			invoice.setStatus(3);
+		}
 		ivDAO.save(invoice);
 	}
 	
@@ -56,7 +60,7 @@ public class AdminInvoiceRestController {
 	public List<Invoices> getFillbySttAndDate(@PathVariable int stt,@PathVariable String date) {
 		Sort sort = date.equals("asc") ? Sort.by(Sort.Order.asc("createDate")) : Sort.by(Sort.Order.desc("createDate"));
 		List<Invoices> listiv = null;
-		if(stt==3) {
+		if(stt==10) {
 		listiv = ivDAO.findAll(sort);
 		}else {
 		listiv = ivDAO.findInvoicesByStatus(stt, sort);

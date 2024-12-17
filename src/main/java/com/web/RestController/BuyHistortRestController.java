@@ -34,7 +34,11 @@ public class BuyHistortRestController {
 			proDAO.save(pro);
 		}
 		Invoices iv = ivDAO.findByInvoiceId(id);
-		iv.setStatus(2);
+		if(iv.getPayment().getPaymentId() != 1) {
+			iv.setStatus(2);
+		}else {
+			iv.setStatus(3);
+		}
 		ivDAO.save(iv);
 	}
 	

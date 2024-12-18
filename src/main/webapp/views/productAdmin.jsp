@@ -23,32 +23,12 @@
 	<div class="container py-5">
 		<h3 class="text-start fw-bold mb-3">Product Manager</h3>
 		<div class="row">
-			<div class="dropdown mb-3 col-6">
-				<button class="bg-black border-0 text-light filter"
-					data-bs-toggle="dropdown" aria-expanded="false"
-					data-bs-auto-close="outside">Filter</button>
-				<form class="dropdown-menu p-4 border-1 rounded-0">
-					<div class="brand">
-						<p class="mb-2 text-secondary fw-medium opacity-50">BRAND</p>
-						<div class="row g-1">
-							<div class="col-6">
-								<a href="#" class="text-decoration-none text-black">Nike</a>
-							</div>
-							<div class="col-6">
-								<a href="#" class="text-decoration-none text-black">Adidas</a>
-							</div>
-							<div class="col-6">
-								<a href="#" class="text-decoration-none text-black">Puma</a>
-							</div>
-							<div class="col-6">
-								<a href="#" class="text-decoration-none text-black">Gucci</a>
-							</div>
-						</div>
-					</div>
-				</form>
+			<div class="col-6">
+				
 			</div>
 			<div class="d-flex justify-content-end col-6">
-				<button class="bg-success border-0 text-light h-50 px-4 me-4"
+				<input type="text" ng-model="productName" class="form-control w-50 me-4" placeholder="Search product">
+				<button class="bg-success border-0 text-light px-4 me-4"
 					data-bs-toggle="modal" data-bs-target="#exampleModal">Add</button>
 				<div class="modal modal-lg fade" id="exampleModal" tabindex="-1"
 					aria-labelledby="exampleModalLabel1" aria-hidden="true">
@@ -85,19 +65,19 @@
 											</div>
 											<div class="mb-2">
 												<label for="name" class="form-label">Quantity</label>
-												<input type="number" min="1" class="form-control" id="quantity" ng-model="pro.quantity" name="quantity" required>
+												<input type="number" min="1" class="form-control" id="quantity" ng-model="pro.quantity" name="quantity" min="1" required>
 											</div>
 											<div class="mb-2">
 												<label for="price" class="form-label">Price</label>
 												<div class="input-group">
-													<input type="number" min="0" class="form-control" id="price" name="price" ng-model="pro.price" required>
+													<input type="number" min="0" class="form-control" id="price" name="price" ng-model="pro.price" min="1" required>
 													<span class="input-group-text">VNĐ</span>
 												</div>
 											</div>
 											<div class="mb-2">
 												<label for="buyCount" class="form-label">Discount</label>
 												<div class="input-group">
-													<input type="number" min="0" class="form-control" id="buyCount" name="buyCount" ng-model="pro.discountPrice" required>
+													<input type="number" min="0" class="form-control" id="buyCount" name="buyCount" ng-model="pro.discountPrice" min="0" required>
 													<span class="input-group-text">VNĐ</span>
 												</div>
 											</div>
@@ -142,7 +122,7 @@
 		</div>
 
 		<div class="row row-cols-2 row-cols-md-4 row-cols-sm-3 row-cols-xs-2 g-4 mt-3">
-			<div ng-repeat="product in products" class="col-3">
+			<div ng-repeat="product in products | filter:productName" class="col-3">
 				<button class="btn p-0 m-0" data-bs-toggle="modal" data-bs-target="#exampleModal{{product.productId}}">
 					<div class="col-xs-6">
 						<div class="card border-1 text-dark">
@@ -160,14 +140,14 @@
 										<span>Quantity: {{product.quantity}}</span>
 									</div>
 									<div class="col-6">
-										<span>Discount: {{product.discountPrice}}₫</span>
-									</div>
-									<div class="col-6">
 										<span>Status: {{product.status ? 'Active' : 'Inactive'}}</span>
+									</div>
+									<div class="col-12">
+										<span>Discount: {{product.discountPrice | currency:'₫'}}</span>
 									</div>
 								</div>
 								<div class="card-text mt-3 fw-bold d-flex justify-content-end">
-									{{product.price}}₫
+									{{product.price | currency:'₫'}}
 								</div>
 							</div>
 						</div>
@@ -182,7 +162,7 @@
 								<button type="button" class="btn-close" data-bs-dismiss="modal"
 									aria-label="Close"></button>
 							</div>
-							<form method="post" ng-submit="editProduct(product)" id="proForm" enctype="multipart/form-data">
+							<form method="post" ng-submit="editProduct(product)" class="needs-validation" novalidate id="proForm" enctype="multipart/form-data">
 								<div class="modal-body">
 									<div class="row g-5">
 										<div class="col-5">
@@ -215,19 +195,19 @@
 											</div>
 											<div class="mb-2">
 												<label for="name" class="form-label">Quantity</label>
-												<input type="number" min="1" class="form-control" id="quantity" ng-model="product.quantity" name="quantity" required>
+												<input type="number" min="1" class="form-control" id="quantity" ng-model="product.quantity" name="quantity" min="1" required>
 											</div>
 											<div class="mb-2">
 												<label for="price" class="form-label">Price</label>
 												<div class="input-group">
-													<input type="number" min="0" class="form-control" id="price" name="price" ng-model="product.price" required>
+													<input type="number" min="0" class="form-control" id="price" name="price" ng-model="product.price" min="1" required>
 													<span class="input-group-text">VNĐ</span>
 												</div>
 											</div>
 											<div class="mb-2">
 												<label for="buyCount" class="form-label">Discount</label>
 												<div class="input-group">
-													<input type="number" min="0" class="form-control" id="buyCount" name="buyCount" ng-model="product.discountPrice" required>
+													<input type="number" min="0" class="form-control" id="buyCount" name="buyCount" ng-model="product.discountPrice" min="0" required>
 													<span class="input-group-text">VNĐ</span>
 												</div>
 											</div>

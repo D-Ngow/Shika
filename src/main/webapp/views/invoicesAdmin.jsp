@@ -23,9 +23,10 @@
 	<div class="container py-5">
 		<h3 class="text-start fw-bold mb-3">Invoice Manager</h3>
 		<div class="d-flex justify-content-end">
+			<input type="text" ng-model="invoice.user.name" class="form-control w-25" placeholder="Search product">
 			<select class="form-select w-25 mx-2" id="fillbystt" ng-change="fill()" ng-model="status"
 				aria-label="Default select example">
-				<option value="10" >All</option>
+				<option value="10">All</option>
 				<option value="0">Not yet Confirm</option>
 				<option value="1">Confirmed</option>
 				<option value="2">Cancelled</option>
@@ -50,7 +51,7 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr ng-repeat="invoice in listinvoice">
+				<tr ng-repeat="invoice in listinvoice | filter:invoice.user.name">
 					<th>{{invoice.user.name}}</th>
 					<td>{{invoice.shipAddress}}</td>
 					<td>{{invoice.total | currency:'₫'}}</td>

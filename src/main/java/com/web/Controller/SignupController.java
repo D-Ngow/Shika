@@ -1,6 +1,9 @@
 package com.web.Controller;
 
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -41,14 +44,52 @@ public class SignupController {
  			Users user = userSv.findByEmail(req.getParameter("email"));
  			if (user==null) {
  				user = new Users();
- 				user.setEmail(req.getParameter("email"));
+ 				String emailRegex = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$";
+ 				if (!req.getParameter("email").matches(emailRegex)) {
+ 					mess = "Email number invalid";
+ 					stat= "warning";
+ 					return "redirect:/signup?message="+mess+"&&status="+stat;
+ 				}
+ 				else {
+ 					user.setEmail(req.getParameter("email"));
+ 				}
+ 				
  	 			user.setName(req.getParameter("name"));
- 				user.setPhoneNumber(req.getParameter("phone"));
+ 	 			String phoneRegex = "^(0[1-9][0-9]{8})$";
+
+ 	 			if (!req.getParameter("phone").matches(phoneRegex)) {
+ 	 				mess = "Phone number invalid";
+ 					stat= "warning";
+ 					return "redirect:/signup?message="+mess+"&&status="+stat;
+ 	 			}
+ 	 			else {
+ 	 				user.setPhoneNumber(req.getParameter("phone"));
+ 	 			}
  				user.setPassword(passwordEncoder.encode(req.getParameter("password")));
  	 			user.setGender(Boolean.parseBoolean(req.getParameter("gender")));
- 				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
- 	 			user.setBirthday(sdf.parse(req.getParameter("birthday")));
+ 	 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+ 	 			Date birthday = sdf.parse(req.getParameter("birthday"));
+
+ 	 			// Tính tuổi từ ngày sinh
+ 	 			Calendar birthDate = Calendar.getInstance();
+ 	 			birthDate.setTime(birthday);
+ 	 			Calendar today = Calendar.getInstance();
+
+ 	 			int age = today.get(Calendar.YEAR) - birthDate.get(Calendar.YEAR);
+ 	 			if (today.get(Calendar.DAY_OF_YEAR) < birthDate.get(Calendar.DAY_OF_YEAR)) {
+ 	 			    age--; // Giảm tuổi nếu chưa tới ngày sinh nhật trong năm hiện tại
+ 	 			}
+
+ 	 			if (age < 18) {
+ 	 				mess = "You are under 18!";
+ 					stat= "warning";
+ 	 			    return "redirect:/signup?message="+mess+"&&status="+stat;
+ 	 			}
+ 	 			else {
+ 	 				user.setBirthday(sdf.parse(req.getParameter("birthday")));
+ 	 			}
  	 			user.setRole(false);
+ 	 			
  	 			userSv.saveUser(user);
 			}else {
 				mess = "Email is already used";

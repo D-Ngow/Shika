@@ -35,13 +35,25 @@ const app = angular.module("myApp", ["ngRoute"]);
 app.controller("passwordCtrl", function($scope, $http) {
 	
 	$scope.genOTP = function(email){
-		$http.get("/changePass/rest/genOTP/"+email)
-        .then(function(response) {
-            $scope.otp = response.data;
-        })
-        .catch(function(error) {
-            console.error("Error get otp:", error);
-        });
+		if($scope.oldPass == null || $scope.newPass == null || $scope.oldPass === "" || $scope.newPass === "") {
+			swal("Không được để trống", {
+				  buttons: false,
+				  timer: 3000,
+				  icon: "warning",
+				});
+				return;
+		}
+		if($scope.oldPass != null && !$scope.newPass != null) {
+			var myModal = new bootstrap.Modal(document.getElementById('exampleModal'));
+    		myModal.show();
+    		$http.get("/changePass/rest/genOTP/"+email)
+	        .then(function(response) {
+	            $scope.otp = response.data;
+	        })
+	        .catch(function(error) {
+	            console.error("Error get otp:", error);
+	        });
+		}
 	}
 	
 	$scope.validateOTP = function(email, oldPass, newPass){
@@ -66,6 +78,9 @@ app.controller("passwordCtrl", function($scope, $http) {
 				  icon: "error",
 				});
 			}
+			inputs.forEach(input => {
+	    		input.value = "";
+	  		});
         })
         .catch(function(error) {
             console.error("Error get otp:", error);

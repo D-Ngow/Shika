@@ -8,7 +8,7 @@ $scope.loaddata = function(){
  }
  
  $scope.loaddata();
- $scope.status = "3";
+ $scope.status = "10";
  $scope.date = "asc";
  
  $scope.changeivstt = function(id,stt){

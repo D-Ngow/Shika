@@ -17,7 +17,7 @@
 <link rel="icon" href="image/logo/Shiko_logo_bg.png">
 </head>
 
-<body class="bg-light">
+<body onload="alertMess()" class="bg-light">
 	<c:import url="header.jsp"></c:import>
 
 	<div class="container">
@@ -270,7 +270,11 @@
 
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 	<script src="js/home.js"></script>
+	<script type="text/javascript">
+		document.getElementById('dob').max = new Date(new Date().getTime() - new Date().getTimezoneOffset() * 60000).toISOString().split("T")[0];
+	</script>
 </body>
 
 </html>

@@ -38,17 +38,16 @@
                                     aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                                <form ng-submit="addCate(Catename)" method="post" enctype="multipart/form-data">
+                                <form ng-submit="addCate(Catename)" class="needs-validation" novalidate method="post" enctype="multipart/form-data">
                                     <div class="row g-5">
                                         <div class="col-12">
                                             <div class="mb-2">
-                                                <label for="name" class="form-label">Name</label> <input type="text"
-                                                    class="form-control" ng-model="Catename" name="Catename" >
+                                                <label for="name" class="form-label">Name</label>
+												<input type="text" class="form-control" ng-model="Catename" name="Catename" required>
                                             </div>
                                             <div class="mb-2">
-                                                <label for="formFile" class="form-label">9:16
-                                                    image</label> <input class="form-control" type="file" id="cateimage"
-                                                    name="Cateimage" >
+                                                <label for="formFile" class="form-label">9:16 image</label>
+                                                <input class="form-control" type="file" id="cateimage" name="Cateimage" required>
                                             </div>
                                             <div class="d-flex justify-content-end">
                                                 <button class="btn btn-primary mx-2">Save</button>
@@ -60,20 +59,6 @@
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="dropdown">
-                    <button class="bg-white border-0" data-bs-toggle="dropdown" aria-expanded="false">
-                        Sort
-                        <svg xmlns="http://www.w3.org/2000/svg" height="14" width="14"
-                            viewBox="0 0 512 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
-                            <path fill="#000000"
-                                d="M233.4 406.6c12.5 12.5 32.8 12.5 45.3 0l192-192c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L256 338.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l192 192z" />
-                        </svg>
-                    </button>
-                    <ul class="dropdown-menu border-1 rounded-0">
-                        <li><a class="dropdown-item" href="#">New to old</a></li>
-                        <li><a class="dropdown-item" href="#">Old to new</a></li>
-                    </ul>
                 </div>
             </div>
         </div>

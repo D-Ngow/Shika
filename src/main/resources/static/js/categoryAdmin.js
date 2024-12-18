@@ -24,8 +24,20 @@ app.controller("categoryCtrl", function($scope, $http) {
 
 	$scope.addCate = function(Catename) {
 		var formData = new FormData();
-		formData.append('name', Catename);
 		const image = document.getElementById('cateimage');
+		
+		if (Catename == null || Catename === "") {
+			swal("Enter name before add category", {
+				buttons: false,
+				timer: 3000,
+				icon: "error",
+			});
+			return;
+			
+		} else {
+			formData.append('name', Catename);
+		}
+		
 		if (image.files.length > 0) {
 			formData.append('image', image.files[0]);
 		} else {
@@ -36,6 +48,8 @@ app.controller("categoryCtrl", function($scope, $http) {
 			});
 			return;
 		}
+	
+		
 		$http.post("/manager/category/addCate", formData, {
 			transformRequest: angular.identity,
 			headers: { 'Content-Type': undefined }

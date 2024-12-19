@@ -13,9 +13,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.web.DAO.cartsDAO;
 import com.web.DAO.paymentDAO;
+import com.web.DAO.productsDAO;
 import com.web.DAO.usersDAO;
 import com.web.Entity.Cart;
 import com.web.Entity.Payment;
+import com.web.Entity.Products;
 import com.web.Entity.Users;
 import com.web.Service.OderService;
 
@@ -34,6 +36,8 @@ public class CheckoutController {
 	HttpServletRequest req;
 	@Autowired
 	OderService oderservice;
+	@Autowired
+	productsDAO prdDAO;
 	
 	@GetMapping("/checkout")
 	public String checkout(Model model) {
@@ -44,7 +48,16 @@ public class CheckoutController {
 		try {
 			if (listCart.isEmpty()) {
 				throw new NullPointerException();
+			}else {
+				for (Cart lcart : listCart) {
+					Products pro = prdDAO.findById(lcart.getDetail().getProduct().getProductId());
+					if(lcart.getQuantity() > pro.getQuantity()) {
+						String mess = pro.getProductName()+" only have "+pro.getQuantity()+" in store !";
+						return "redirect:/cart?message="+mess+"&&status=warning";
+					}
+				}
 			}
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 			String mess = "No product is selected!";

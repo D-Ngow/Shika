@@ -65,9 +65,7 @@ public class ProductService {
 	}
 
 	public void deleteProduct(int id) {
-		Products product = findById(id);
 		proDao.deleteById(id);
-
 	}
 
 }
